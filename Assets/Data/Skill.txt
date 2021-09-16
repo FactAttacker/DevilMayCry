@@ -1,0 +1,1 @@
+﻿[{"ID":0,"UnitType":"","SkillType":"","CoolTime":0.0,"ATT":0.0},{"ID":1,"UnitType":"","SkillType":"","CoolTime":0.0,"ATT":0.0},{"ID":2,"UnitType":"","SkillType":"","CoolTime":0.0,"ATT":0.0},{"ID":3,"UnitType":"","SkillType":"","CoolTime":0.0,"ATT":0.0},{"ID":4,"UnitType":"","SkillType":"","CoolTime":0.0,"ATT":0.0},{"ID":5,"UnitType":"","SkillType":"","CoolTime":0.0,"ATT":0.0}]

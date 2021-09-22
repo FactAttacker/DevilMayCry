@@ -16,6 +16,9 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     Transform[] zoomPos;
 
+    [SerializeField]
+    float cmSpeed = 1.5f;
+
     [System.Serializable]
     class ShakeInfo
     {
@@ -32,6 +35,11 @@ public class CameraManager : MonoBehaviour
     public enum CameraType { FOLLWER, ZOOM_IN, ZOOM_OUT,SHACKE};
     public TargetType currentTarget = TargetType.BOSS;
     public CameraType currentCamera = CameraType.FOLLWER;
+
+    private void Start()
+    {
+        shakeInfo.vector = new Vector3(0f, 0f, -5f);
+    }
 
     public void OnTargetLook(TargetType type)
     {
@@ -67,15 +75,16 @@ public class CameraManager : MonoBehaviour
     /// </summary>
     public void OnShake(float time = 1.5f)
     {
-        shakeInfo.time = time;
         if (canShake)
         {
+            shakeInfo.time = time;
             canShake = false;
             StartCoroutine(ShakeCoroutine());
         }
     }
     IEnumerator ShakeCoroutine()
     {
+        shakeInfo.vector = _camera.position;
         while (shakeInfo.time > 0)
         {
             shakeInfo.time -= Time.deltaTime;
@@ -83,8 +92,9 @@ public class CameraManager : MonoBehaviour
             yield return null;
         }
         canShake = true;
+        currentCamera = CameraType.FOLLWER;
         shakeInfo.time = 0.0f;
-        _camera.position = shakeInfo.vector;
+        _camera.transform.position = zoomPos[1].position;
     }
 
     void Update()
@@ -94,7 +104,6 @@ public class CameraManager : MonoBehaviour
             case CameraType.FOLLWER:
                 OnTargetLook(currentTarget);
                 //transform.position = Vector3.MoveTowards(transform.position, playerObj.transform.position, 0.7f);
-                transform.position = Vector3.Lerp(transform.position, playerObj.transform.position, 1.5f * Time.deltaTime);
                 break;
             case CameraType.ZOOM_IN:
                 OnPlayerZoomIn();
@@ -102,7 +111,11 @@ public class CameraManager : MonoBehaviour
             case CameraType.ZOOM_OUT:
                 OnPlayerZoomOut();
                 break;
+            case CameraType.SHACKE:
+                OnShake();
+                break;
         }
+        transform.position = Vector3.Lerp(transform.position, playerObj.transform.position, cmSpeed * Time.deltaTime);
     }
 }
  

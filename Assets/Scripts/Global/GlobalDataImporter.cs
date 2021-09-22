@@ -16,6 +16,9 @@ public class GlobalDataImporter : MonoBehaviour
 
         [Header("스킬")]
         public TextAsset skill;
+
+        [Header("자막")]
+        public TextAsset caption;
     }
 
     void Awake()
@@ -24,6 +27,9 @@ public class GlobalDataImporter : MonoBehaviour
         GlobalState.playerList = JsonConvert.DeserializeObject<List<Excel_Player>>(googleSheetData.player.ToString());
         
         //Skill 정보 담기
-        GlobalState.skillList = JsonConvert.DeserializeObject<List<Excel_Skill>>(googleSheetData.skill.ToString());
+        GlobalState.skillList = JsonConvert.DeserializeObject<List<Excel_Skill>>(googleSheetData.skill.ToString());//Skill 정보 담기
+
+        //Skill 정보 담기
+        GlobalState.captionList = JsonConvert.DeserializeObject<List<Excel_Caption>>(googleSheetData.caption.ToString());
     }
 }

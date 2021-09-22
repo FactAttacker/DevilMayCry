@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    #region instance
+    public static CameraManager instance;
+    #endregion
+
     [SerializeField]
     Transform _camera;
 
@@ -36,11 +40,17 @@ public class CameraManager : MonoBehaviour
     public TargetType currentTarget = TargetType.BOSS;
     public CameraType currentCamera = CameraType.FOLLWER;
 
+    
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+    }
+
     private void Start()
     {
         shakeInfo.vector = new Vector3(0f, 0f, -5f);
     }
-
+    
     public void OnTargetLook(TargetType type)
     {
         Transform target = type == TargetType.BOSS ? bossObj.transform : playerObj.transform;

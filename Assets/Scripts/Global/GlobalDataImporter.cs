@@ -19,6 +19,9 @@ public class GlobalDataImporter : MonoBehaviour
 
         [Header("자막")]
         public TextAsset caption;
+
+        [Header("아이템")]
+        public TextAsset item;
     }
 
     void Awake()
@@ -31,5 +34,8 @@ public class GlobalDataImporter : MonoBehaviour
 
         //Skill 정보 담기
         GlobalState.captionList = JsonConvert.DeserializeObject<List<Excel_Caption>>(googleSheetData.caption.ToString());
+
+        //item 정보 담기
+        GlobalState.itemList = JsonConvert.DeserializeObject<List<Excel_Item>>(googleSheetData.item.ToString());
     }
 }

@@ -9,4 +9,5 @@ public class Excel_Skill
     public string SkillType;
     public float CoolTime;
     public float ATT;
+    public string Name;
 }

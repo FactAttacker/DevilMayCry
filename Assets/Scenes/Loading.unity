@@ -345,3 +345,5 @@ MonoBehaviour:
   googleSheetData:
     player: {fileID: 4900000, guid: b24f0ede2718c4504b0dde6a76f0a6d6, type: 3}
     skill: {fileID: 4900000, guid: c429a224675b34631a6af730688eaa5d, type: 3}
+    caption: {fileID: 4900000, guid: 7ee83e6b3fa26454aaba68ced0963758, type: 3}
+    item: {fileID: 4900000, guid: 1b6791fdf393d4d19bdf186bdcbf5c05, type: 3}

@@ -20,8 +20,8 @@ public class Boss_DetectPlayerAndCalcDistance : MonoBehaviour
         distance = Vector3.Distance(playerTr.position, transform.position);
     }
 
-    /// <summary> Player 오브젝트를 검색하는 함수 </summary>
-    /// <returns> "Player" 태그를 가진 오브젝트가 나타날 때까지 대기 </returns>
+    /// <summary> Player ????? ???? ?? </summary>
+    /// <returns> "Player" ??? ?? ????? ??? ??? ?? </returns>
     IEnumerator SearchPlayer()
     {
         yield return new WaitUntil(() => GameObject.FindGameObjectWithTag("Player"));

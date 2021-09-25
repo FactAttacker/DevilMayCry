@@ -18,9 +18,9 @@ public class BossStateMachine : MonoBehaviour
     public void SetState(BossState _nextState, bool _isReset = true)
     {
         prevState = currState;
-        currState = _nextState;
         prevState?.OnEnd();
         if(_isReset) prevState?.OnReset();
+        currState = _nextState;
         currState.OnStart();
     }
 

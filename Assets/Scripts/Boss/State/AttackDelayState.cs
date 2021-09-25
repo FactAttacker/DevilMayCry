@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class AttackDelayState : BossState
 {
+    Coroutine Co_attackDelay;
     public override void OnAwake()
     {
 
@@ -12,7 +13,7 @@ public class AttackDelayState : BossState
 
     public override void OnStart()
     {
-
+        Co_attackDelay = StartCoroutine(Co_AttackDelay());
     }
 
     public override void OnUpdate()
@@ -33,5 +34,12 @@ public class AttackDelayState : BossState
     public override void OnReset()
     {
 
+    }
+
+    IEnumerator Co_AttackDelay()
+    {
+        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
+        bossStateMachine.SetState(GetComponent<IdleState>());
+        StopCoroutine(Co_attackDelay);
     }
 }

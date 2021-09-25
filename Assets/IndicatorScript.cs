@@ -33,7 +33,7 @@ public class IndicatorScript : MonoBehaviour
         if (collision.gameObject.name == "Cube") 
         {
             
-            print("Ãæµ¹");
+            print("????");
             hitPoint= collision.contacts[0].point;
             print(hitPoint);
             GameObject player = GameObject.Find("xbot");

@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class Player_Script : MonoBehaviour
 {
-    [Header("이동관련속성")]
+    [Header("??????")]
     public float walk_Speed = 10f;
-    public float speed;      // 캐릭터 움직임 스피드.
+    public float speed;      // ??? ??? ???.
     public float run_Speed = 20f;
-    public float jumpSpeed; // 캐릭터 점프 힘.
+    public float jumpSpeed; // ??? ?? ?.
     bool jumpPing = false;
-    public float gravity;    // 캐릭터에게 작용하는 중력.
-   
-    Rigidbody rb;
-    private Vector3 MoveDir;                // 캐릭터의 움직이는 방향.0
+    public float gravity;    // ????? ???? ??.
 
-    
-    [Header("캐릭터공격상태")]
-    
+    Rigidbody rb;
+    private Vector3 MoveDir;                // ???? ???? ??.0
+
+
+    [Header("???????")]
+
     public bool nextAttack = false;
     public enum FighterState { WithoutSowrd, SwordMode }
     public FighterState fighterState = FighterState.WithoutSowrd;
-    public enum FighterAttackState {Attack1, Attack2,Attack3, Attack4 }
+    public enum FighterAttackState { Attack1, Attack2, Attack3, Attack4 }
     public FighterAttackState attackState = FighterAttackState.Attack1;
     public Animator anim;
-    
 
-    [Header("공격관련")]
+
+    [Header("????")]
     public GameObject swordCase;
     public GameObject katana;
     public GameObject rightHand;
@@ -37,10 +37,10 @@ public class Player_Script : MonoBehaviour
 
     //Hook
     public GameObject hook;
-   
 
-    
-    void Start()  
+
+
+    void Start()
     {
         speed = 10;
         jumpSpeed = 15.0f;
@@ -48,7 +48,7 @@ public class Player_Script : MonoBehaviour
 
         MoveDir = Vector3.zero;
         rb = GetComponent<Rigidbody>();
-        
+
         anim = GetComponent<Animator>();
         //lr = leftHand.GetComponent<LineRenderer>();
 
@@ -57,24 +57,24 @@ public class Player_Script : MonoBehaviour
     private void FixedUpdate()
     {
         rb.AddForce(Vector3.down * gravity);
-        
+
     }
     RaycastHit hit;
     void Update()
     {
-        
-       
+
+
 
         //indicator.transform.position += -Vector3.forward;
 
         move();
 
-        if (Input.GetKeyDown(KeyCode.LeftShift)) 
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            InvokeRepeating("Change_SpeedPlus", 0.3f,0.3f);
-            
+            InvokeRepeating("Change_SpeedPlus", 0.3f, 0.3f);
+
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift)) 
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             CancelInvoke("Change_SpeedPlus");
             speed = walk_Speed;
@@ -84,10 +84,10 @@ public class Player_Script : MonoBehaviour
 
     }
 
-    void Change_SpeedPlus() 
+    void Change_SpeedPlus()
     {
         speed += 0.3f;
-       
+
         anim.SetFloat("runWithSword", speed);
         if (speed > run_Speed)
         {
@@ -96,32 +96,32 @@ public class Player_Script : MonoBehaviour
         }
     }
 
-    void move() 
+    void move()
     {
-       
-        
-        MoveDir = new Vector3(Input.GetAxisRaw("Horizontal" ),0,Input.GetAxisRaw("Vertical"));
+
+
+        MoveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         transform.position += speed * Time.deltaTime * MoveDir;
 
         transform.LookAt(transform.position + MoveDir);
 
 
-        if (Input.GetButtonDown("Jump")&& !jumpPing) 
+        if (Input.GetButtonDown("Jump") && !jumpPing)
         {
-            rb.AddForce(Vector3.up *jumpSpeed, ForceMode.Impulse);
-            
+            rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+
             anim.SetTrigger("isJump");
             jumpPing = true;
         }
-        
-    }
-    
 
-    void OutPutSword_Ver() 
+    }
+
+
+    void OutPutSword_Ver()
     {
-        if (outPutSword == true) 
+        if (outPutSword == true)
         {
-            
+
             if (Input.GetKeyDown(KeyCode.K))
             {
                 anim.SetTrigger("throwSword");
@@ -138,23 +138,23 @@ public class Player_Script : MonoBehaviour
         outPutSword = !outPutSword;
     }
 
-    IEnumerator InputSword() 
+    IEnumerator InputSword()
     {
         yield return new WaitForSeconds(1.3f);
-        katana.transform.SetParent(swordCase.transform,false);
-        katana.transform.localPosition = new Vector3(-0.25f,0.15f,0.29f);
-        katana.transform.localEulerAngles = new Vector3(124f,187f,730);
+        katana.transform.SetParent(swordCase.transform, false);
+        katana.transform.localPosition = new Vector3(-0.25f, 0.15f, 0.29f);
+        katana.transform.localEulerAngles = new Vector3(124f, 187f, 730);
         outPutSword = false;
         anim.SetBool("inputSword", false);
     }
 
 
-   
-    void InputControl() 
-    {
-        
 
-        
+    void InputControl()
+    {
+
+
+
 
 
         if (Input.GetKeyDown(KeyCode.J))
@@ -168,11 +168,11 @@ public class Player_Script : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             if (outPutSword == false)
-            { 
+            {
                 anim.SetTrigger("outPutSword");
                 StartCoroutine("OutPutSword");
                 fighterState = FighterState.SwordMode;
-               
+
             }
         }
         if (Input.GetKeyDown(KeyCode.L))
@@ -185,9 +185,9 @@ public class Player_Script : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.K)) 
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            switch (attackState) 
+            switch (attackState)
             {
                 case FighterAttackState.Attack1:
                     attackState = FighterAttackState.Attack2;
@@ -210,7 +210,7 @@ public class Player_Script : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag =="Ground") 
+        if (collision.gameObject.tag == "Ground")
         {
             jumpPing = false;
         }

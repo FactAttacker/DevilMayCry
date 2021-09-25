@@ -51,13 +51,13 @@ public class JumpAttackState : BossState
 
     IEnumerator Co_Jump()
     {
-        // 점프 구현
+        //점프 구현
         yield return null;
     }
 
     IEnumerator Co_StrikeAttack()
     {
-        // 내려찍기 구현
+        //내려찍기 구현
         yield return null;
     }
 }

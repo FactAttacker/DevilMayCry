@@ -40,7 +40,7 @@ public class StrikeAttackState : BossState
     {
         bossStateMachine.anim.SetTrigger("StrikeAttack");
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Strike Attack State"));
-        //Strike Attack 상태에서의 효과
+        // Strike Attack 상태에서의 효과
         yield return StartCoroutine(Co_StrikeAttack());
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
         bossStateMachine.SetState(GetComponent<AttackDelayState>());

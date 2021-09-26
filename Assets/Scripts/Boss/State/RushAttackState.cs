@@ -6,6 +6,7 @@ using UnityEngine;
 public class RushAttackState : BossState
 {
     Coroutine Co_rushAttackCycle;
+    Coroutine Co_rush;
 
     [SerializeField] float attackDist = 1;
 
@@ -45,20 +46,21 @@ public class RushAttackState : BossState
         yield return GetComponent<BossRotate>().Co_RushRotate();
         bossStateMachine.anim.SetTrigger("Rush");
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Rush State"));
-        yield return StartCoroutine(Co_Rush());
+        yield return Co_rush = StartCoroutine(Co_Rush());
         yield return StartCoroutine(Co_RushAttack());
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Rush Attack State"));
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
         bossStateMachine.SetState(GetComponent<AttackDelayState>());
-        StopCoroutine(Co_rushAttackCycle);
+        StopAllCoroutines();
     }
 
-    [SerializeField] float rushSpeed = 10;
+    [SerializeField] float rushSpeed = 10, maxRushRange = 40;
     IEnumerator Co_Rush()
     {
-        Vector3 targetTr = boss_DetectPlayerAndCalcDistance.playerTr.position;
-        while (Vector3.Distance(transform.position, targetTr) > attackDist)
+        float rushRange = 0;
+        while (Vector3.Distance(transform.position, GetComponent<Boss_DetectPlayerAndCalcDistance>().playerTr.position) > attackDist && rushRange <= maxRushRange)
         {
+            rushRange += Time.deltaTime * rushSpeed;
             transform.position += transform.forward * Time.deltaTime * rushSpeed;
             yield return null;
         }

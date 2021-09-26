@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1264,7 +1264,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208107250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.6486094, y: 1.3586984, z: -2.5926723}
+  m_LocalPosition: {x: -0.4, y: 1.3586984, z: -9.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 630567442}
@@ -10096,7 +10096,7 @@ GameObject:
   - component: {fileID: 1288846495}
   m_Layer: 0
   m_Name: BossHitCollider
-  m_TagString: Untagged
+  m_TagString: Cube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10123,7 +10123,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288846493}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 5, y: 6, z: 6}
@@ -14739,6 +14739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxRateValue: 0.05
+  maxRushRateValue: 1
 --- !u!114 &1803012880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14787,8 +14788,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b178299d3786bd4a98f8b470059f067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDist: 5
+  attackDist: 10
   rushSpeed: 30
+  maxRushRange: 40
 --- !u!114 &1803012884
 MonoBehaviour:
   m_ObjectHideFlags: 0

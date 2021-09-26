@@ -88,7 +88,7 @@ public class HookScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Cube") 
+        if (collision.gameObject.tag == "Cube") 
         {
             enemyHooked = true;
             //wall = collision.gameObject;

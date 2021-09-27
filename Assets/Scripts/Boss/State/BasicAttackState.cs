@@ -41,7 +41,7 @@ public class BasicAttackState : BossState
     {
         bossStateMachine.anim.SetTrigger("BasicAttack");
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Basic Attack State"));
-        // Basic Attack 상태에서의 효과
+        //Basic Attack 상태에서의 효과
         yield return StartCoroutine(Co_BasicAttack());
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1);
         bossStateMachine.SetState(GetComponent<AttackDelayState>());
@@ -50,8 +50,8 @@ public class BasicAttackState : BossState
 
     IEnumerator Co_BasicAttack()
     {
-        // 충돌처리 체크
-        // 이펙트
+        //충돌처리 체크
+        //이펙트
         yield return null;
     }
     public void BasicAttack() => StartCoroutine(Co_BasicAttack());

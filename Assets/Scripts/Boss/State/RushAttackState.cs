@@ -9,10 +9,11 @@ public class RushAttackState : BossState
     Coroutine Co_rush;
 
     [SerializeField] float attackDist = 1;
+    [SerializeField] Transform rayStartTr;
 
     public override void OnAwake()
     {
-        
+
     }
 
     public override void OnStart()
@@ -58,7 +59,9 @@ public class RushAttackState : BossState
     IEnumerator Co_Rush()
     {
         float rushRange = 0;
-        while (Vector3.Distance(transform.position, GetComponent<Boss_DetectPlayerAndCalcDistance>().playerTr.position) > attackDist && rushRange <= maxRushRange)
+        while (Vector3.Distance(transform.position, GetComponent<Boss_DetectPlayerAndCalcDistance>().playerTr.position) > attackDist
+               && rushRange <= maxRushRange
+               && !IsThereWallToFront())
         {
             rushRange += Time.deltaTime * rushSpeed;
             transform.position += transform.forward * Time.deltaTime * rushSpeed;
@@ -66,11 +69,20 @@ public class RushAttackState : BossState
         }
     }
 
+    [SerializeField] float wallDetectingRayDist = 10;
+    bool IsThereWallToFront()
+    {
+        Ray ray = new Ray(rayStartTr.position, transform.forward * wallDetectingRayDist);
+        bool result = Physics.Raycast(ray, 1 << LayerMask.NameToLayer("Default"));
+        print(result);
+        return result;
+    }
+
     IEnumerator Co_RushAttack()
     {
         float rate = 1;
         bossStateMachine.anim.SetTrigger("RushAttack");
-        while(rate > 0)
+        while (rate > 0)
         {
             transform.position += transform.forward * Time.deltaTime * rushSpeed * rate;
             rate -= Time.deltaTime * 2;

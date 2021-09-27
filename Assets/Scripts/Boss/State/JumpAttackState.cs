@@ -8,7 +8,7 @@ public class JumpAttackState : BossState
     Coroutine Co_jumpAttackCycle;
     public override void OnAwake()
     {
-        
+
     }
 
     public override void OnStart()
@@ -18,7 +18,7 @@ public class JumpAttackState : BossState
 
     public override void OnUpdate()
     {
-        
+
     }
 
     public override void OnFixedUpdate()
@@ -51,13 +51,14 @@ public class JumpAttackState : BossState
 
     IEnumerator Co_Jump()
     {
-        // 점프 구현
+        // 점프 상태일 때 진행될 것
         yield return null;
     }
 
     IEnumerator Co_StrikeAttack()
     {
-        // 내려찍기 구현
+        // 점프 후 공격 상태에서 진행될 것
         yield return null;
     }
 }
+

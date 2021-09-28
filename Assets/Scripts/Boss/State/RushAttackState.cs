@@ -86,8 +86,8 @@ public class RushAttackState : BossState
         {
             transform.position += transform.forward * Time.deltaTime * rushSpeed * rate;
             rate -= Time.deltaTime * 2;
+            yield return null;
         }
-        yield return null;
     }
     public void RushAttack() => StartCoroutine(Co_RushAttack());
 }

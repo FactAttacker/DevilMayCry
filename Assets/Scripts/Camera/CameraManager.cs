@@ -81,13 +81,24 @@ public class CameraManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Camera Shake execution
+    /// </summary>
+    /// <param name="time">Shake Time</param>
+    /// <param name="amount">Shake Strong</param>
+    public void OnShake(float time = 1.5f, float amount = 0.5f)
+    {
+        shakeInfo.time = time;
+        shakeInfo.amount = amount;
+        currentCamera = CameraType.SHACKE;
+    }
+
+    /// <summary>
     /// Camera Shake
     /// </summary>
-    public void OnShake(float time = 1.5f)
+    void ExeShake()
     {
         if (canShake)
         {
-            shakeInfo.time = time;
             canShake = false;
             StartCoroutine(ShakeCoroutine());
         }
@@ -122,7 +133,7 @@ public class CameraManager : MonoBehaviour
                 OnPlayerZoomOut();
                 break;
             case CameraType.SHACKE:
-                OnShake();
+                ExeShake();
                 break;
         }
         transform.position = Vector3.Lerp(transform.position, playerObj.transform.position, cmSpeed * Time.deltaTime);

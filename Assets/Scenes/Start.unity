@@ -24061,6 +24061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd884d22b2de8c41bf213fbe382de87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 1416465087}
   walk_Speed: 10
   speed: 0
   run_Speed: 20

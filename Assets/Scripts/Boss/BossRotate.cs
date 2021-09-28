@@ -38,10 +38,10 @@ public class BossRotate : MonoBehaviour
 
         // 도는 방향을 체크한 후 RotateDir 변경을 통해 회전 애니메이션을 추가
 
-        while (time <= rotTime)
+        while (time <= 1)
         {
             time += Time.deltaTime;
-            Quaternion forwardDir = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(boss_DetectPlayerAndCalcDistance.playerTr.position - transform.position, transform.up), rate += Time.deltaTime / 12);
+            Quaternion forwardDir = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(boss_DetectPlayerAndCalcDistance.playerTr.position - transform.position, transform.up), rate += Time.deltaTime / 5);
             forwardDir.x = 0;
             forwardDir.z = 0;
             transform.rotation = forwardDir;

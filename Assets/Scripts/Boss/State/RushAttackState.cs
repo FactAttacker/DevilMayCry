@@ -67,6 +67,7 @@ public class RushAttackState : BossState
             transform.position += transform.forward * Time.deltaTime * rushSpeed;
             yield return null;
         }
+        bossStateMachine.anim.SetTrigger("RushAttack");
     }
 
     [SerializeField] float wallDetectingRayDist = 10;
@@ -81,13 +82,14 @@ public class RushAttackState : BossState
     IEnumerator Co_RushAttack()
     {
         float rate = 1;
-        bossStateMachine.anim.SetTrigger("RushAttack");
         while (rate > 0)
         {
             transform.position += transform.forward * Time.deltaTime * rushSpeed * rate;
-            rate -= Time.deltaTime * 2;
+            rate -= Time.deltaTime;
             yield return null;
         }
     }
     public void RushAttack() => StartCoroutine(Co_RushAttack());
+
+    public void SetRushAttackSpeed(float _attackSpeed) => bossStateMachine.anim.SetFloat("RushAttackSpeed", _attackSpeed);
 }

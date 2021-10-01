@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 54437146950551794}
   m_Layer: 0
   m_Name: Rubble 14
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 54703354358902700}
   m_Layer: 0
   m_Name: Rubble 10
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 54387395623916930}
   m_Layer: 0
   m_Name: Rubble 8
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 54600146290765086}
   m_Layer: 0
   m_Name: Rubble 13
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 54293619174832612}
   m_Layer: 0
   m_Name: Rubble 2
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -693,7 +693,7 @@ GameObject:
   - component: {fileID: 54211684623436348}
   m_Layer: 0
   m_Name: Rubble 15
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -806,7 +806,7 @@ GameObject:
   - component: {fileID: 54144064986500442}
   m_Layer: 0
   m_Name: Rubble 17
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -919,7 +919,7 @@ GameObject:
   - component: {fileID: 54220442697980902}
   m_Layer: 0
   m_Name: Rubble 18
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1175,7 +1175,7 @@ GameObject:
   - component: {fileID: 54754455188086834}
   m_Layer: 0
   m_Name: Rubble 3
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1288,7 +1288,7 @@ GameObject:
   - component: {fileID: 54900578760091250}
   m_Layer: 0
   m_Name: Rubble 6
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1401,7 +1401,7 @@ GameObject:
   - component: {fileID: 54992694913575474}
   m_Layer: 0
   m_Name: Rubble 7
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1514,7 +1514,7 @@ GameObject:
   - component: {fileID: 54604213561471144}
   m_Layer: 0
   m_Name: Rubble 12
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1627,7 +1627,7 @@ GameObject:
   - component: {fileID: 54617941351153228}
   m_Layer: 0
   m_Name: Rubble 9
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1740,7 +1740,7 @@ GameObject:
   - component: {fileID: 54845609905682260}
   m_Layer: 0
   m_Name: Rubble 5
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1853,7 +1853,7 @@ GameObject:
   - component: {fileID: 54011734670791696}
   m_Layer: 0
   m_Name: Rubble 11
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1966,7 +1966,7 @@ GameObject:
   - component: {fileID: 54996530552248468}
   m_Layer: 0
   m_Name: Rubble 1
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2079,7 +2079,7 @@ GameObject:
   - component: {fileID: 54642580856757326}
   m_Layer: 0
   m_Name: Rubble 4
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2192,7 +2192,7 @@ GameObject:
   - component: {fileID: 54222379604757042}
   m_Layer: 0
   m_Name: Rubble 16
-  m_TagString: Untagged
+  m_TagString: Fragments
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

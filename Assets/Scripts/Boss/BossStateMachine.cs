@@ -32,7 +32,7 @@ public class BossStateMachine : MonoBehaviour
         currState?.OnStart();
     }
 
-    [ContextMenu("자세한 정보")]
+    [ContextMenu("?????? ????")]
     public void DebugProperty()
     {
         Debug.Log($"m_prevState : {prevState}");

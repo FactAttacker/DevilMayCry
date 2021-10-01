@@ -106,10 +106,12 @@ public class CameraManager : MonoBehaviour
     IEnumerator ShakeCoroutine()
     {
         shakeInfo.vector = _camera.position;
+        float amount = shakeInfo.amount;
         while (shakeInfo.time > 0)
         {
             shakeInfo.time -= Time.deltaTime;
-            _camera.position = (Random.insideUnitSphere * shakeInfo.amount) + shakeInfo.vector;
+            _camera.position = (Random.insideUnitSphere * amount) + shakeInfo.vector;
+            amount -= amount * 0.05f;
             yield return null;
         }
         canShake = true;

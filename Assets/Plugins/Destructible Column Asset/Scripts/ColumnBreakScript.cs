@@ -22,8 +22,12 @@ public class ColumnBreakScript : MonoBehaviour {
 		}
 	}
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name.Contains("BossHitCollider")) BreakColumn();
+    }
 
-	void BreakColumn()
+    void BreakColumn()
 	{
 		isBroken = true;
 		unbrokenColumn.SetActive (false);

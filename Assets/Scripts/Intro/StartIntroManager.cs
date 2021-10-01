@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartIntroManager : MonoBehaviour
 {
     [SerializeField]
+    [Header("▼ Menu Box")]
     Transform menuTrans;
+
     List<GameObject> bgList = new List<GameObject>();
     int currentIndex = 0;
     bool isMenuSelected = true;
     Coroutine menuCorotine;
-    WaitForSeconds menuWait = new WaitForSeconds(0.5f);
+    WaitForSeconds menuWait = new WaitForSeconds(0.2f);
+
     void Start()
     {
         for(int i =0; i < menuTrans.childCount; i++)
@@ -19,7 +23,7 @@ public class StartIntroManager : MonoBehaviour
             bgList.Add(menuTrans.GetChild(i).Find("BG").gameObject);
         }
     }
-
+  
    
     IEnumerator CoMenuSelecte(float v)
     {
@@ -47,22 +51,30 @@ public class StartIntroManager : MonoBehaviour
         yield return menuWait;
         isMenuSelected = true;
     }
-
     void Update()
     {
-        float v = Input.GetAxisRaw("Vertical");
-        if (isMenuSelected && v != 0)
+        float v = 0;
+
+        if (Input.GetKeyUp(KeyCode.UpArrow)
+         || Input.GetKeyUp(KeyCode.W)) v = 1;
+
+        if (Input.GetKeyUp(KeyCode.DownArrow)
+         || Input.GetKeyUp(KeyCode.S)) v = -1;
+
+        if (isMenuSelected && v != 0.0f)
         {
             isMenuSelected = false;
             if (menuCorotine != null) StopCoroutine(menuCorotine);
             menuCorotine = StartCoroutine(CoMenuSelecte(v));
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!FadeInOutController.instance.isFade &&
+            Input.GetKeyDown(KeyCode.Space))
         {
             switch (currentIndex)
             {
                 case 0:
-                    SceneManager.LoadSceneAsync(1);
+                    FadeInOutController.instance.isFade = true;
+                    FadeInOutController.instance.OnFadeInOut();
                     break;
                 case 3:
                     Application.Quit();

@@ -9,7 +9,6 @@ public class IdleState : BossState
 
     [SerializeField] float farDist = 10;
     [SerializeField] int roarWeight = 100, attackWeight = 100, rushWeight = 100, strikeWeight = 100, jumpWeight = 100;
-    [SerializeField] float normal;
 
     public override void OnAwake()
     {
@@ -19,12 +18,12 @@ public class IdleState : BossState
     public override void OnStart()
     {
         Co_IdleCycle = StartCoroutine(Co_DecideNextState());
-        //StartCoroutine(??());
+        //StartCoroutine(Test());
     }
 
     public override void OnUpdate()
     {
-        normal = bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        
     }
 
     public override void OnFixedUpdate()
@@ -45,25 +44,18 @@ public class IdleState : BossState
     // ???? ?? - ??? ?? ?
     IEnumerator Test()
     {
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Roar State"));
+        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Idle State"));
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
-        bossStateMachine.SetState(GetComponent<BasicAttackState>());
+        bossStateMachine.SetState(GetComponent<RoarState>());
 
     }
 
-
-    float damagedHP = 70;
     /// <summary> ????? ??? ??? ??? ?? ??? ?? ??? ??? ???? ?? </summary>
     /// <returns></returns>
     IEnumerator Co_DecideNextState()
     {
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Idle State"));
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f);
-
-        if (GetComponent<BossHP>().CurrHP <= damagedHP)
-        {
-            yield return StartCoroutine(Co_Damaged());
-        }
 
         if (boss_DetectPlayerAndCalcDistance.distance >= farDist)
         {
@@ -92,11 +84,5 @@ public class IdleState : BossState
             bossStateMachine.SetState(_nextState);
         }
         StopCoroutine(Co_IdleCycle);
-    }
-
-    IEnumerator Co_Damaged()
-    {
-        // ??? ??
-        yield return null;
     }
 }

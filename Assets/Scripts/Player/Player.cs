@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
 {
     public bool knuckBack = false;
    
-    public GameObject cam;
     Transform myTransform;
     [Header("PlayerMoveRelated")]
     public float walk_Speed = 10f;
@@ -122,7 +121,7 @@ public class Player : MonoBehaviour
 
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
-        MoveDir = cam.transform.right * h + cam.transform.forward * v;
+        MoveDir = Camera.main.transform.right * h + Camera.main.transform.forward * v;
         MoveDir.y = 0;
         transform.position += speed * Time.deltaTime * MoveDir;
         transform.LookAt(transform.position + MoveDir);
@@ -170,7 +169,7 @@ public class Player : MonoBehaviour
                 anim.SetTrigger("doDodge");
                 Debug.Log("Double Click");
                 m_IsOneClick = false;
-                rb.AddForce(cam.transform.forward * 5f, ForceMode.Impulse);
+                rb.AddForce(Camera.main.transform.forward * 5f, ForceMode.Impulse);
             }
         }
         if (Input.GetKeyDown(KeyCode.A))
@@ -187,7 +186,7 @@ public class Player : MonoBehaviour
                 anim.SetTrigger("doDodge");
                 Debug.Log("Double Click");
                 m_IsOneClick = false;
-                rb.AddForce(-cam.transform.right * 5f, ForceMode.Impulse);
+                rb.AddForce(-Camera.main.transform.right * 5f, ForceMode.Impulse);
             }
         }
 
@@ -205,7 +204,7 @@ public class Player : MonoBehaviour
                 anim.SetTrigger("doDodge");
                 Debug.Log("Double Click");
                 m_IsOneClick = false;
-                rb.AddForce(cam.transform.right * 5f, ForceMode.Impulse);
+                rb.AddForce(Camera.main.transform.right * 5f, ForceMode.Impulse);
             }
         }
 
@@ -224,7 +223,7 @@ public class Player : MonoBehaviour
                 anim.SetTrigger("doDodge");
                 Debug.Log("Double Click");
                 m_IsOneClick = false;
-                rb.AddForce(-cam.transform.forward * 5f, ForceMode.Impulse);
+                rb.AddForce(-Camera.main.transform.forward * 5f, ForceMode.Impulse);
             }
         }
     }
@@ -374,7 +373,7 @@ public class Player : MonoBehaviour
         check = 0;
         nextAttack = true;
         //RigidOnOff(0);
-        //공격하고 다음 공격할때 아이들로 상태 넘긴다 넘긴 후 일정 시간이 넘어가면 attack1로 돌아간다.
+        //???????? ???? ???????? ???????? ???? ?????? ???? ?? ???? ?????? ???????? attack1?? ????????.
 
     }
 

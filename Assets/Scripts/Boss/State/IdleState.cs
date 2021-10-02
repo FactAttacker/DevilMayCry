@@ -10,58 +10,20 @@ public class IdleState : BossState
     [SerializeField] float farDist = 10;
     [SerializeField] int roarWeight = 100, attackWeight = 100, rushWeight = 100, strikeWeight = 100, jumpWeight = 100;
 
-    [SerializeField] bool isBasicAttack = false, isRoar = false, isRush = false, isStrike = false, isJump = false;
-
-
-    public bool IsCinematic
-    {
-        get => isCinematic;
-        set => isCinematic = value;
-    }
-    bool isCinematic = false;
-
     public override void OnAwake()
     {
-        IsCinematic = true;
+
     }
 
     public override void OnStart()
     {
-        if (!IsCinematic)
-        {
-            Co_IdleCycle = StartCoroutine(Co_DecideNextState());
-        }
-
+        Co_IdleCycle = StartCoroutine(Co_DecideNextState());
         //StartCoroutine(Test());
     }
 
     public override void OnUpdate()
     {
-        if (isBasicAttack)
-        {
-            bossStateMachine.SetState(GetComponent<BasicAttackState>());
-            isBasicAttack = false;
-        }
-        if (isRoar)
-        {
-            bossStateMachine.SetState(GetComponent<RoarState>());
-            isRoar = false;
-        }
-        if (isRush)
-        {
-            bossStateMachine.SetState(GetComponent<RushAttackState>());
-            isRush = false;
-        }
-        if (isStrike)
-        {
-            bossStateMachine.SetState(GetComponent<StrikeAttackState>());
-            isStrike = false;
-        }
-        if (isJump)
-        {
-            bossStateMachine.SetState(GetComponent<JumpAttackState>());
-            isJump = false;
-        }
+        
     }
 
     public override void OnFixedUpdate()

@@ -356,7 +356,7 @@ ModelImporter:
     second: Jump
   - first:
       74: 585233498760764385
-    second: SmashAttack_Jump
+    second: SmashAttack
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -429,7 +429,7 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 0
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
@@ -438,41 +438,13 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0
-        functionName: SetJumpAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.45
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.28259128
-        functionName: SetJumpAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 1
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.5353921
-        functionName: SetJumpAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.6
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.8088535
-        functionName: SetJumpAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.8
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: SmashAttack_Jump
+      name: SmashAttack
       takeName: Take 001
       internalID: 0
       firstFrame: 15
@@ -495,56 +467,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0
-        functionName: SetJumpAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.85
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.17721519
-        functionName: SetJumpAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.65
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.25738397
-        functionName: SetJumpAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.96
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.37974685
-        functionName: SetJumpAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.35
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.4821766
-        functionName: SetJumpAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.75
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.60337555
-        functionName: SetJumpAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.9
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.39240503
-        functionName: OnCameraShake
-        data: 0.8,0.35
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

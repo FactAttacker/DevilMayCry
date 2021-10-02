@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HookScript : MonoBehaviour
 {
+    public GameObject enemy;
     public GameObject player;
     //GameObject wall;
     public Transform returnPosition;
@@ -39,7 +40,8 @@ public class HookScript : MonoBehaviour
         lr.SetPosition(1, transform.position);
         if (Input.GetKeyDown(KeyCode.J) && !isHooking && !enemyHooked) 
         {
-
+            player.transform.LookAt(enemy.transform);
+            
             StartCoroutine("StartHooking");
         }
         float time = Time.deltaTime;
@@ -73,14 +75,22 @@ public class HookScript : MonoBehaviour
         
     }
 
-
+    Animator playerAnim;
     void BringTowardsPlayer() 
     {
         if (enemyHooked) 
         {
-           
-            player.transform.position = Vector3.MoveTowards(player.transform.position , hitPosition,hookMaxDistance);
-            enemyHooked = false;
+            playerAnim = player.GetComponent<Animator>();
+            playerAnim.SetTrigger("prepair");
+            playerAnim.SetBool("isFlying",enemyHooked);
+            player.transform.position = Vector3.Lerp(player.transform.position , hitPosition, hookMaxDistance*Time.deltaTime);
+            if (Vector3.Distance(player.transform.position, hitPosition) < 2f) 
+            {
+                enemyHooked = false;
+                //playerAnim.SetTrigger("prepair");
+                playerAnim.SetBool("isFlying", enemyHooked);
+                //playerAnim.ResetTrigger("prepair");
+            }
             
         }
     }

@@ -1,0 +1,188 @@
+using System.Collections;
+
+using System.Collections.Generic;
+
+using UnityEngine;
+
+using UnityEngine.UI;
+
+
+
+public class PlayerState : MonoBehaviour
+
+{
+
+    #region 변수
+
+
+
+    Coroutine Co_RefreshHPBar;
+
+
+
+    // 배경 HP바 이미지, 중간 흰 막대 이미지(HP바 끝 이미지), HP바 이미지. Damage Hp바 이미지
+
+    [SerializeField] Image hpBar, damagedHPBar;
+
+
+    [SerializeField, Tooltip("HP Bar UI의 fillAmount 변화 속도")] float refreshSpeed = 1;
+
+    [SerializeField, Tooltip("붉은 HP Bar 변화 전 대기시간")] float refreshWaitTime = 0.1f;
+
+    WaitForSeconds waitRefreshSeconds;
+
+
+
+    #endregion
+
+
+
+    #region 속성
+
+
+
+    public float CurrHP
+
+    {
+
+        get => currHP;
+
+        private set
+
+        {
+
+            currHP = value;
+
+           
+
+            RefreshHPBar(value);
+
+        }
+
+    }
+
+    float currHP;
+
+
+
+    public float MaxHP
+
+    {
+
+        get => maxHP;
+
+        private set => maxHP = value;
+
+    }
+
+    [SerializeField] float maxHP = 100;
+
+    public float TakeDamage { set => CurrHP -= CurrHP - value <= 0 ? currHP : value; }
+
+
+
+    #endregion
+
+
+
+    #region 유니티 생명 주기
+
+
+
+    private void Start()
+
+    {
+
+        waitRefreshSeconds = new WaitForSeconds(refreshWaitTime);
+
+    }
+
+
+
+    private void OnEnable()
+
+    {
+
+        CurrHP = MaxHP;
+
+    }
+
+
+
+    #endregion
+
+
+
+    #region 구현부
+
+
+
+    void RefreshHPBar(float value)
+
+    {
+
+        if (Co_RefreshHPBar != null) StopCoroutine(Co_RefreshHPBar);
+
+        Co_RefreshHPBar = StartCoroutine(Co_RefreshHPBarCycle(value));
+
+    }
+
+
+
+    #region 코루틴
+
+
+
+    IEnumerator Co_RefreshHPBarCycle(float _value)
+
+    {
+
+        damagedHPBar.fillAmount = hpBar.fillAmount;
+
+        hpBar.fillAmount = _value / MaxHP;
+
+        yield return waitRefreshSeconds;
+
+
+
+        float rate = 0;
+
+        while (rate < 1)
+
+        {
+
+            rate += Time.deltaTime;
+
+            damagedHPBar.fillAmount = Mathf.Lerp(damagedHPBar.fillAmount, hpBar.fillAmount, rate * refreshSpeed);
+
+            yield return null;
+
+        }
+
+    }
+
+
+
+    #endregion
+
+
+
+    #endregion
+
+
+
+    #region 테스트용
+
+
+
+    //TakeDamage = dmg;
+
+
+
+    #endregion
+
+}
+
+
+
+

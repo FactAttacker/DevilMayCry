@@ -4,34 +4,32 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    int x_Value = 0;
-    int z_Value = 0;
-    //CameraTransform
+    public bool knuckBack = false;
+   
     public GameObject cam;
     Transform myTransform;
-    [Header("??????")]
+    [Header("PlayerMoveRelated")]
     public float walk_Speed = 10f;
-    public float speed;      // ??? ??? ???.
+    public float speed;      
     public float run_Speed = 20f;
-    public float jumpSpeed; // ??? ?? ?.
+    public float jumpSpeed; 
     bool jumpPing = false;
-    public float gravity;    // ????? ???? ??.
-
+    public float gravity;    
     Rigidbody rb;
-    private Vector3 MoveDir;                // ???? ???? ??.0
+    private Vector3 MoveDir;        
 
 
-    [Header("???????")]
+    [Header("PlayerAttackRelated")]
 
     public bool nextAttack = true;
     public enum FighterState { WithoutSowrd, SwordMode }
     public FighterState fighterState = FighterState.WithoutSowrd;
-    public enum FighterAttackState { Attack1, Attack2, Attack3, Attack4 }
+    public enum FighterAttackState { Attack1, Attack2, Attack3, Attack4, hiddenAttack }
     public FighterAttackState attackState = FighterAttackState.Attack1;
     public Animator anim;
 
 
-    [Header("????")]
+    [Header("PlayerWeaponRelated")]
     public GameObject swordCase;
     public GameObject katana;
     public GameObject rightHand;
@@ -43,6 +41,16 @@ public class Player : MonoBehaviour
     //Hook
     public GameObject hook;
 
+
+    public GameObject swordEffect;
+
+    
+    public void RigidOnOff(int onOff)
+    {
+       
+        rb.isKinematic = onOff==1;
+    }
+   
 
 
     void Start()
@@ -57,23 +65,26 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         //lr = leftHand.GetComponent<LineRenderer>();
         myTransform = GetComponent<Transform>();
+
+        
     }
 
-    private void FixedUpdate()
-    {
-        rb.AddForce(Vector3.down * gravity);
+   
 
-    }
+
+   
     RaycastHit hit;
     void Update()
     {
-
-
+        if (knuckBack == true) 
+        {
+            rb.AddForce(-transform.forward * 7f, ForceMode.Impulse);
+        }
 
 
 
         move();
-
+        Dodge();
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             InvokeRepeating("Change_SpeedPlus", 0.3f, 0.3f);
@@ -100,43 +111,31 @@ public class Player : MonoBehaviour
             CancelInvoke("Change_SpeedPlus");
         }
     }
+    public float m_DoubleClickSecond = 0.25f;
+    private bool m_IsOneClick = false;
+    private double m_Timer = 0;
 
     void move()
     {
 
         anim.SetBool("walkWithSword", MoveDir.x != 0 || MoveDir.z != 0);
 
-        //if (Input.GetKeyDown(KeyCode.W))
-        //{
-        //    MoveDir = cam.transform.forward;
-        //}
-        //// s->뒤
-        //if (Input.GetKeyDown(KeyCode.S))
-        //{
-        //    MoveDir = -cam.transform.forward;
-        //}
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    MoveDir = -cam.transform.right;
-        //}
-        //if (Input.GetKeyDown(KeyCode.D))
-        //{
-        //    MoveDir = cam.transform.right;
-        //}
-        //MoveDir = new Vector3(transform.position.x, 0, transform.position.z);
-        //transform.Translate(MoveDir *Time.deltaTime);
-
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         MoveDir = cam.transform.right * h + cam.transform.forward * v;
-
+        MoveDir.y = 0;
         transform.position += speed * Time.deltaTime * MoveDir;
         transform.LookAt(transform.position + MoveDir);
 
         //MoveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
+        if (m_IsOneClick && ((Time.time - m_Timer) > m_DoubleClickSecond))
+        {
+            Debug.Log("One Click");
+            m_IsOneClick = false;
+        }
 
-
+        
 
 
         if (Input.GetButtonDown("Jump") && !jumpPing)
@@ -149,7 +148,86 @@ public class Player : MonoBehaviour
 
     }
 
+    
+    void Dodge() 
+    {
+        //bool input = Input.GetKeyDown(KeyCode.W);
+        //switch(input) 
+        //{
 
+        //}
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            if (!m_IsOneClick)
+            {
+                m_Timer = Time.time;
+                m_IsOneClick = true;
+
+            }
+
+            else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
+            {
+                anim.SetTrigger("doDodge");
+                Debug.Log("Double Click");
+                m_IsOneClick = false;
+                rb.AddForce(cam.transform.forward * 5f, ForceMode.Impulse);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (!m_IsOneClick)
+            {
+                m_Timer = Time.time;
+                m_IsOneClick = true;
+
+            }
+
+            else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
+            {
+                anim.SetTrigger("doDodge");
+                Debug.Log("Double Click");
+                m_IsOneClick = false;
+                rb.AddForce(-cam.transform.right * 5f, ForceMode.Impulse);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (!m_IsOneClick)
+            {
+                m_Timer = Time.time;
+                m_IsOneClick = true;
+
+            }
+
+            else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
+            {
+                anim.SetTrigger("doDodge");
+                Debug.Log("Double Click");
+                m_IsOneClick = false;
+                rb.AddForce(cam.transform.right * 5f, ForceMode.Impulse);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            if (!m_IsOneClick)
+            {
+               
+                m_Timer = Time.time;
+                m_IsOneClick = true;
+
+            }
+
+            else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
+            {
+                anim.SetTrigger("doDodge");
+                Debug.Log("Double Click");
+                m_IsOneClick = false;
+                rb.AddForce(-cam.transform.forward * 5f, ForceMode.Impulse);
+            }
+        }
+    }
     void OutPutSword_Ver()
     {
         if (outPutSword == true)
@@ -165,9 +243,9 @@ public class Player : MonoBehaviour
     IEnumerator OutPutSword()
     {
         yield return new WaitForSeconds(0.6f);
-        katana.transform.localEulerAngles = new Vector3(-30f, 129f, 433f);
+        katana.transform.localEulerAngles = new Vector3(66f, -230f, -60f);
         katana.transform.SetParent(rightHand.transform, false);
-        katana.transform.localPosition = new Vector3(0.02f, -0.77f, -1.04f);
+        katana.transform.localPosition = new Vector3(0.12f, -0.136f, 0.5f);
         outPutSword = !outPutSword;
     }
 
@@ -175,8 +253,8 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(1.3f);
         katana.transform.SetParent(swordCase.transform, false);
-        katana.transform.localPosition = new Vector3(-6.32f, 0.13f, 0f);
-        //katana.transform.localEulerAngles = new Vector3(124f, 187f, 370);
+        katana.transform.localPosition = new Vector3(-0.41f, 0.76f, 1.92f);
+        katana.transform.localEulerAngles = new Vector3(0f, -180f, 0f);
         outPutSword = false;
         anim.SetBool("inputSword", false);
     }
@@ -192,7 +270,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.J))
         {
-            hook.SetActive(true);
+            //hook.SetActive(true);
             anim.SetTrigger("loop");
         }
 
@@ -207,16 +285,14 @@ public class Player : MonoBehaviour
                 fighterState = FighterState.SwordMode;
 
             }
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            if (outPutSword == true)
+            else if (outPutSword == true)
             {
                 anim.SetBool("inputSword", outPutSword);
                 StartCoroutine("InputSword");
                 fighterState = FighterState.WithoutSowrd;
             }
         }
+
 
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -228,101 +304,63 @@ public class Player : MonoBehaviour
 
                     case FighterAttackState.Attack1:
                         //print("gggggggg");
-
+                        swordEffect.SetActive(true);
                         anim.SetTrigger("firstAttack");
                         nextAttack = false;
+                        
                         attackState = FighterAttackState.Attack2;
+
+                        
                         StartCoroutine("Delay");
                         //attackState = FighterAttackState.Attack2;
-
+                        swordEffect.SetActive(false);
                         break;
                     case FighterAttackState.Attack2:
-
+                        swordEffect.SetActive(true);
                         anim.SetTrigger("secoundAttack");
                         nextAttack = false;
                         attackState = FighterAttackState.Attack3;
                         StartCoroutine("Delay");
                         //attackState = FighterAttackState.Attack3;
-
+                        swordEffect.SetActive(false);
                         break;
                     case FighterAttackState.Attack3:
-
+                        swordEffect.SetActive(true);
                         anim.SetTrigger("thirdAttack");
                         nextAttack = false;
                         attackState = FighterAttackState.Attack4;
+                       
                         StartCoroutine("Delay");
                         //attackState = FighterAttackState.Attack1;
-
+                        swordEffect.SetActive(false);
                         break;
 
                     case FighterAttackState.Attack4:
+                        swordEffect.SetActive(true);
                         anim.SetTrigger("lastAttack");
-                        rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+                        StartCoroutine("JumpAttack");
+                        nextAttack = false;
+                        attackState = FighterAttackState.hiddenAttack;
+                        StartCoroutine("Delay");
+                        // print("Attack4");
+                        swordEffect.SetActive(false);
+                        break;
+
+                    case FighterAttackState.hiddenAttack:
+                        swordEffect.SetActive(true);
+                        anim.SetTrigger("hiddenAttack");
+                        StartCoroutine("DownAttack");
                         nextAttack = false;
                         attackState = FighterAttackState.Attack1;
                         StartCoroutine("Delay");
+                        swordEffect.SetActive(false);
+                        //anim.ti
+                        //Animation myAnim = anim.time;
                         break;
                 }
-            }
-
-
-          
-        }
-
-        if (Input.GetKeyDown(KeyCode.K)&& jumpPing)
-        {
-            gravity = 0f;
-
-            if (nextAttack)
-            {
-                switch (attackState)
-                {
-
-                    case FighterAttackState.Attack1:
-                        //print("gggggggg");
-
-                        anim.SetTrigger("firstAttack");
-                        nextAttack = false;
-                        attackState = FighterAttackState.Attack2;
-                        StartCoroutine("Delay");
-                        //attackState = FighterAttackState.Attack2;
-
-                        break;
-                    case FighterAttackState.Attack2:
-
-                        anim.SetTrigger("secoundAttack");
-                        nextAttack = false;
-                        attackState = FighterAttackState.Attack3;
-                        StartCoroutine("Delay");
-                        //attackState = FighterAttackState.Attack3;
-
-                        break;
-                    case FighterAttackState.Attack3:
-
-                        anim.SetTrigger("thirdAttack");
-                        nextAttack = false;
-                        attackState = FighterAttackState.Attack4;
-                        StartCoroutine("Delay");
-                        //attackState = FighterAttackState.Attack1;
-
-                        break;
-
-                    case FighterAttackState.Attack4:
-                        anim.SetTrigger("lastAttack");
-                        rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-                        nextAttack = false;
-                        attackState = FighterAttackState.Attack1;
-                        StartCoroutine("Delay");
-                        break;
-                }
-            }
-
-
-
+            }        
         }
     }
-
-    Coroutine delayCoroutine;
     IEnumerator Delay()
     {
         float check = 0; 
@@ -333,15 +371,30 @@ public class Player : MonoBehaviour
             check += Time.deltaTime;
 
         }
-        
         check = 0;
-        nextAttack = true;   
+        nextAttack = true;
+        //RigidOnOff(0);
         //공격하고 다음 공격할때 아이들로 상태 넘긴다 넘긴 후 일정 시간이 넘어가면 attack1로 돌아간다.
-        
+
     }
 
-    
 
+
+
+    IEnumerator JumpAttack() 
+    {
+        yield return new WaitForSeconds(0.4f);
+        rb.AddForce(Vector3.up * 12f, ForceMode.Impulse);
+
+
+    }
+
+
+    IEnumerator DownAttack() 
+    {
+        yield return new WaitForSeconds(0.3f);
+        rb.AddForce(Vector3.down * jumpSpeed, ForceMode.Impulse);
+    }
 
     private void OnCollisionEnter(Collision collision)
     {

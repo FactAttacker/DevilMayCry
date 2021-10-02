@@ -39,7 +39,7 @@ public class Hook : MonoBehaviour
         lr.SetPosition(1, transform.position);
         if (Input.GetKeyDown(KeyCode.J) && !isHooking && !enemyHooked)
         {
-
+            
             StartCoroutine("StartHooking");
         }
         float time = Time.deltaTime;

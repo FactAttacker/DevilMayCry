@@ -1,16 +1,22 @@
 fileFormatVersion: 2
-guid: 26955080e53d40742b19c6a7cdc459b3
-timeCreated: 1529170216
+guid: cd33b47f1edf94c96824edc316ffd4b2
+timeCreated: 1482846081
 licenseType: Store
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: katana
-    9500000: //RootNode
+    100000: default
+    100002: //RootNode
+    100004: quad4point
+    400000: default
+    400002: //RootNode
+    400004: quad4point
+    2300000: default
+    2300002: quad4point
+    3300000: default
+    3300002: quad4point
+    4300000: default
+    4300002: quad4point
   materials:
     importMaterials: 0
     materialName: 0
@@ -21,8 +27,6 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -37,10 +41,10 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.001
     meshCompression: 0
     addColliders: 0
-    importBlendShapes: 0
+    importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -56,7 +60,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-  importAnimation: 0
+  importAnimation: 1
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2

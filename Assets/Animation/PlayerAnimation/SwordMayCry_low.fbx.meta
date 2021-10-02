@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Sword
-    second: {fileID: 2100000, guid: 38dca8b3598bf7846b1d5e067f61a0fd, type: 2}
+    second: {fileID: 2100000, guid: 64988c160970e4b1e9b5300bdb456004, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public bool knuckBack = false;
+
     Sword sword;
 
 
@@ -12,18 +13,19 @@ public class Player : MonoBehaviour
     Transform myTransform;
     [Header("PlayerMoveRelated")]
     public float walk_Speed = 10f;
-    public float speed;      
+    public float speed;
     public float run_Speed = 20f;
-    public float jumpSpeed; 
+    public float jumpSpeed;
     bool jumpPing = false;
-    public float gravity;    
+    public float gravity;
     Rigidbody rb;
-    private Vector3 MoveDir;        
+    private Vector3 MoveDir;
 
 
     [Header("PlayerAttackRelated")]
 
     public bool nextAttack = true;
+    //bool swordJudge = false;
     public enum FighterState { WithoutSowrd, SwordMode }
     public FighterState fighterState = FighterState.WithoutSowrd;
     public enum FighterAttackState { Attack1, Attack2, Attack3, Attack4, hiddenAttack }
@@ -46,13 +48,13 @@ public class Player : MonoBehaviour
 
     public GameObject swordEffect;
 
-    
+
     public void RigidOnOff(int onOff)
     {
-       
-        rb.isKinematic = onOff==1;
+
+        rb.isKinematic = onOff == 1;
     }
-   
+
 
 
     void Start()
@@ -67,20 +69,20 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         //lr = leftHand.GetComponent<LineRenderer>();
         myTransform = GetComponent<Transform>();
-
-
         sword = katana.GetComponent<Sword>();
-        
+
+
+
     }
 
-   
 
 
-   
+
+
     RaycastHit hit;
     void Update()
     {
-        if (knuckBack == true) 
+        if (knuckBack == true)
         {
             rb.AddForce(-transform.forward * 7f, ForceMode.Impulse);
         }
@@ -115,13 +117,9 @@ public class Player : MonoBehaviour
             CancelInvoke("Change_SpeedPlus");
         }
     }
-    public float m_DoubleClickSecond = 0.25f;
-    private bool m_IsOneClick = false;
-    private double m_Timer = 0;
-
     void move()
     {
-         
+
 
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
@@ -133,13 +131,8 @@ public class Player : MonoBehaviour
 
         //MoveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
-        if (m_IsOneClick && ((Time.time - m_Timer) > m_DoubleClickSecond))
-        {
-            Debug.Log("One Click");
-            m_IsOneClick = false;
-        }
 
-        
+
 
 
         if (Input.GetButtonDown("Jump") && !jumpPing)
@@ -152,101 +145,128 @@ public class Player : MonoBehaviour
 
     }
 
-    
-    void Dodge() 
-    {
-        //bool input = Input.GetKeyDown(KeyCode.W);
-        //switch(input) 
-        //{
 
-        //}
+    public float w_DoubleClickSecond = 0.25f;
+    private bool w_IsOneClick = false;
+    private double w_Timer = 0;
+
+    public float a_DoubleClickSecond = 0.25f;
+    private bool a_IsOneClick = false;
+    private double a_Timer = 0;
+
+    public float s_DoubleClickSecond = 0.25f;
+    private bool s_IsOneClick = false;
+    private double s_Timer = 0;
+
+
+    public float d_DoubleClickSecond = 0.25f;
+    private bool d_IsOneClick = false;
+    private double d_Timer = 0;
+
+
+    
+    void Dodge()
+    {
+        if (w_IsOneClick && ((Time.time - w_Timer) > w_DoubleClickSecond))
+        {
+            Debug.Log("One Click");
+            w_IsOneClick = false;
+        }
+
+        if (a_IsOneClick && ((Time.time - a_Timer) > a_DoubleClickSecond))
+        {
+            Debug.Log("One Click");
+            a_IsOneClick = false;
+        }
+
+        if (s_IsOneClick && ((Time.time - s_Timer) > s_DoubleClickSecond))
+        {
+            Debug.Log("One Click");
+            s_IsOneClick = false;
+        }
+
+        if (d_IsOneClick && ((Time.time - d_Timer) > d_DoubleClickSecond))
+        {
+            Debug.Log("One Click");
+            d_IsOneClick = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.W))
         {
-            if (!m_IsOneClick)
+            if (!w_IsOneClick)
             {
-                m_Timer = Time.time;
-                m_IsOneClick = true;
+                w_Timer = Time.time;
+                w_IsOneClick = true;
 
             }
 
-            else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
+            else if (w_IsOneClick && ((Time.time - w_Timer) < w_DoubleClickSecond))
             {
                 anim.SetTrigger("doDodge");
                 Debug.Log("Double Click");
-                m_IsOneClick = false;
+                w_IsOneClick = false;
                 rb.AddForce(Camera.main.transform.forward * 5f, ForceMode.Impulse);
             }
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            if (!m_IsOneClick)
+            if (!a_IsOneClick)
             {
-                m_Timer = Time.time;
-                m_IsOneClick = true;
+                a_Timer = Time.time;
+                a_IsOneClick = true;
 
             }
 
-            else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
+            else if (a_IsOneClick && ((Time.time - a_Timer) < a_DoubleClickSecond))
             {
                 anim.SetTrigger("doDodge");
                 Debug.Log("Double Click");
-                m_IsOneClick = false;
+                a_IsOneClick = false;
                 rb.AddForce(-Camera.main.transform.right * 5f, ForceMode.Impulse);
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            if (!m_IsOneClick)
-            {
-                m_Timer = Time.time;
-                m_IsOneClick = true;
-
-            }
-
-            else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
-            {
-                anim.SetTrigger("doDodge");
-                Debug.Log("Double Click");
-                m_IsOneClick = false;
-                rb.AddForce(Camera.main.transform.right * 5f, ForceMode.Impulse);
             }
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            if (!m_IsOneClick)
+            if (!s_IsOneClick)
             {
-               
-                m_Timer = Time.time;
-                m_IsOneClick = true;
+                s_Timer = Time.time;
+                s_IsOneClick = true;
 
             }
 
-            else if (m_IsOneClick && ((Time.time - m_Timer) < m_DoubleClickSecond))
+            else if (s_IsOneClick && ((Time.time - s_Timer) < s_DoubleClickSecond))
             {
                 anim.SetTrigger("doDodge");
                 Debug.Log("Double Click");
-                m_IsOneClick = false;
+                s_IsOneClick = false;
                 rb.AddForce(-Camera.main.transform.forward * 5f, ForceMode.Impulse);
             }
         }
-    }
-    void OutPutSword_Ver()
-    {
-        if (outPutSword == true)
-        {
 
-            if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (!d_IsOneClick)
             {
-                anim.SetTrigger("throwSword");
+
+                d_Timer = Time.time;
+                d_IsOneClick = true;
+
+            }
+
+            else if (d_IsOneClick && ((Time.time - d_Timer) < d_DoubleClickSecond))
+            {
+                anim.SetTrigger("doDodge");
+                Debug.Log("Double Click");
+                d_IsOneClick = false;
+                rb.AddForce(Camera.main.transform.right * 5f, ForceMode.Impulse);
             }
         }
     }
 
     IEnumerator OutPutSword()
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.3f);
         katana.transform.localEulerAngles = new Vector3(66f, -230f, -60f);
         katana.transform.SetParent(rightHand.transform, false);
         katana.transform.localPosition = new Vector3(0.12f, -0.136f, 0.5f);
@@ -257,8 +277,8 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(1.3f);
         katana.transform.SetParent(swordCase.transform, false);
-        katana.transform.localPosition = new Vector3(-0.41f, 0.76f, 1.92f);
-        katana.transform.localEulerAngles = new Vector3(0f, -180f, 0f);
+        katana.transform.localPosition = new Vector3(-0.1f, -0.5f, 0.1f);
+        katana.transform.localEulerAngles = new Vector3(0f, -180f, 20f);
         outPutSword = false;
         anim.SetBool("inputSword", false);
     }
@@ -268,56 +288,35 @@ public class Player : MonoBehaviour
     void InputControl()
     {
 
-
-
-
-
         if (Input.GetKeyDown(KeyCode.J))
         {
             //hook.SetActive(true);
             anim.SetTrigger("loop");
         }
 
-
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            if (outPutSword == false)
-            {
-                anim.SetTrigger("outPutSword");
-                StartCoroutine("OutPutSword");
-                fighterState = FighterState.SwordMode;
-
-            }
-            else if (outPutSword == true)
-            {
-                anim.SetBool("inputSword", outPutSword);
-                StartCoroutine("InputSword");
-                fighterState = FighterState.WithoutSowrd;
-            }
-        }
-
-
         if (Input.GetKeyDown(KeyCode.K))
         {
-            
-            if (nextAttack) 
+            swordEffect.SetActive(true);
+            if (nextAttack)
             {
+                if (outPutSword == false)
+                {
+                    anim.SetTrigger("outPutSword");
+                    StartCoroutine(OutPutSword());
+                    outPutSword = true;
+                }
                 switch (attackState)
                 {
 
                     case FighterAttackState.Attack1:
-                        //print("gggggggg");
-                        //swordEffect.SetActive(true);
+                        
                         anim.SetTrigger("firstAttack");
                         nextAttack = false;
                         sword.damage = 10f;
                         attackState = FighterAttackState.Attack2;
-
-                        
                         StartCoroutine("Delay");
-                        //attackState = FighterAttackState.Attack2;
-                        //swordEffect.SetActive(false);
+                        
+
                         break;
                     case FighterAttackState.Attack2:
                         //swordEffect.SetActive(true);
@@ -327,19 +326,16 @@ public class Player : MonoBehaviour
 
                         attackState = FighterAttackState.Attack3;
                         StartCoroutine("Delay");
-                        //attackState = FighterAttackState.Attack3;
-                        //swordEffect.SetActive(false);
                         break;
                     case FighterAttackState.Attack3:
-                        //swordEffect.SetActive(true);
+                        
                         anim.SetTrigger("thirdAttack");
                         nextAttack = false;
                         sword.damage = 10f;
                         attackState = FighterAttackState.Attack4;
-                       
+
                         StartCoroutine("Delay");
-                        //attackState = FighterAttackState.Attack1;
-                        //swordEffect.SetActive(false);
+                       
                         break;
 
                     case FighterAttackState.Attack4:
@@ -350,8 +346,7 @@ public class Player : MonoBehaviour
                         sword.damage = 10f;
                         attackState = FighterAttackState.hiddenAttack;
                         StartCoroutine("Delay");
-                        // print("Attack4");
-                        //swordEffect.SetActive(false);
+                        
                         break;
 
                     case FighterAttackState.hiddenAttack:
@@ -362,19 +357,17 @@ public class Player : MonoBehaviour
                         attackState = FighterAttackState.Attack1;
                         sword.damage = 10f;
                         StartCoroutine("Delay");
-                       // swordEffect.SetActive(false);
-                        //anim.ti
-                        //Animation myAnim = anim.time;
+                        StartCoroutine(InputSword());
                         break;
                 }
-            }        
+            }
         }
     }
     IEnumerator Delay()
     {
-        float check = 0; 
+        float check = 0;
         float delaytime = 0.3f;
-        while (check < delaytime) 
+        while (check < delaytime)
         {
             yield return null;
             check += Time.deltaTime;
@@ -382,27 +375,27 @@ public class Player : MonoBehaviour
         }
         check = 0;
         nextAttack = true;
-        //RigidOnOff(0);
-        
-
-    }
-
-
-
-
-    IEnumerator JumpAttack() 
-    {
-        yield return new WaitForSeconds(0.4f);
-        rb.AddForce(Vector3.up * 12f, ForceMode.Impulse);
 
 
     }
-    IEnumerator DownAttack() 
+    IEnumerator JumpAttack()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
+        rb.AddForce(Vector3.up * 15f, ForceMode.Impulse);
+    }
+    IEnumerator DownAttack()
+    {
+        yield return new WaitForSeconds(0.1f);
         rb.AddForce(Vector3.down * jumpSpeed, ForceMode.Impulse);
     }
 
+    bool effectOnOff = false;
+    void OffSwordEffect(int onOff) 
+    {
+        effectOnOff = onOff == 1;
+
+        swordEffect.SetActive(effectOnOff);
+    }
 
 
     private void OnCollisionEnter(Collision collision)

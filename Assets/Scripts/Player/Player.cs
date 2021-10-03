@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     public GameObject swordCase;
     public GameObject katana;
     public GameObject rightHand;
+    public GameObject swordCollider;
     public bool outPutSword = false;
     public Vector3 firstSwordPosition;
     public Vector3 firstSwordRotation;
@@ -69,7 +70,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         //lr = leftHand.GetComponent<LineRenderer>();
         myTransform = GetComponent<Transform>();
-        sword = katana.GetComponent<Sword>();
+        sword = swordCollider.GetComponent<Sword>();
 
 
 
@@ -297,6 +298,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
         {
             swordEffect.SetActive(true);
+            swordCollider.SetActive(true);
             if (nextAttack)
             {
                 if (outPutSword == false)
@@ -312,7 +314,7 @@ public class Player : MonoBehaviour
                         
                         anim.SetTrigger("firstAttack");
                         nextAttack = false;
-                        sword.damage = 10f;
+                        sword.damage = 300f;
                         attackState = FighterAttackState.Attack2;
                         StartCoroutine("Delay");
                         
@@ -322,7 +324,7 @@ public class Player : MonoBehaviour
                         //swordEffect.SetActive(true);
                         anim.SetTrigger("secoundAttack");
                         nextAttack = false;
-                        sword.damage = 10f;
+                        sword.damage = 300f;
 
                         attackState = FighterAttackState.Attack3;
                         StartCoroutine("Delay");
@@ -331,7 +333,7 @@ public class Player : MonoBehaviour
                         
                         anim.SetTrigger("thirdAttack");
                         nextAttack = false;
-                        sword.damage = 10f;
+                        sword.damage = 300f;
                         attackState = FighterAttackState.Attack4;
 
                         StartCoroutine("Delay");
@@ -343,7 +345,7 @@ public class Player : MonoBehaviour
                         anim.SetTrigger("lastAttack");
                         StartCoroutine("JumpAttack");
                         nextAttack = false;
-                        sword.damage = 10f;
+                        sword.damage = 300f;
                         attackState = FighterAttackState.hiddenAttack;
                         StartCoroutine("Delay");
                         
@@ -355,7 +357,7 @@ public class Player : MonoBehaviour
                         StartCoroutine("DownAttack");
                         nextAttack = false;
                         attackState = FighterAttackState.Attack1;
-                        sword.damage = 10f;
+                        sword.damage = 300f;
                         StartCoroutine("Delay");
                         StartCoroutine(InputSword());
                         break;
@@ -395,6 +397,7 @@ public class Player : MonoBehaviour
         effectOnOff = onOff == 1;
 
         swordEffect.SetActive(effectOnOff);
+        swordCollider.SetActive(effectOnOff);
     }
 
 

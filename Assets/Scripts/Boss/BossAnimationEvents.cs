@@ -11,4 +11,9 @@ public class BossAnimationEvents : MonoBehaviour
         string[] temps = timeAndAmount.Split(',');
         CameraManager.instance.OnShake(float.Parse(temps[0]), float.Parse(temps[1]));
     }
+
+    public void OnEffect()
+    {
+
+    }
 }

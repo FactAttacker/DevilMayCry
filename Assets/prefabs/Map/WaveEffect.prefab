@@ -42259,51 +42259,6 @@ MonoBehaviour:
   DisableOnMobiles: 0
   RenderMobileDistortion: 1
   ParticleBudgetForMobiles: 0.5
---- !u!1 &163546
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 471504}
-  - component: {fileID: 11455072}
-  m_Layer: 0
-  m_Name: LazyLoad
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &471504
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 163546}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 418868}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11455072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 163546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 299369f945879d147a3e97f89f51f236, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ActivatedGameObject: {fileID: 0}
-  Delay: 3.8
 --- !u!1 &166700
 GameObject:
   m_ObjectHideFlags: 0
@@ -52021,7 +51976,6 @@ Transform:
   - {fileID: 470562}
   - {fileID: 420764}
   - {fileID: 449990}
-  - {fileID: 471504}
   m_Father: {fileID: 473566}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

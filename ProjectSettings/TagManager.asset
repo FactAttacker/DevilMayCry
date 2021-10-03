@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Damageable
   - Fragments
+  - Boss
   layers:
   - Default
   - TransparentFX

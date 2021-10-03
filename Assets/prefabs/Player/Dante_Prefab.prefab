@@ -1,5 +1,63 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &553416438
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 553416439}
+  - component: {fileID: 553416440}
+  - component: {fileID: 553416441}
+  m_Layer: 6
+  m_Name: SwordCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &553416439
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553416438}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2575807934195042804}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &553416440
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553416438}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9, y: 3.64, z: 0.31}
+  m_Center: {x: 0, y: -0.55, z: 0}
+--- !u!114 &553416441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553416438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66b3fcee6af35e409e7b70c88da3c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
 --- !u!1 &829929946
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,7 +1667,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1740942200784086320}
   m_LocalRotation: {x: 5.5795913e-16, y: 0.00000002135681, z: -0.00000070372965, w: 1}
-  m_LocalPosition: {x: 0, y: 1.4900001, z: 0.464}
+  m_LocalPosition: {x: 0.026, y: 1.4900001, z: 0.489}
   m_LocalScale: {x: 0.13333333, y: 0.13333333, z: 0.13333333}
   m_Children: []
   m_Father: {fileID: 2320858500541788251}
@@ -2687,32 +2745,6 @@ MonoBehaviour:
   boneID: 37
   ikEnabled: 0
   ikWeight: 1
---- !u!65 &952691539
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2951206889542931278}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.9, y: 3.64, z: 0.31}
-  m_Center: {x: 0, y: -0.55, z: 0}
---- !u!114 &952691540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2951206889542931278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a66b3fcee6af35e409e7b70c88da3c62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
 --- !u!1 &3009531169797366022
 GameObject:
   m_ObjectHideFlags: 0
@@ -3637,6 +3669,7 @@ MonoBehaviour:
   swordCase: {fileID: 4100420172448907256}
   katana: {fileID: 2951206889542931278}
   rightHand: {fileID: 187854128089238559}
+  swordCollider: {fileID: 553416438}
   outPutSword: 0
   firstSwordPosition: {x: 0, y: 0, z: 0}
   firstSwordRotation: {x: 0, y: 0, z: 0}
@@ -8479,13 +8512,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7055ff1255134488f94aee0d8d9bcf3f, type: 3}
---- !u!4 &2575807934195042804 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7055ff1255134488f94aee0d8d9bcf3f, type: 3}
-  m_PrefabInstance: {fileID: 2609170600243588639}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2951206889542931278 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7055ff1255134488f94aee0d8d9bcf3f, type: 3}
+  m_PrefabInstance: {fileID: 2609170600243588639}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2575807934195042804 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7055ff1255134488f94aee0d8d9bcf3f, type: 3}
   m_PrefabInstance: {fileID: 2609170600243588639}
   m_PrefabAsset: {fileID: 0}

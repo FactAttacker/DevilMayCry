@@ -128,14 +128,14 @@ public class CameraManager : MonoBehaviour
     {
         shakeInfo.vector = _camera.position;
         float amount = shakeInfo.amount;
-        if (effectDict[EffectType.WAVE].activeInHierarchy) effectDict[EffectType.WAVE].SetActive(false);
+        //if (effectDict[EffectType.WAVE].activeInHierarchy) effectDict[EffectType.WAVE].SetActive(false);
 
-        effectDict[EffectType.WAVE].SetActive(true);
-        effectDict[EffectType.WAVE].TryGetComponent(out RFX4_EffectSettings wave);
+        //effectDict[EffectType.WAVE].SetActive(true);
+        //effectDict[EffectType.WAVE].TryGetComponent(out RFX4_EffectSettings wave);
 
         //Wave Setting
-        wave.ParticlesBudget = 1;
-        wave.FadeoutTime = shakeInfo.time;
+        //wave.ParticlesBudget = 1;
+        //wave.FadeoutTime = shakeInfo.time;
 
         while (shakeInfo.time > 0)
         {
@@ -144,7 +144,7 @@ public class CameraManager : MonoBehaviour
             amount -= amount * 0.05f;
             yield return null;
         }
-        effectDict[EffectType.WAVE].SetActive(false);
+        //effectDict[EffectType.WAVE].SetActive(false);
         canShake = true;
         currentCamera = CameraType.FOLLWER;
         shakeInfo.time = 0.0f;

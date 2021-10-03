@@ -110,7 +110,7 @@ public class CameraManager : MonoBehaviour
         while (shakeInfo.time > 0)
         {
             shakeInfo.time -= Time.deltaTime;
-            _camera.position = (Random.insideUnitSphere * amount) + shakeInfo.vector;
+            _camera.position = (Random.insideUnitSphere * amount) + zoomPos[1].position;//shakeInfo.vector; 
             amount -= amount * 0.05f;
             yield return null;
         }

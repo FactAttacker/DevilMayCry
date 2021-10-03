@@ -1,0 +1,189 @@
+fileFormatVersion: 2
+guid: 3ea8688cd390e6443834e32b89cab585
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      74: 8169518488274581753
+    second: Sword1h_Taunt_cmon
+  - first:
+      74: 8683719423284923847
+    second: Sword1h_Taunt_wheels
+  - first:
+      74: 4178390080835461132
+    second: Sword1h_Taunt_wheel_short
+  - first:
+      74: 1015129781499664657
+    second: Sword1h_Taunt_swings
+  - first:
+      74: 2462773994923946462
+    second: Sword1h_Taunt_mark_1
+  - first:
+      74: 4742302159473762
+    second: Sword1h_Taunt_mark_short
+  - first:
+      74: -5125266451296066777
+    second: Sword1h_Taunt_lowerSword
+  - first:
+      74: 2932371694894145712
+    second: Sword1h_Taunt_mark_2
+  - first:
+      74: 6034575126746449356
+    second: Sword1h_Taunt_mark_3
+  - first:
+      74: 6010557583285975182
+    second: Sword1h_Piruette_fwd
+  - first:
+      74: -7889516848524722258
+    second: Sword1h_Taunt_what
+  - first:
+      74: -6394911290768445892
+    second: Sword1h_Taunt_taptap
+  - first:
+      74: 5893532825496834622
+    second: Sword1h_Prepare
+  - first:
+      74: 5156010459146598747
+    second: Sword1h_FallingLoop
+  - first:
+      74: 3156889248469459755
+    second: Sword1h_Land_Generic
+  - first:
+      74: 704487093737614955
+    second: Rifle_Jump_Platformer_Start
+  - first:
+      74: -2292872926616185305
+    second: Rifle_Jump_Platformer_Land
+  - first:
+      74: -9208915332290934378
+    second: Rifle_Jump_Platformer_Fall
+  - first:
+      74: -4039702131832084948
+    second: Rifle_Jump_Platformer_Predict_Land
+  - first:
+      74: 6574092796993982424
+    second: Sword1h_Climb1m
+  - first:
+      74: 551072923191347692
+    second: Sword1h_Kick_L
+  - first:
+      74: -6874450687089052551
+    second: Sword1h_Vicotry_1
+  - first:
+      74: 7576133461250860671
+    second: Sword1h_Victory_2
+  - first:
+      74: 2034430092554342134
+    second: Sword1h_Victory_3
+  - first:
+      74: 8103404644654713959
+    second: Sword1h_Victory_4
+  - first:
+      74: -7199800741692630390
+    second: Sword1h_Surrender
+  - first:
+      74: -4824057519641093151
+    second: Sword1h_BeltAdjust
+  - first:
+      74: 5509382636189881360
+    second: Sword1h_Equip
+  - first:
+      74: 2481148281747090058
+    second: Sword1h_Holster
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

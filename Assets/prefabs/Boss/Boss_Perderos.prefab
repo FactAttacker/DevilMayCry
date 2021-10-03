@@ -1,5 +1,79 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &638966159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 638966160}
+  - component: {fileID: 638966161}
+  - component: {fileID: 638966162}
+  - component: {fileID: 638966163}
+  m_Layer: 4
+  m_Name: Wide Area Attack Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &638966160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638966159}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3.31}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2094321923319513429}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &638966161
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638966159}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 12
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &638966162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638966159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b932b73bfbcabc468234056f63b81c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &638966163
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638966159}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2094321921543023702
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +211,8 @@ GameObject:
   - component: {fileID: 2094321921734259750}
   - component: {fileID: 1993714354}
   - component: {fileID: 1993714355}
-  m_Layer: 0
+  - component: {fileID: 1993714357}
+  m_Layer: 4
   m_Name: Perderos_ L Finger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,9 +259,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b932b73bfbcabc468234056f63b81c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLeft: 0
-  isRight: 0
-  isTwoHand: 0
+--- !u!54 &1993714357
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094321921734259749}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2094321921789509556
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,7 +439,7 @@ GameObject:
   - component: {fileID: 2094321921845476049}
   - component: {fileID: 2094321921845476050}
   - component: {fileID: 2094321921845476051}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: BossHitCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -839,6 +927,7 @@ GameObject:
   - component: {fileID: 2094321922379646191}
   - component: {fileID: 2094321922379646190}
   - component: {fileID: 30100422}
+  - component: {fileID: 8309271579074071062}
   m_Layer: 0
   m_Name: Boss_Perderos
   m_TagString: Untagged
@@ -1056,24 +1145,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094321922379646188}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c0e3f1af57a3ad41885ab4cfd1f9dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicAttack:
-    center: {x: 0, y: 1.5, z: 5}
-    size: {x: 6, y: 3, z: 6}
-  rushAttack:
-    center: {x: 0, y: 2, z: 7}
-    size: {x: 8, y: 4, z: 12}
-  strikeAttack:
-    center: {x: 0, y: 1.5, z: 5}
-    size: {x: 6, y: 3, z: 6}
-  jumpAttack:
-    center: {x: 0, y: 0, z: 0}
-    size: {x: 0, y: 0, z: 0}
-  attackColObj: {fileID: 0}
+  colliderArr:
+  - {fileID: 1993714354}
+  - {fileID: 224340592}
+  - {fileID: 638966161}
+--- !u!114 &8309271579074071062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094321922379646188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e27910eede8077142ba13a9a7549b1c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2094321922383676650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1879,6 +1971,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2094321921845476049}
+  - {fileID: 638966160}
   m_Father: {fileID: 2094321922379646189}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2201,7 +2294,8 @@ GameObject:
   - component: {fileID: 2094321923579276528}
   - component: {fileID: 224340592}
   - component: {fileID: 224340593}
-  m_Layer: 0
+  - component: {fileID: 8718026593444916818}
+  m_Layer: 4
   m_Name: Perderos_ R Finger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2248,9 +2342,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b932b73bfbcabc468234056f63b81c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLeft: 0
-  isRight: 0
-  isTwoHand: 0
+--- !u!54 &8718026593444916818
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094321923579276543}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2094321923591728243
 GameObject:
   m_ObjectHideFlags: 0

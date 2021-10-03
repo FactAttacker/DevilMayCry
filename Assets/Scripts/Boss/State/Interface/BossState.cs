@@ -18,13 +18,13 @@ public class BossState : MonoBehaviour
 
     protected void FixedUpdate()
     {
-        if (bossStateMachine.currState != this) return;
+        if (bossStateMachine.CurrState != this) return;
         OnFixedUpdate();
     }
 
     protected void Update()
     {
-        if (bossStateMachine.currState != this) return;
+        if (bossStateMachine.CurrState != this) return;
         OnUpdate();
     }
 

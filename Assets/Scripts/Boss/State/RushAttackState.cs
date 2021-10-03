@@ -89,7 +89,6 @@ public class RushAttackState : BossState
             yield return null;
         }
     }
-    public void RushAttack() => StartCoroutine(Co_RushAttack());
 
     public void SetRushAttackSpeed(float _attackSpeed) => bossStateMachine.anim.SetFloat("RushAttackSpeed", _attackSpeed);
 }

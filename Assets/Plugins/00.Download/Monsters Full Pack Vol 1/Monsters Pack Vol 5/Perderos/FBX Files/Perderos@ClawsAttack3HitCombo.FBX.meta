@@ -425,18 +425,32 @@ ModelImporter:
         floatParameter: 1
         intParameter: 0
         messageOptions: 0
-      - time: 0.20253164
-        functionName: BasicAttack
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       - time: 0.21518987
         functionName: SetBasicAttackSpeed
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0.5
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.22080292
+        functionName: ColliderCheckOn
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 0.2236287
+        functionName: OnCameraShake
+        data: 0.3,0.08
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.24056092
+        functionName: ColliderCheckOff
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.350211
@@ -446,8 +460,15 @@ ModelImporter:
         floatParameter: 1
         intParameter: 0
         messageOptions: 0
-      - time: 0.42616034
-        functionName: BasicAttack
+      - time: 0.43881857
+        functionName: OnCameraShake
+        data: 0.3,0.08
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.4452555
+        functionName: ColliderCheckOn
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -460,6 +481,13 @@ ModelImporter:
         floatParameter: 0.5
         intParameter: 0
         messageOptions: 0
+      - time: 0.46823955
+        functionName: ColliderCheckOff
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.6666667
         functionName: SetBasicAttackSpeed
         data: 
@@ -467,26 +495,12 @@ ModelImporter:
         floatParameter: 0.825
         intParameter: 0
         messageOptions: 0
-      - time: 0.7596755
-        functionName: BasicAttack
+      - time: 0.79014593
+        functionName: ColliderCheckOn
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.81103593
-        functionName: SetBasicAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.225
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.8645423
-        functionName: SetBasicAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.4
-        intParameter: 0
+        intParameter: 2
         messageOptions: 0
       - time: 0.79324895
         functionName: OnCameraShake
@@ -495,18 +509,25 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.2236287
-        functionName: OnCameraShake
-        data: 0.3,0.08
+      - time: 0.81103593
+        functionName: SetBasicAttackSpeed
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0.3
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.8330309
+        functionName: ColliderCheckOff
+        data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.43881857
-        functionName: OnCameraShake
-        data: 0.3,0.08
+      - time: 0.90329254
+        functionName: SetBasicAttackSpeed
+        data: 
         objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
+        floatParameter: 0.5
         intParameter: 0
         messageOptions: 0
       transformMask: []

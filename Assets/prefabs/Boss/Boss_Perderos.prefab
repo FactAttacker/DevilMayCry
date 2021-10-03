@@ -135,6 +135,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2094321921734259750}
+  - component: {fileID: 1993714354}
+  - component: {fileID: 1993714355}
   m_Layer: 0
   m_Name: Perderos_ L Finger1
   m_TagString: Untagged
@@ -157,6 +159,34 @@ Transform:
   m_Father: {fileID: 2094321921625829480}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1993714354
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094321921734259749}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1993714355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094321921734259749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b932b73bfbcabc468234056f63b81c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLeft: 0
+  isRight: 0
+  isTwoHand: 0
 --- !u!1 &2094321921789509556
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,6 +838,7 @@ GameObject:
   - component: {fileID: 2094321922379646176}
   - component: {fileID: 2094321922379646191}
   - component: {fileID: 2094321922379646190}
+  - component: {fileID: 30100422}
   m_Layer: 0
   m_Name: Boss_Perderos
   m_TagString: Untagged
@@ -822,9 +853,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094321922379646188}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.75, y: 1.96, z: 1.75}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 2094321923591728244}
   - {fileID: 2094321922350889223}
@@ -922,6 +953,11 @@ MonoBehaviour:
   rushWeight: 90
   strikeWeight: 70
   jumpWeight: 10
+  isBasicAttack: 0
+  isRoar: 0
+  isRush: 0
+  isStrike: 0
+  isJump: 0
 --- !u!114 &2094321922379646180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,6 +1023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 092de7fb8831d1d43ba36e477c089536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isJumpAtk: 0
 --- !u!114 &2094321922379646191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1012,6 +1049,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotTime: 1
+--- !u!114 &30100422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094321922379646188}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0e3f1af57a3ad41885ab4cfd1f9dee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicAttack:
+    center: {x: 0, y: 1.5, z: 5}
+    size: {x: 6, y: 3, z: 6}
+  rushAttack:
+    center: {x: 0, y: 2, z: 7}
+    size: {x: 8, y: 4, z: 12}
+  strikeAttack:
+    center: {x: 0, y: 1.5, z: 5}
+    size: {x: 6, y: 3, z: 6}
+  jumpAttack:
+    center: {x: 0, y: 0, z: 0}
+    size: {x: 0, y: 0, z: 0}
+  attackColObj: {fileID: 0}
 --- !u!1 &2094321922383676650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,6 +2199,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2094321923579276528}
+  - component: {fileID: 224340592}
+  - component: {fileID: 224340593}
   m_Layer: 0
   m_Name: Perderos_ R Finger1
   m_TagString: Untagged
@@ -2159,6 +2223,34 @@ Transform:
   m_Father: {fileID: 2094321922445306219}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &224340592
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094321923579276543}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &224340593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094321923579276543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b932b73bfbcabc468234056f63b81c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLeft: 0
+  isRight: 0
+  isTwoHand: 0
 --- !u!1 &2094321923591728243
 GameObject:
   m_ObjectHideFlags: 0

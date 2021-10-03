@@ -6,7 +6,7 @@ public class BossStateMachine : MonoBehaviour
 {
     [HideInInspector] public Animator anim;
 
-    public BossState currState { get; private set; }
+    public BossState CurrState { get; private set; }
     BossState prevState;
 
     void Start()
@@ -17,26 +17,26 @@ public class BossStateMachine : MonoBehaviour
 
     public void SetState(BossState _nextState, bool _isReset = true)
     {
-        prevState = currState;
+        prevState = CurrState;
         prevState?.OnEnd();
         if(_isReset) prevState?.OnReset();
-        currState = _nextState;
-        currState.OnStart();
+        CurrState = _nextState;
+        CurrState.OnStart();
     }
 
     public void PrevState()
     {
-        Debug.Log($"{currState} -> {prevState}");
-        currState?.OnEnd();
-        currState = prevState;
-        currState?.OnStart();
+        Debug.Log($"{CurrState} -> {prevState}");
+        CurrState?.OnEnd();
+        CurrState = prevState;
+        CurrState?.OnStart();
     }
 
     [ContextMenu("?????? ????")]
     public void DebugProperty()
     {
         Debug.Log($"m_prevState : {prevState}");
-        Debug.Log($"m_currentState : {currState}");
+        Debug.Log($"m_currentState : {CurrState}");
     }
 
 

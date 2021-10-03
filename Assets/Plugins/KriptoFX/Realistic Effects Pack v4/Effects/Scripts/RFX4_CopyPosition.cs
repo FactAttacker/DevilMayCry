@@ -13,6 +13,6 @@ public class RFX4_CopyPosition : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        t.position = CopiedTransform.position;
+		t.position = CopiedTransform.position;
 	}
 }

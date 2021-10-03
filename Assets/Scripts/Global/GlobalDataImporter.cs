@@ -22,6 +22,12 @@ public class GlobalDataImporter : MonoBehaviour
 
         [Header("아이템")]
         public TextAsset item;
+
+        [Header("보스 기본 스탯")]
+        public TextAsset boss;
+
+        [Header("보스 어택")]
+        public TextAsset bossAttack;
     }
 
     void Awake()
@@ -37,5 +43,9 @@ public class GlobalDataImporter : MonoBehaviour
 
         //item 정보 담기
         GlobalState.itemList = JsonConvert.DeserializeObject<List<Excel_Item>>(googleSheetData.item.ToString());
+
+        GlobalState.bossList = JsonConvert.DeserializeObject<List<Excel_Boss>>(googleSheetData.boss.ToString());
+
+        GlobalState.bossAttackList = JsonConvert.DeserializeObject<List<Excel_BossAttack>>(googleSheetData.bossAttack.ToString());
     }
 }

@@ -59,7 +59,7 @@ public class RushAttackState : BossState
     IEnumerator Co_Rush()
     {
         float rushRange = 0;
-        while (Vector3.Distance(transform.position, GetComponent<Boss_DetectPlayerAndCalcDistance>().playerTr.position) > attackDist
+        while ( GetComponent<Boss_DetectPlayerAndCalcDistance>().distance > attackDist
                && rushRange <= maxRushRange
                && !IsThereWallToFront())
         {

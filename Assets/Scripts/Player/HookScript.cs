@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class HookScript : MonoBehaviour
 {
+    RFX4_EffectEvent effect;
+
+    //public GameObject effect_Electronic_attach;
+    //public GameObject effect_Electronic_hand;
+
     public GameObject enemy;
     public GameObject player;
     //GameObject wall;
@@ -28,6 +33,7 @@ public class HookScript : MonoBehaviour
     {
         lr = GetComponent<LineRenderer>();
         rb = GetComponent<Rigidbody>();
+        //effect = GetComponent<RFX4_EffectEvent>();
         //transform.position = hitPosition;
     }
 
@@ -40,6 +46,8 @@ public class HookScript : MonoBehaviour
         lr.SetPosition(1, transform.position);
         if (Input.GetKeyDown(KeyCode.J) && !isHooking && !enemyHooked) 
         {
+            //Instantiate(effect_Electronic_hand);
+            //Instantiate(effect_Electronic);
             player.transform.LookAt(enemy.transform);
             
             StartCoroutine("StartHooking");
@@ -62,8 +70,8 @@ public class HookScript : MonoBehaviour
     {
         if (isHooking) 
         {
-            
             hookDistance = Vector3.Distance(transform.position, originalPosition);
+            
             if (hookDistance>hookMaxDistance || enemyHooked) 
             {
                 rb.isKinematic = true;
@@ -100,9 +108,14 @@ public class HookScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Cube") 
         {
+            //Instantiate(effect_Electronic_attach);
             enemyHooked = true;
             //wall = collision.gameObject;
             hitPosition = collision.contacts[0].point;
+            //Transform hit = hitPosition;
+            //effect.OverrideAttachPointToTarget.position = hitPosition;
         }
+
+
     }
 }

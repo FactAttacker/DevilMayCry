@@ -969,6 +969,7 @@ MonoBehaviour:
   zoomPos:
   - {fileID: 289094252}
   - {fileID: 1367098301}
+  effects: []
   cmSpeed: 1.5
   shakeInfo:
     vector: {x: 0, y: 0, z: 0}

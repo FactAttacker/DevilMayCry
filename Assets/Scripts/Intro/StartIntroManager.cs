@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,12 @@ public class StartIntroManager : MonoBehaviour
     bool isMenuSelected = true;
     Coroutine menuCorotine;
     WaitForSeconds menuWait = new WaitForSeconds(0.2f);
+
+    [SerializeField]
+    AudioSource audio;
+
+    [SerializeField]
+    AudioClip clip;
 
     void Start()
     {
@@ -51,6 +58,20 @@ public class StartIntroManager : MonoBehaviour
         yield return menuWait;
         isMenuSelected = true;
     }
+    void ChangeBGM()
+    {
+        audio.Stop();
+        audio.clip = clip;
+        audio.loop = false;
+        audio.Play();
+        StartCoroutine(COChangeBGM());
+    }
+    IEnumerator COChangeBGM()
+    {
+        yield return new WaitUntil(() => audio.time < (clip.length/10f) );
+        FadeInOutController.instance.OnFadeInOut();
+    }
+
     void Update()
     {
         float v = 0;
@@ -74,7 +95,7 @@ public class StartIntroManager : MonoBehaviour
             {
                 case 0:
                     FadeInOutController.instance.isFade = true;
-                    FadeInOutController.instance.OnFadeInOut();
+                    ChangeBGM();
                     break;
                 case 3:
                     Application.Quit();

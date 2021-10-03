@@ -2912,6 +2912,7 @@ GameObject:
   - component: {fileID: 577817302203284550}
   - component: {fileID: 7731697454560547646}
   - component: {fileID: 5763450983244391703}
+  - component: {fileID: 7170760314246471676}
   m_Layer: 0
   m_Name: Dante_Prefab
   m_TagString: Untagged
@@ -3557,6 +3558,23 @@ MonoBehaviour:
   hook: {fileID: 1740942200784086320}
   swordEffect: {fileID: 1685847839357166108}
   m_DoubleClickSecond: 0.25
+--- !u!114 &7170760314246471676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3134092122249849569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca5ef2b30a3e844580c1477e4fdf9f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpBar: {fileID: 0}
+  damagedHPBar: {fileID: 0}
+  refreshSpeed: 1
+  refreshWaitTime: 0.1
+  maxHP: 1000
 --- !u!1 &3187889906691653340
 GameObject:
   m_ObjectHideFlags: 0
@@ -8343,13 +8361,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7055ff1255134488f94aee0d8d9bcf3f, type: 3}
---- !u!4 &2575807934195042804 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7055ff1255134488f94aee0d8d9bcf3f, type: 3}
-  m_PrefabInstance: {fileID: 2609170600243588639}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2951206889542931278 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7055ff1255134488f94aee0d8d9bcf3f, type: 3}
+  m_PrefabInstance: {fileID: 2609170600243588639}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2575807934195042804 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7055ff1255134488f94aee0d8d9bcf3f, type: 3}
   m_PrefabInstance: {fileID: 2609170600243588639}
   m_PrefabAsset: {fileID: 0}

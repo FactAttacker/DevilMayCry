@@ -517,13 +517,6 @@ ModelImporter:
         floatParameter: 0.96
         intParameter: 0
         messageOptions: 0
-      - time: 0.37974685
-        functionName: SetJumpAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.35
-        intParameter: 0
-        messageOptions: 0
       - time: 0.4821766
         functionName: SetJumpAttackSpeed
         data: 
@@ -541,6 +534,20 @@ ModelImporter:
       - time: 0.39240503
         functionName: OnCameraShake
         data: 0.8,0.35
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.38177016
+        functionName: ColliderCheckOn
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 2
+        messageOptions: 0
+      - time: 0.4509517
+        functionName: ColliderCheckOff
+        data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0

@@ -59,7 +59,7 @@ public class RushAttackState : BossState
     IEnumerator Co_Rush()
     {
         float rushRange = 0;
-        while (Vector3.Distance(transform.position, GetComponent<Boss_DetectPlayerAndCalcDistance>().playerTr.position) > attackDist
+        while ( GetComponent<Boss_DetectPlayerAndCalcDistance>().distance > attackDist
                && rushRange <= maxRushRange
                && !IsThereWallToFront())
         {
@@ -89,7 +89,6 @@ public class RushAttackState : BossState
             yield return null;
         }
     }
-    public void RushAttack() => StartCoroutine(Co_RushAttack());
 
     public void SetRushAttackSpeed(float _attackSpeed) => bossStateMachine.anim.SetFloat("RushAttackSpeed", _attackSpeed);
 }

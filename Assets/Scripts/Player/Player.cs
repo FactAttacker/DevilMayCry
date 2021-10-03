@@ -5,7 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public bool knuckBack = false;
-   
+    Sword sword;
+
+
+
     Transform myTransform;
     [Header("PlayerMoveRelated")]
     public float walk_Speed = 10f;
@@ -65,6 +68,8 @@ public class Player : MonoBehaviour
         //lr = leftHand.GetComponent<LineRenderer>();
         myTransform = GetComponent<Transform>();
 
+
+        sword = katana.GetComponent<Sword>();
         
     }
 
@@ -116,11 +121,11 @@ public class Player : MonoBehaviour
 
     void move()
     {
-
-        anim.SetBool("walkWithSword", MoveDir.x != 0 || MoveDir.z != 0);
+         
 
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
+        anim.SetBool("walkWithSword", h != 0 || v != 0);
         MoveDir = Camera.main.transform.right * h + Camera.main.transform.forward * v;
         MoveDir.y = 0;
         transform.position += speed * Time.deltaTime * MoveDir;
@@ -303,56 +308,61 @@ public class Player : MonoBehaviour
 
                     case FighterAttackState.Attack1:
                         //print("gggggggg");
-                        swordEffect.SetActive(true);
+                        //swordEffect.SetActive(true);
                         anim.SetTrigger("firstAttack");
                         nextAttack = false;
-                        
+                        sword.damage = 10f;
                         attackState = FighterAttackState.Attack2;
 
                         
                         StartCoroutine("Delay");
                         //attackState = FighterAttackState.Attack2;
-                        swordEffect.SetActive(false);
+                        //swordEffect.SetActive(false);
                         break;
                     case FighterAttackState.Attack2:
-                        swordEffect.SetActive(true);
+                        //swordEffect.SetActive(true);
                         anim.SetTrigger("secoundAttack");
                         nextAttack = false;
+                        sword.damage = 10f;
+
                         attackState = FighterAttackState.Attack3;
                         StartCoroutine("Delay");
                         //attackState = FighterAttackState.Attack3;
-                        swordEffect.SetActive(false);
+                        //swordEffect.SetActive(false);
                         break;
                     case FighterAttackState.Attack3:
-                        swordEffect.SetActive(true);
+                        //swordEffect.SetActive(true);
                         anim.SetTrigger("thirdAttack");
                         nextAttack = false;
+                        sword.damage = 10f;
                         attackState = FighterAttackState.Attack4;
                        
                         StartCoroutine("Delay");
                         //attackState = FighterAttackState.Attack1;
-                        swordEffect.SetActive(false);
+                        //swordEffect.SetActive(false);
                         break;
 
                     case FighterAttackState.Attack4:
-                        swordEffect.SetActive(true);
+                        //swordEffect.SetActive(true);
                         anim.SetTrigger("lastAttack");
                         StartCoroutine("JumpAttack");
                         nextAttack = false;
+                        sword.damage = 10f;
                         attackState = FighterAttackState.hiddenAttack;
                         StartCoroutine("Delay");
                         // print("Attack4");
-                        swordEffect.SetActive(false);
+                        //swordEffect.SetActive(false);
                         break;
 
                     case FighterAttackState.hiddenAttack:
-                        swordEffect.SetActive(true);
+                        //swordEffect.SetActive(true);
                         anim.SetTrigger("hiddenAttack");
                         StartCoroutine("DownAttack");
                         nextAttack = false;
                         attackState = FighterAttackState.Attack1;
+                        sword.damage = 10f;
                         StartCoroutine("Delay");
-                        swordEffect.SetActive(false);
+                       // swordEffect.SetActive(false);
                         //anim.ti
                         //Animation myAnim = anim.time;
                         break;
@@ -373,7 +383,7 @@ public class Player : MonoBehaviour
         check = 0;
         nextAttack = true;
         //RigidOnOff(0);
-        //???????? ???? ???????? ???????? ???? ?????? ???? ?? ???? ?????? ???????? attack1?? ????????.
+        
 
     }
 
@@ -387,13 +397,13 @@ public class Player : MonoBehaviour
 
 
     }
-
-
     IEnumerator DownAttack() 
     {
         yield return new WaitForSeconds(0.3f);
         rb.AddForce(Vector3.down * jumpSpeed, ForceMode.Impulse);
     }
+
+
 
     private void OnCollisionEnter(Collision collision)
     {

@@ -22,7 +22,7 @@ public class PlayerState : MonoBehaviour
 
     // 배경 HP바 이미지, 중간 흰 막대 이미지(HP바 끝 이미지), HP바 이미지. Damage Hp바 이미지
 
-    [SerializeField] Image hpBar, damagedHPBar;
+    [SerializeField] Slider hpBar, damagedHPBar;
 
 
     [SerializeField, Tooltip("HP Bar UI의 fillAmount 변화 속도")] float refreshSpeed = 1;
@@ -137,9 +137,9 @@ public class PlayerState : MonoBehaviour
 
     {
 
-        damagedHPBar.fillAmount = hpBar.fillAmount;
+        damagedHPBar.value = hpBar.value;
 
-        hpBar.fillAmount = _value / MaxHP;
+        hpBar.value = _value / MaxHP;
 
         yield return waitRefreshSeconds;
 
@@ -153,7 +153,7 @@ public class PlayerState : MonoBehaviour
 
             rate += Time.deltaTime;
 
-            damagedHPBar.fillAmount = Mathf.Lerp(damagedHPBar.fillAmount, hpBar.fillAmount, rate * refreshSpeed);
+            damagedHPBar.value = Mathf.Lerp(damagedHPBar.value, hpBar.value, rate * refreshSpeed);
 
             yield return null;
 

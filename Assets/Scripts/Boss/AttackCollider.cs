@@ -15,16 +15,16 @@ public class AttackCollider : MonoBehaviour
             switch(state.ToString())
             {
                 case "BasicAttackState":
-                    //col.gameObject.GetComponent<PlayerStatus>().TakeDamage = ;
+                    col.gameObject.GetComponent<PlayerState>().TakeDamage = 100;
                     break;
                 case "StrikeAttackState":
-                    //col.gameObject.GetComponent<PlayerStatus>().TakeDamage = ;
+                    col.gameObject.GetComponent<PlayerState>().TakeDamage = 200;
                     break;
                 case "RushState":
-                    //col.gameObject.GetComponent<PlayerStatus>().TakeDamage = ;
+                    col.gameObject.GetComponent<PlayerState>().TakeDamage = 300;
                     break;
                 case "JumpAttackState":
-                    //col.gameObject.GetComponent<PlayerStatus>().TakeDamage = ;
+                    col.gameObject.GetComponent<PlayerState>().TakeDamage = 400;
                     break;
             }
             print("Ãæµµ¿Ã!");

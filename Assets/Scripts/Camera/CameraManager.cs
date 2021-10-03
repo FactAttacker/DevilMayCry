@@ -20,6 +20,21 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     Transform[] zoomPos;
 
+    enum EffectType
+    {
+        WAVE
+    }
+
+    [System.Serializable]
+    class Effect
+    {
+        public EffectType type;
+        public GameObject obj;
+    }
+    [SerializeField]
+    Effect[] effects;
+
+
     [SerializeField]
     float cmSpeed = 1.5f;
 
@@ -40,10 +55,16 @@ public class CameraManager : MonoBehaviour
     public TargetType currentTarget = TargetType.BOSS;
     public CameraType currentCamera = CameraType.FOLLWER;
 
+    Dictionary<EffectType, GameObject> effectDict;
     
     private void Awake()
     {
         if (instance == null) instance = this;
+        effectDict = new Dictionary<EffectType, GameObject>();
+        foreach(Effect data in effects)
+        {
+            effectDict.Add(data.type, data.obj);
+        }
     }
 
     private void Start()
@@ -107,13 +128,23 @@ public class CameraManager : MonoBehaviour
     {
         shakeInfo.vector = _camera.position;
         float amount = shakeInfo.amount;
+        if (effectDict[EffectType.WAVE].activeInHierarchy) effectDict[EffectType.WAVE].SetActive(false);
+
+        effectDict[EffectType.WAVE].SetActive(true);
+        effectDict[EffectType.WAVE].TryGetComponent(out RFX4_EffectSettings wave);
+
+        //Wave Setting
+        wave.ParticlesBudget = 1;
+        wave.FadeoutTime = shakeInfo.time;
+
         while (shakeInfo.time > 0)
         {
             shakeInfo.time -= Time.deltaTime;
-            _camera.position = (Random.insideUnitSphere * amount) + shakeInfo.vector;
+            _camera.position = (Random.insideUnitSphere * amount) + zoomPos[1].position;//shakeInfo.vector; 
             amount -= amount * 0.05f;
             yield return null;
         }
+        effectDict[EffectType.WAVE].SetActive(false);
         canShake = true;
         currentCamera = CameraType.FOLLWER;
         shakeInfo.time = 0.0f;

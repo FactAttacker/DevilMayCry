@@ -41,15 +41,15 @@ public class CinematicCameraMovingManager : MonoBehaviour
 
     void OnFollwer()
     {
-        if(currentTarget == TargetType.BOSS)
-        {
+        //if(currentTarget == TargetType.BOSS)
+        //{
             Transform target = currentTarget == TargetType.BOSS ? boss.transform : player.transform;
             Vector3 vec = target.position - transform.position;
             vec.Normalize();
 
             Quaternion q = Quaternion.LookRotation(vec);
             transform.rotation = q;
-        }
+        //}
     }
     void ExeShake(float time = 1.5f, float amount = 0.5f)
     {

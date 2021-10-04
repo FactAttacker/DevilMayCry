@@ -11,9 +11,9 @@ public class BattleManager : MonoBehaviour
     IEnumerator CoStartStroy()
     {
         VoiceSoundManager.instatnce.OnBossVoice("Boss-2");
-        GameObject.FindGameObjectWithTag("Boss").TryGetComponent(out IdleState idleBossState);
-        //idleBossState.isRoar = true;
-        //BossSystem.Instance.Boss.TryGetComponent(out IdleState idleBossState);
+        BossSystem.Instance.Boss.TryGetComponent(out IdleState idleBossState);
+        //GameObject.FindGameObjectWithTag("Boss").TryGetComponent(out IdleState idleBossState);
+        idleBossState.isRoar = true;
         yield return new WaitForSeconds(VoiceSoundManager.instatnce.bossVoiceDict["Boss-2"].length + 0.5f);
 
         VoiceSoundManager.instatnce.OnDanteVoice("Dante-HaHaLet'sGoForAWalkShallWe");

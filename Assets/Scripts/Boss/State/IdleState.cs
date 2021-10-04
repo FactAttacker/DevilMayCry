@@ -10,8 +10,8 @@ public class IdleState : BossState
     [SerializeField] float farDist = 10;
     [SerializeField] int roarWeight = 100, attackWeight = 100, rushWeight = 100, strikeWeight = 100, jumpWeight = 100;
 
-    [SerializeField] bool isBasicAttack = false, isRoar = false, isRush = false, isStrike = false, isJump = false;
-
+    [SerializeField] bool isBasicAttack = false, isRush = false, isStrike = false, isJump = false;
+    public bool isRoar = false;
 
     public bool IsCinematic
     {
@@ -27,10 +27,7 @@ public class IdleState : BossState
 
     public override void OnStart()
     {
-        if (!IsCinematic)
-        {
-            Co_IdleCycle = StartCoroutine(Co_DecideNextState());
-        }
+        Co_IdleCycle = StartCoroutine(Co_DecideNextState());
 
         //StartCoroutine(Test());
     }
@@ -92,6 +89,7 @@ public class IdleState : BossState
     /// <returns></returns>
     IEnumerator Co_DecideNextState()
     {
+        yield return new WaitUntil(() => GameManager.instance.isBattle);
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Idle State"));
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f);
 

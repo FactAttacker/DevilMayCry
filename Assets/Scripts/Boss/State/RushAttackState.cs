@@ -91,4 +91,11 @@ public class RushAttackState : BossState
     }
 
     public void SetRushAttackSpeed(float _attackSpeed) => bossStateMachine.anim.SetFloat("RushAttackSpeed", _attackSpeed);
+
+    public void OnRushEffect(string _effectName)
+    {
+        Vector3 tempPos = BossSystem.Instance.AttackColliderManager.ColliderArr[2].transform.position;
+        tempPos.y = 0;
+        BossSystem.Instance.BossAnimationEvents.OnEffect(_effectName, tempPos, Quaternion.identity);
+    }
 }

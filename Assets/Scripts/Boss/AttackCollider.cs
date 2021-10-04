@@ -11,8 +11,15 @@ public class AttackCollider : MonoBehaviour
         state = BossSystem.Instance.BossStateMachine.CurrState;
         if (col.gameObject.CompareTag("Player"))
         {
-            
-            switch(state.ToString())
+            state = BossSystem.Instance.BossStateMachine.CurrState;
+            string type = "";
+
+            if (state.GetComponent<BasicAttackState>() != null) type = "BasicAttackState";
+            else if (state.GetComponent<StrikeAttackState>() != null) type = "StrikeAttackState";
+            else if (state.GetComponent<RushAttackState>() != null) type = "RushAttackState";
+            else if (state.GetComponent<JumpAttackState>() != null) type = "JumpAttackState";
+
+            switch (type)
             {
                 case "BasicAttackState":
                     col.gameObject.GetComponent<PlayerState>().TakeDamage = 100;
@@ -27,8 +34,6 @@ public class AttackCollider : MonoBehaviour
                     col.gameObject.GetComponent<PlayerState>().TakeDamage = 400;
                     break;
             }
-            print("??????!");
         }
-        print("Ha");
     }
 }

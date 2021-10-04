@@ -450,7 +450,7 @@ ModelImporter:
         messageOptions: 0
       - time: 0.5485232
         functionName: OnCameraShake
-        data: 0.5,0.3
+        data: 0.8,0.5
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0

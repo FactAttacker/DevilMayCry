@@ -151,9 +151,9 @@ public class PlayerState : MonoBehaviour
 
         {
 
-            rate += Time.deltaTime;
+            rate += Time.deltaTime * refreshSpeed;
 
-            damagedHPBar.value = Mathf.Lerp(damagedHPBar.value, hpBar.value, rate * refreshSpeed);
+            damagedHPBar.value = Mathf.Lerp(damagedHPBar.value, hpBar.value, rate);
 
             yield return null;
 

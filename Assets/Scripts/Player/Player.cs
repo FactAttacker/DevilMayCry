@@ -5,10 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public bool knuckBack = false;
+    public bool flyingBack = false;
 
     Sword sword;
 
-
+    public Transform danteToe;
 
     Transform myTransform;
     [Header("PlayerMoveRelated")]
@@ -49,11 +50,15 @@ public class Player : MonoBehaviour
 
     public GameObject swordEffect;
 
-
+    //AnimationEvent
     public void RigidOnOff(int onOff)
     {
 
         rb.isKinematic = onOff == 1;
+    }
+    public void FlyingBack() 
+    {
+        rb.AddForce(-transform.forward* 20f,ForceMode.Impulse);
     }
 
 
@@ -76,18 +81,25 @@ public class Player : MonoBehaviour
 
     }
 
-
-
-
-
+   
     RaycastHit hit;
     void Update()
     {
+        
         if (knuckBack == true)
         {
+            knuckBack = false;
+
+            anim.SetTrigger("KnuckBack");
             rb.AddForce(-transform.forward * 7f, ForceMode.Impulse);
         }
 
+        if (flyingBack == true) 
+        {
+            flyingBack = false;
+            anim.SetTrigger("flyingBack");
+
+        }
 
 
         move();
@@ -267,7 +279,7 @@ public class Player : MonoBehaviour
 
     IEnumerator OutPutSword()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         katana.transform.localEulerAngles = new Vector3(66f, -230f, -60f);
         katana.transform.SetParent(rightHand.transform, false);
         katana.transform.localPosition = new Vector3(0.12f, -0.136f, 0.5f);
@@ -278,13 +290,21 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(1.3f);
         katana.transform.SetParent(swordCase.transform, false);
-        katana.transform.localPosition = new Vector3(-0.1f, -0.5f, 0.1f);
+        katana.transform.localPosition = new Vector3(0.01705508f, -0.4062368f, -0.143f);
         katana.transform.localEulerAngles = new Vector3(0f, -180f, 20f);
         outPutSword = false;
         anim.SetBool("inputSword", false);
     }
 
 
+    void ResetAttackState() 
+    {
+        //StartCoroutine(InputSword());
+        attackState = FighterAttackState.Attack1;
+
+        rb.AddForce(Vector3.down * jumpSpeed, ForceMode.Impulse);
+        
+    }
 
     void InputControl()
     {
@@ -309,50 +329,56 @@ public class Player : MonoBehaviour
                 }
                 switch (attackState)
                 {
-
                     case FighterAttackState.Attack1:
-                        
+                       
                         anim.SetTrigger("firstAttack");
                         nextAttack = false;
                         sword.damage = 300f;
                         attackState = FighterAttackState.Attack2;
                         StartCoroutine("Delay");
-                        
 
+                        Invoke(nameof(ResetAttackState),1f);
                         break;
                     case FighterAttackState.Attack2:
                         //swordEffect.SetActive(true);
+                        CancelInvoke(nameof(ResetAttackState));
                         anim.SetTrigger("secoundAttack");
                         nextAttack = false;
                         sword.damage = 300f;
 
                         attackState = FighterAttackState.Attack3;
                         StartCoroutine("Delay");
+
+                        Invoke(nameof(ResetAttackState), 1f);
                         break;
                     case FighterAttackState.Attack3:
-                        
+                        CancelInvoke(nameof(ResetAttackState));
                         anim.SetTrigger("thirdAttack");
                         nextAttack = false;
                         sword.damage = 300f;
                         attackState = FighterAttackState.Attack4;
 
                         StartCoroutine("Delay");
-                       
+
+                        Invoke(nameof(ResetAttackState), 1f);
                         break;
 
                     case FighterAttackState.Attack4:
                         //swordEffect.SetActive(true);
+                        CancelInvoke(nameof(ResetAttackState));
                         anim.SetTrigger("lastAttack");
                         StartCoroutine("JumpAttack");
                         nextAttack = false;
                         sword.damage = 300f;
                         attackState = FighterAttackState.hiddenAttack;
                         StartCoroutine("Delay");
-                        
+
+                        Invoke(nameof(ResetAttackState), 1f);
                         break;
 
                     case FighterAttackState.hiddenAttack:
                         //swordEffect.SetActive(true);
+                        CancelInvoke(nameof(ResetAttackState));
                         anim.SetTrigger("hiddenAttack");
                         StartCoroutine("DownAttack");
                         nextAttack = false;
@@ -360,6 +386,8 @@ public class Player : MonoBehaviour
                         sword.damage = 300f;
                         StartCoroutine("Delay");
                         StartCoroutine(InputSword());
+
+                        Invoke(nameof(ResetAttackState), 1f);
                         break;
                 }
             }

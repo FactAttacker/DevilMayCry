@@ -23,11 +23,11 @@ public class FadeInOutController : MonoBehaviour
 
     public bool isFade = false;
 
-    public void OnFadeInOut()
+    public void OnFadeInOut(int sceneIndex)
     {
-        StartCoroutine(CoFadeIn());
+        StartCoroutine(CoFadeIn(sceneIndex));
     }
-    IEnumerator CoFadeIn()
+    IEnumerator CoFadeIn(int sceneIndex)
     {
         float time = 0f;
         fadeImg.gameObject.SetActive(true);
@@ -38,10 +38,11 @@ public class FadeInOutController : MonoBehaviour
             time += (Time.deltaTime * speed);
             yield return null;
         }
-        yield return new WaitForSeconds(0.5f);
+        fadeImg.color = Color.black;
+        
+        float progress = GameManager.instance.SceneMove(sceneIndex);
 
-        float progress = SceneManager.LoadSceneAsync(1).progress;
-        yield return new WaitUntil(()=> progress == 0);
+        yield return new WaitUntil(() => progress == 0);
 
         time = 0f;
         while (time < 1)
@@ -50,7 +51,7 @@ public class FadeInOutController : MonoBehaviour
             time += (Time.deltaTime * speed);
             yield return null;
         }
-
+        
         fadeImg.gameObject.SetActive(false);
         isFade = false;
     }

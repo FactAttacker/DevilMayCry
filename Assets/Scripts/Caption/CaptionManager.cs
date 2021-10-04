@@ -5,15 +5,26 @@ using UnityEngine.UI;
 
 public class CaptionManager : MonoBehaviour
 {
+    public static CaptionManager instatnce;
+    private void Awake()
+    {
+        if (instatnce != null) return;
+        instatnce = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     [SerializeField]
     Text textBG;
 
     [SerializeField]
     Text text;
 
+    public bool isPlay = false;
+
     public void OnText(int id)
     {
-        textBG.gameObject.SetActive(true);
+        isPlay = true;
+        textBG.gameObject.SetActive(isPlay);
         string str = GlobalState.captionList[id].KR;
         textBG.text = str;
         text.text = str;
@@ -21,7 +32,8 @@ public class CaptionManager : MonoBehaviour
 
     public void OffText()
     {
-        textBG.gameObject.SetActive(false);
+        isPlay = false;
+        textBG.gameObject.SetActive(isPlay);
     }
 
 }

@@ -69,7 +69,7 @@ public class StartIntroManager : MonoBehaviour
     IEnumerator COChangeBGM()
     {
         yield return new WaitUntil(() => audio.time < (clip.length/10f) );
-        FadeInOutController.instance.OnFadeInOut();
+        FadeInOutController.instance.OnFadeInOut(1);
     }
 
     void Update()

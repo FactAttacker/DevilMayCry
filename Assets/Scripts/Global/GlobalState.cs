@@ -13,6 +13,7 @@ public class GlobalState : MonoBehaviour
 
     public static Dictionary<string, Excel_Player> playerDict;
     public static Dictionary<string, Excel_Skill> skillDict;
+    public static Dictionary<string, Excel_Caption> captionDict;
 
     public static float currentHpCnt;
 }

@@ -27,7 +27,7 @@ public class AttackCollider : MonoBehaviour
                     col.gameObject.GetComponent<PlayerState>().TakeDamage = 400;
                     break;
             }
-            print("Ãæµµ¿Ã!");
+            print("??????!");
         }
         print("Ha");
     }

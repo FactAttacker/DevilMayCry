@@ -47,6 +47,7 @@ public class Hook : MonoBehaviour
         {
             //Instantiate(effect_Electronic_hand);
             //Instantiate(effect_Electronic);
+            if (enemy == null) GameObject.FindGameObjectWithTag("Boss");
             player.transform.LookAt(enemy.transform);
             anim.SetTrigger("hook");
             StartCoroutine("StartHooking");

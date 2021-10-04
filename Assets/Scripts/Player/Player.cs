@@ -101,21 +101,23 @@ public class Player : MonoBehaviour
 
         }
 
-
-        move();
-        Dodge();
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (GameManager.instance.isBattle)
         {
-            InvokeRepeating("Change_SpeedPlus", 0.3f, 0.3f);
+            move();
+            Dodge();
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                InvokeRepeating("Change_SpeedPlus", 0.3f, 0.3f);
 
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            CancelInvoke("Change_SpeedPlus");
-            speed = walk_Speed;
-        }
+            }
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                CancelInvoke("Change_SpeedPlus");
+                speed = walk_Speed;
+            }
 
-        InputControl();
+            InputControl();
+        }
         //AnimationFinished();
     }
 

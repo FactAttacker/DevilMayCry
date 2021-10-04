@@ -48,4 +48,11 @@ public class BasicAttackState : BossState
     }
 
     public void SetBasicAttackSpeed(float _attackSpeed) => bossStateMachine.anim.SetFloat("BasicAttackSpeed", _attackSpeed);
+
+    public void OnBasicAttackEffect(string _effectName)
+    {
+        Vector3 tempPos = BossSystem.Instance.AttackColliderManager.ColliderArr[2].transform.position;
+        tempPos.y = 0;
+        BossSystem.Instance.BossAnimationEvents.OnEffect(_effectName, tempPos, Quaternion.identity);
+    }
 }

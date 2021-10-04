@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class AttackColliderManager : MonoBehaviour
 {
+    public Collider[] ColliderArr => colliderArr;
     [SerializeField] Collider[] colliderArr;
 
     private void Start()

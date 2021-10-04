@@ -45,7 +45,6 @@ public class JumpAttackState : BossState
         yield return StartCoroutine(Co_Jump());
         bossStateMachine.anim.SetTrigger("StrikeAttack");
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Jump Strike Attack State"));
-        yield return StartCoroutine(Co_StrikeAttack());
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
         bossStateMachine.SetState(GetComponent<AttackDelayState>());
         StopCoroutine(Co_jumpAttackCycle);
@@ -60,16 +59,12 @@ public class JumpAttackState : BossState
         yield return null;
     }
 
-    IEnumerator Co_StrikeAttack()
-    {
-        // 점프 후 공격 상태에서 진행될 것
-        yield return null;
-    }
-
     IEnumerator Co_JumpAttack1()
     {
         bossStateMachine.anim.SetTrigger("Jump");
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Jump State"));
+        yield return new WaitForSeconds(0.5f);
+        isJumpAtk = true;
         yield return StartCoroutine(Co_Jump());
         yield return StartCoroutine(Co_JumpAttack2());
     }
@@ -78,12 +73,17 @@ public class JumpAttackState : BossState
     {
         bossStateMachine.anim.SetTrigger("StrikeAttack");
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Jump Strike Attack State"));
-        yield return StartCoroutine(Co_StrikeAttack());
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
         bossStateMachine.SetState(GetComponent<AttackDelayState>());
         StopCoroutine(Co_jumpAttackCycle);
     }
 
     public void SetJumpAttackSpeed(float _attackSpeed) => bossStateMachine.anim.SetFloat("JumpAttackSpeed", _attackSpeed);
-}
 
+    public void OnRushAttackEffect(string _effectName)
+    {
+        Vector3 tempPos = BossSystem.Instance.AttackColliderManager.ColliderArr[2].transform.position;
+        tempPos.y = 0;
+        BossSystem.Instance.BossAnimationEvents.OnEffect(_effectName, tempPos, Quaternion.identity);
+    }
+}

@@ -54,4 +54,11 @@ public class StrikeAttackState : BossState
     public void StrikeAttack() => StartCoroutine(Co_StrikeAttack());
 
     public void SetStrikeAttackSpeed(float _attackSpeed) => bossStateMachine.anim.SetFloat("StrikeAttackSpeed", _attackSpeed);
+
+    public void OnStrikeAttackEffect(string _effectName)
+    {
+        Vector3 tempPos = BossSystem.Instance.AttackColliderManager.ColliderArr[2].transform.position;
+        tempPos.y = 0;
+        BossSystem.Instance.BossAnimationEvents.OnEffect(_effectName, tempPos, Quaternion.identity);
+    }
 }

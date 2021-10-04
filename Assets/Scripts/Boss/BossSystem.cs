@@ -24,6 +24,8 @@ public class BossSystem : MonoBehaviour
     BossStateMachine bossStateMachine;
     AttackColliderManager attackColliderManager;
     Boss_DetectPlayerAndCalcDistance boss_DetectPlayerAndCalcDistance;
+    BossEffectManager bossEffectManager;
+    BossAnimationEvents bossAnimationEvents;
 
     public GameObject Boss => boss;
     public Animator Animator => animator = animator ? animator : Boss.GetComponent<Animator>();
@@ -31,5 +33,7 @@ public class BossSystem : MonoBehaviour
     public BossStateMachine BossStateMachine => bossStateMachine = bossStateMachine ? bossStateMachine : Boss.GetComponent<BossStateMachine>();
     public AttackColliderManager AttackColliderManager => attackColliderManager = attackColliderManager ? attackColliderManager : Boss.GetComponent<AttackColliderManager>();
     public Boss_DetectPlayerAndCalcDistance Boss_DetectPlayerAndCalcDistance => boss_DetectPlayerAndCalcDistance = boss_DetectPlayerAndCalcDistance ? boss_DetectPlayerAndCalcDistance : Boss.GetComponent<Boss_DetectPlayerAndCalcDistance>();
+    public BossEffectManager BossEffectManager => bossEffectManager = bossEffectManager ? bossEffectManager : FindObjectOfType< BossEffectManager>();
+    public BossAnimationEvents BossAnimationEvents => bossAnimationEvents = bossAnimationEvents ? bossAnimationEvents : Boss.GetComponent<BossAnimationEvents>();
 
 }

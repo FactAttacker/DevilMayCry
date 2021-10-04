@@ -90,12 +90,14 @@ public class BossHP : MonoBehaviour
         yield return waitRefreshSeconds;
 
         float rate = 0;
-        while (rate < 1)
+        while (rate <= 1)
         {
-            rate += Time.deltaTime;
-            damagedHPBar.fillAmount = Mathf.Lerp(damagedHPBar.fillAmount, hpBar.fillAmount, rate * refreshSpeed);
+            rate += Time.deltaTime * refreshSpeed;
+            damagedHPBar.fillAmount = Mathf.Lerp(damagedHPBar.fillAmount, hpBar.fillAmount, rate);
             yield return null;
         }
+        yield return new WaitForSeconds(0.5f);
+        damagedHPBar.fillAmount = hpBar.fillAmount;
     }
 
     public IEnumerator Co_Damaged()

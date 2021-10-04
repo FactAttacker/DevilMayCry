@@ -27,10 +27,7 @@ public class IdleState : BossState
 
     public override void OnStart()
     {
-        if (!IsCinematic)
-        {
-            Co_IdleCycle = StartCoroutine(Co_DecideNextState());
-        }
+        Co_IdleCycle = StartCoroutine(Co_DecideNextState());
 
         //StartCoroutine(Test());
     }
@@ -92,6 +89,7 @@ public class IdleState : BossState
     /// <returns></returns>
     IEnumerator Co_DecideNextState()
     {
+        //yield return new WaitUntil(() => !GameManager.instance.isBattle);
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Idle State"));
         yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f);
 

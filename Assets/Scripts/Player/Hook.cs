@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Hook : MonoBehaviour
 {
+    //public GameObject effect_Electronic_attach;
+    //public GameObject effect_Electronic_hand;
+    Animator anim;
+    public GameObject enemy;
     public GameObject player;
     //GameObject wall;
     public Transform returnPosition;
@@ -25,8 +29,10 @@ public class Hook : MonoBehaviour
 
     private void Awake()
     {
+        anim = GetComponent<Animator>();
         lr = GetComponent<LineRenderer>();
         rb = GetComponent<Rigidbody>();
+        //effect = GetComponent<RFX4_EffectEvent>();
         //transform.position = hitPosition;
     }
 
@@ -39,7 +45,10 @@ public class Hook : MonoBehaviour
         lr.SetPosition(1, transform.position);
         if (Input.GetKeyDown(KeyCode.J) && !isHooking && !enemyHooked)
         {
-            
+            //Instantiate(effect_Electronic_hand);
+            //Instantiate(effect_Electronic);
+            player.transform.LookAt(enemy.transform);
+            anim.SetTrigger("hook");
             StartCoroutine("StartHooking");
         }
         float time = Time.deltaTime;
@@ -53,15 +62,15 @@ public class Hook : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         isHooking = true;
         rb.isKinematic = false;
-        rb.AddForce(transform.forward * hook_Speed);
+        rb.AddForce(player.transform.forward * hook_Speed);
     }
 
     void ReturnHook()
     {
         if (isHooking)
         {
-
             hookDistance = Vector3.Distance(transform.position, originalPosition);
+
             if (hookDistance > hookMaxDistance || enemyHooked)
             {
                 rb.isKinematic = true;
@@ -73,26 +82,37 @@ public class Hook : MonoBehaviour
 
     }
 
-
+    Animator playerAnim;
     void BringTowardsPlayer()
     {
         if (enemyHooked)
         {
-
-            player.transform.position = Vector3.MoveTowards(player.transform.position, hitPosition, hookMaxDistance);
-            enemyHooked = false;
+            playerAnim = player.GetComponent<Animator>();
+            playerAnim.SetTrigger("prepair");
+            playerAnim.SetBool("isFlying", enemyHooked);
+            player.transform.position = Vector3.Lerp(player.transform.position, hitPosition, hookMaxDistance * Time.deltaTime);
+            if (Vector3.Distance(player.transform.position, hitPosition) < 2f)
+            {
+                enemyHooked = false;
+                //playerAnim.SetTrigger("prepair");
+                playerAnim.SetBool("isFlying", enemyHooked);
+                //playerAnim.ResetTrigger("prepair");
+            }
 
         }
     }
-
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Cube")
         {
+            //Instantiate(effect_Electronic_attach);
             enemyHooked = true;
             //wall = collision.gameObject;
             hitPosition = collision.contacts[0].point;
+            //Transform hit = hitPosition;
+            //effect.OverrideAttachPointToTarget.position = hitPosition;
         }
+
+
     }
 }

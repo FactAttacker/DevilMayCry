@@ -80,10 +80,16 @@ public class JumpAttackState : BossState
 
     public void SetJumpAttackSpeed(float _attackSpeed) => bossStateMachine.anim.SetFloat("JumpAttackSpeed", _attackSpeed);
 
+    void Knockback()
+    {
+        BossSystem.Instance.Boss_DetectPlayerAndCalcDistance.playerScript.flyingBack = true;
+    }
+
     public void OnRushAttackEffect(string _effectName)
     {
         Vector3 tempPos = BossSystem.Instance.AttackColliderManager.ColliderArr[2].transform.position;
         tempPos.y = 0;
         BossSystem.Instance.BossAnimationEvents.OnEffect(_effectName, tempPos, Quaternion.identity);
+        Knockback();
     }
 }

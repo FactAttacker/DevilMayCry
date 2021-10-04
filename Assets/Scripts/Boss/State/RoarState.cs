@@ -46,12 +46,5 @@ public class RoarState : BossState
         StopCoroutine(Co_roarCycle);
     }
 
-    IEnumerator Co_Roar()
-    {
-        //³Ë¹é Ã³¸®
-        print("Knockback!!");
-        //boss_DetectPlayerAndCalcDistance.playerTr.GetComponent<Player>().flyingBack = true;
-        yield return null;
-    }
-    public void Roar_Knockback() => StartCoroutine(Co_Roar());
+    public void Roar_Knockback() => boss_DetectPlayerAndCalcDistance.playerTr.GetComponent<Player>().flyingBack = true;
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Boss_DetectPlayerAndCalcDistance : MonoBehaviour
 {
     public Transform playerTr;
+    public Player playerScript { get; private set; }
     public float distance { get; private set; }
     Coroutine Co_searchPlayer;
 
@@ -27,6 +28,7 @@ public class Boss_DetectPlayerAndCalcDistance : MonoBehaviour
         yield return new WaitUntil(() => GameObject.FindGameObjectWithTag("Player"));
 
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
+        playerScript = BossSystem.Instance.Boss_DetectPlayerAndCalcDistance.playerTr.GetComponent<Player>();
         StopCoroutine(Co_searchPlayer);
     }
 }

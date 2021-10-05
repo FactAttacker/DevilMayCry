@@ -418,18 +418,18 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.122977346
+        functionName: OnBossVoice
+        data: Boss-BasicAttack1
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.12658228
         functionName: SetBasicAttackSpeed
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 1
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.21518987
-        functionName: SetBasicAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.5
         intParameter: 0
         messageOptions: 0
       - time: 0.22080292
@@ -446,9 +446,30 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.23288153
+        functionName: SetBasicAttackSpeed
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0.5
+        intParameter: 0
+        messageOptions: 0
       - time: 0.24056092
         functionName: ColliderCheckOff
         data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.26724368
+        functionName: OnPlusBasicAttackCount
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.3264645
+        functionName: OnBossVoice
+        data: Boss-BasicAttack2
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
@@ -484,6 +505,20 @@ ModelImporter:
       - time: 0.46823955
         functionName: ColliderCheckOff
         data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5171431
+        functionName: OnPlusBasicAttackCount
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5903724
+        functionName: OnBossVoice
+        data: Boss-StrikeAttack1
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
@@ -530,18 +565,18 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.85921156
+        functionName: OnPlusBasicAttackCount
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.90329254
         functionName: SetBasicAttackSpeed
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0.5
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.79891306
-        functionName: OnBasicAttackEffect
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
         intParameter: 0
         messageOptions: 0
       transformMask: []

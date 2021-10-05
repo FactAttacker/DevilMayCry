@@ -8,12 +8,12 @@ public class RushAttackState : BossState
     Coroutine Co_rushAttackCycle;
     Coroutine Co_rush;
 
-    [SerializeField] float attackDist = 1;
+    float playerDetectedDistance;
     [SerializeField] Transform rayStartTr;
 
     public override void OnAwake()
     {
-
+        playerDetectedDistance = GlobalState.bossList[0].PlayerDetectDistance;
     }
 
     public override void OnStart()
@@ -58,8 +58,10 @@ public class RushAttackState : BossState
     [SerializeField] float rushSpeed = 10, maxRushRange = 40;
     IEnumerator Co_Rush()
     {
+        BossSystem.Instance.BossAnimationEvents.OnBossVoice("Boss-Rush1");
+
         float rushRange = 0;
-        while ( GetComponent<Boss_DetectPlayerAndCalcDistance>().distance > attackDist
+        while ( GetComponent<Boss_DetectPlayerAndCalcDistance>().distance > playerDetectedDistance
                && rushRange <= maxRushRange
                && !IsThereWallToFront())
         {
@@ -92,16 +94,10 @@ public class RushAttackState : BossState
 
     public void SetRushAttackSpeed(float _attackSpeed) => bossStateMachine.anim.SetFloat("RushAttackSpeed", _attackSpeed);
 
-    void Knockback()
-    {
-        BossSystem.Instance.Boss_DetectPlayerAndCalcDistance.playerScript.flyingBack = true;
-    }
-
     public void OnRushEffect(string _effectName)
     {
         Vector3 tempPos = BossSystem.Instance.AttackColliderManager.ColliderArr[2].transform.position;
         tempPos.y = 0;
         BossSystem.Instance.BossAnimationEvents.OnEffect(_effectName, tempPos, Quaternion.identity);
-        Knockback();
     }
 }

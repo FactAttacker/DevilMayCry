@@ -46,10 +46,9 @@ public class BossHP : MonoBehaviour
 
     public float MaxHP
     {
-        get => maxHP;
-        private set => maxHP = value;
+        get => GlobalState.bossList[0].MaxHP;
     }
-    [SerializeField] float maxHP = 100;
+
     public float TakeDamage { set => CurrHP -= CurrHP - value <= 0 ? currHP : value; }
 
     #endregion

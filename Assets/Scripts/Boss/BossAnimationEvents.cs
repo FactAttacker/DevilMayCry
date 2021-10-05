@@ -12,6 +12,8 @@ public class BossAnimationEvents : MonoBehaviour
         CameraManager.instance.OnShake(float.Parse(temps[0]), float.Parse(temps[1]));
     }
 
+    public void OnBossVoice(string str) => VoiceSoundManager.instatnce.OnBossVoice(str);
+
     public void OnEffect(string _effectName)
     {
         GameObject effectClone = BossSystem.Instance.BossEffectManager.GetEffectToName(_effectName);

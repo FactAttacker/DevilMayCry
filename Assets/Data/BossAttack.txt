@@ -1,1 +1,1 @@
-﻿[{"ID":0,"AttackType":"MoveSpeed","Damage":100.0},{"ID":1,"AttackType":"BasicAttack","Damage":200.0},{"ID":2,"AttackType":"RushAttack","Damage":300.0},{"ID":3,"AttackType":"StrikeAttack","Damage":400.0},{"ID":4,"AttackType":"JumpAttack","Damage":500.0}]
+﻿[{"ID":0,"AttackType":"BasicAttack","Damage":480.0},{"ID":1,"AttackType":"RushAttack","Damage":2000.0},{"ID":2,"AttackType":"StrikeAttack","Damage":1200.0},{"ID":3,"AttackType":"JumpAttack","Damage":1500.0}]

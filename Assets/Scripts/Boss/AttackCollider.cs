@@ -14,24 +14,30 @@ public class AttackCollider : MonoBehaviour
             state = BossSystem.Instance.BossStateMachine.CurrState;
             string type = "";
 
-            if (state.GetComponent<BasicAttackState>() != null) type = "BasicAttackState";
-            else if (state.GetComponent<StrikeAttackState>() != null) type = "StrikeAttackState";
-            else if (state.GetComponent<RushAttackState>() != null) type = "RushAttackState";
-            else if (state.GetComponent<JumpAttackState>() != null) type = "JumpAttackState";
+            if (state.GetComponent<BasicAttackState>() == state) type = "BasicAttackState";
+            else if (state.GetComponent<StrikeAttackState>() == state) type = "StrikeAttackState";
+            else if (state.GetComponent<RushAttackState>() == state) type = "RushAttackState";
+            else if (state.GetComponent<JumpAttackState>() == state) type = "JumpAttackState";
 
             switch (type)
             {
                 case "BasicAttackState":
-                    col.gameObject.GetComponent<PlayerState>().TakeDamage = 100;
+                    if (BasicAttackState.basicAttackCount == 2) {
+                        BossSystem.Instance.Boss_DetectPlayerAndCalcDistance.playerScript.knuckBack = true;
+                    }
+                    col.gameObject.GetComponent<PlayerState>().TakeDamage = GlobalState.bossAttackList[0].Damage;
                     break;
                 case "StrikeAttackState":
-                    col.gameObject.GetComponent<PlayerState>().TakeDamage = 200;
+                    BossSystem.Instance.Boss_DetectPlayerAndCalcDistance.playerScript.flyingBack = true;
+                    col.gameObject.GetComponent<PlayerState>().TakeDamage = GlobalState.bossAttackList[1].Damage;
                     break;
-                case "RushState":
-                    col.gameObject.GetComponent<PlayerState>().TakeDamage = 300;
+                case "RushAttackState":
+                    BossSystem.Instance.Boss_DetectPlayerAndCalcDistance.playerScript.flyingBack = true;
+                    col.gameObject.GetComponent<PlayerState>().TakeDamage = GlobalState.bossAttackList[2].Damage;
                     break;
                 case "JumpAttackState":
-                    col.gameObject.GetComponent<PlayerState>().TakeDamage = 400;
+                    BossSystem.Instance.Boss_DetectPlayerAndCalcDistance.playerScript.flyingBack = true;
+                    col.gameObject.GetComponent<PlayerState>().TakeDamage = GlobalState.bossAttackList[3].Damage;
                     break;
             }
         }

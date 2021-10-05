@@ -5,7 +5,7 @@ using UnityEngine;
 public class Excel_Boss
 {
     public int ID;
-    public int HP;
+    public int MaxHP;
     public float MoveSpeed;
     public float PlayerDetectDistance;
 }

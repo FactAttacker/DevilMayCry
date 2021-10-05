@@ -88,6 +88,7 @@ public class VoiceSoundManager : MonoBehaviour
 
         if (!CaptionManager.instatnce.isPlay)
         {
+            print(str);
             OnCaption(str);
             StartCoroutine(OffCaption(audio.clip.length + 0.5f));
         }
@@ -106,6 +107,7 @@ public class VoiceSoundManager : MonoBehaviour
 
         if (!CaptionManager.instatnce.isPlay)
         {
+            print(str);
             OnCaption(str);
             StartCoroutine(OffCaption(audio.clip.length + 0.5f));
         }

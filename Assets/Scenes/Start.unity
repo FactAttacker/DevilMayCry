@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18218783, g: 0.2246408, b: 0.28850114, a: 1}
+  m_IndirectSpecularColor: {r: 0.18218797, g: 0.22464105, b: 0.28850168, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4030,31 +4030,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 423596, guid: 0a252d80add0348439615bc02e74781d, type: 3}
   m_PrefabInstance: {fileID: 125118293}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &127264156
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: MMD4Mecanim/MMDLit-NEXTEdge-Pass8
-  m_Shader: {fileID: 4800000, guid: ff1e1d0bbf6980244a107d25ff535f9a, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2001
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Floats:
-    - _EdgeSize: 0.005
-    - _PostfixRenderQueue: 1
-    m_Colors:
-    - _EdgeColor: {r: 0.39999998, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1001 &127454556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21489,31 +21464,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 492028, guid: d1077a23caa4367478d7279d5a274545, type: 3}
   m_PrefabInstance: {fileID: 709583608}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &710084142
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: MMD4Mecanim/MMDLit-NEXTEdge-Pass4
-  m_Shader: {fileID: 4800000, guid: 684f8af9b4ff4bc459588db5b0f6275d, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2001
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Floats:
-    - _EdgeSize: 0.005
-    - _PostfixRenderQueue: 1
-    m_Colors:
-    - _EdgeColor: {r: 0.39999998, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1001 &714474388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30070,6 +30020,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 463268, guid: 7b1355ed0671b9f479e96712b7171f9c, type: 3}
   m_PrefabInstance: {fileID: 1012475489}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &1013126135
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MMD4Mecanim/MMDLit-NEXTEdge-Pass8
+  m_Shader: {fileID: 4800000, guid: ff1e1d0bbf6980244a107d25ff535f9a, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2001
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - _EdgeSize: 0.005
+    - _PostfixRenderQueue: 1
+    m_Colors:
+    - _EdgeColor: {r: 0.39999998, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1001 &1014859401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33410,6 +33385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132875a7c0214426b810327592f6a7dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentScene: 0
   isBattle: 0
 --- !u!4 &1150280542
 Transform:
@@ -40137,6 +40113,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 407652, guid: 25575cc1628c55f43a78405469c60df8, type: 3}
   m_PrefabInstance: {fileID: 1423078326}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &1426745171
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MMD4Mecanim/MMDLit-NEXTEdge-Pass4
+  m_Shader: {fileID: 4800000, guid: 684f8af9b4ff4bc459588db5b0f6275d, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2001
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - _EdgeSize: 0.005
+    - _PostfixRenderQueue: 1
+    m_Colors:
+    - _EdgeColor: {r: 0.39999998, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1001 &1430139210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45000,6 +45001,11 @@ MonoBehaviour:
     - {fileID: 8300000, guid: bac9097ea5fce4f8db48f4f47f68f240, type: 3}
     - {fileID: 8300000, guid: a084cafcd15934edba57026292392129, type: 3}
     - {fileID: 8300000, guid: 17a648e3cd6a5465d9d9a52d05483d23, type: 3}
+    - {fileID: 8300000, guid: e909b8efea749b840a9e49f162488abd, type: 3}
+    - {fileID: 8300000, guid: 37368562b0353a14db6d3ba70986cb93, type: 3}
+    - {fileID: 8300000, guid: 29d184d330b7d494bb7c3a5e6043ba4f, type: 3}
+    - {fileID: 8300000, guid: 1a3d6daa994aadc449e4086d20b8e6b8, type: 3}
+    - {fileID: 8300000, guid: 00337937c7f87414b91fa201e88e7f61, type: 3}
   - type: 1
     audio: {fileID: 164628378}
     clip:

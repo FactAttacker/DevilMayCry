@@ -6,7 +6,8 @@ using UnityEngine;
 public class BasicAttackState : BossState
 {
     Coroutine Co_basicAttackCycle;
-    
+
+    public static int basicAttackCount = 0;
     public override void OnAwake()
     {
 
@@ -49,13 +50,17 @@ public class BasicAttackState : BossState
 
     public void SetBasicAttackSpeed(float _attackSpeed) => bossStateMachine.anim.SetFloat("BasicAttackSpeed", _attackSpeed);
 
-    void Knockback()
+    public void OnPlusBasicAttackCount()
     {
-        BossSystem.Instance.Boss_DetectPlayerAndCalcDistance.playerScript.knuckBack = true;
-    }
-
-    public void OnBasicAttackEffect(string _effectName)
-    {
-        Knockback();
+        if(basicAttackCount == 2)
+        {
+            basicAttackCount = 0;
+        }
+        else
+        {
+            basicAttackCount++;
+        }
+        
+        print(basicAttackCount);
     }
 }

@@ -26,6 +26,7 @@ public class BossSystem : MonoBehaviour
     Boss_DetectPlayerAndCalcDistance boss_DetectPlayerAndCalcDistance;
     BossEffectManager bossEffectManager;
     BossAnimationEvents bossAnimationEvents;
+    BossSoundManager bossSoundManager;
 
     public GameObject Boss => boss;
     public Animator Animator => animator = animator ? animator : Boss.GetComponent<Animator>();
@@ -35,5 +36,6 @@ public class BossSystem : MonoBehaviour
     public Boss_DetectPlayerAndCalcDistance Boss_DetectPlayerAndCalcDistance => boss_DetectPlayerAndCalcDistance = boss_DetectPlayerAndCalcDistance ? boss_DetectPlayerAndCalcDistance : Boss.GetComponent<Boss_DetectPlayerAndCalcDistance>();
     public BossEffectManager BossEffectManager => bossEffectManager = bossEffectManager ? bossEffectManager : FindObjectOfType< BossEffectManager>();
     public BossAnimationEvents BossAnimationEvents => bossAnimationEvents = bossAnimationEvents ? bossAnimationEvents : Boss.GetComponent<BossAnimationEvents>();
+    public BossSoundManager BossSoundManager => bossSoundManager = bossSoundManager ? bossSoundManager : Boss.GetComponent<BossSoundManager>();
 
 }

@@ -1,5 +1,93 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &64351936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 64351937}
+  - component: {fileID: 64351938}
+  m_Layer: 8
+  m_Name: BossHitTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &64351937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64351936}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4919061994900952137}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &64351938
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64351936}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 4, z: 5}
+  m_Center: {x: 0, y: 4.5, z: 1.75}
+--- !u!1 &1248958428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1248958429}
+  - component: {fileID: 1248958430}
+  m_Layer: 8
+  m_Name: BossHitCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1248958429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248958428}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4919061994900952137}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1248958430
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248958428}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 4, z: 5}
+  m_Center: {x: 0, y: 4.5, z: 1.75}
 --- !u!1 &1641605308
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,8 +99,8 @@ GameObject:
   - component: {fileID: 1641605309}
   - component: {fileID: 1641605310}
   m_Layer: 8
-  m_Name: Collider2
-  m_TagString: Cube
+  m_Name: BossHitCollider
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +117,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4919061994900952137}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1641605310
 BoxCollider:
@@ -42,8 +130,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 6, z: 6}
-  m_Center: {x: 0, y: 3, z: 1}
+  m_Size: {x: 5, y: 5, z: 3.85}
+  m_Center: {x: 0, y: 2.5, z: -1.75}
 --- !u!1 &4919061992997110377
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +238,7 @@ GameObject:
   - component: {fileID: 4919061993154834381}
   - component: {fileID: 4919061993154834382}
   m_Layer: 8
-  m_Name: BossHitCollider
+  m_Name: BossHitTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,8 +269,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 6, z: 6}
-  m_Center: {x: 0, y: 3, z: 1}
+  m_Size: {x: 5, y: 5, z: 3.85}
+  m_Center: {x: 0, y: 2.5, z: -1.75}
 --- !u!1 &4919061993164880339
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +452,7 @@ Transform:
   m_GameObject: {fileID: 4919061993266045241}
   m_LocalRotation: {x: -0.009785026, y: -0.045974582, z: -0.20031777, w: 0.9786028}
   m_LocalPosition: {x: -0.7486737, y: -0.060327146, z: -0.23112212}
-  m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.9999998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4919061995091886815}
   m_Father: {fileID: 4919061993406981492}
@@ -381,7 +469,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4
+  m_Radius: 3
   m_Center: {x: 0.5, y: 0, z: 0}
 --- !u!114 &6436913130879745967
 MonoBehaviour:
@@ -814,6 +902,7 @@ GameObject:
   - component: {fileID: 4919061993693336050}
   - component: {fileID: 6436913129656721114}
   - component: {fileID: 3027813238013320970}
+  - component: {fileID: 2094321922384580400}
   m_Layer: 8
   m_Name: Boss_Perderos
   m_TagString: Boss
@@ -907,9 +996,8 @@ MonoBehaviour:
   - 0.3
   - 0.256
   damageAnimPosibleCounts: 
-  refreshSpeed: 0.05
+  refreshSpeed: 0.15
   refreshWaitTime: 0.275
-  maxHP: 30000
 --- !u!114 &4919061993693336058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,10 +1025,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   farDist: 50
   roarWeight: 10
-  attackWeight: 120
+  attackWeight: 110
   rushWeight: 90
-  strikeWeight: 70
-  jumpWeight: 10
+  strikeWeight: 90
+  jumpWeight: 0
   isBasicAttack: 0
   isRush: 0
   isStrike: 0
@@ -982,11 +1070,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b178299d3786bd4a98f8b470059f067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDist: 36
+  playerDetectedDistance: 0
   rayStartTr: {fileID: 4919061993045047318}
-  rushSpeed: 90
-  maxRushRange: 80
-  wallDetectingRayDist: 60
+  rushSpeed: 85
+  maxRushRange: 100
+  wallDetectingRayDist: 80
 --- !u!114 &4919061993693336061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1036,7 +1124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcda5efcf0295d04bbab2c1c92f706cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotTime: 1
+  rotTime: 0.9
 --- !u!114 &6436913129656721114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1063,6 +1151,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e27910eede8077142ba13a9a7549b1c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2094321922384580400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919061993693336048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 825ba1fed7496c747bd59f1e37d1d190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4919061993737464676
@@ -1908,7 +2008,7 @@ Transform:
   m_GameObject: {fileID: 4919061994641209827}
   m_LocalRotation: {x: 0.009785, y: 0.045974564, z: -0.20031779, w: 0.9786028}
   m_LocalPosition: {x: -0.7486743, y: -0.060327146, z: 0.23112182}
-  m_LocalScale: {x: 1, y: 1, z: 0.9999999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4919061994573073348}
   m_Father: {fileID: 4919061993628744823}
@@ -1925,7 +2025,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4
+  m_Radius: 3
   m_Center: {x: 0.5, y: 0, z: 0}
 --- !u!114 &6436913129462497133
 MonoBehaviour:
@@ -2291,7 +2391,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4919061993154834381}
+  - {fileID: 64351937}
   - {fileID: 1641605309}
+  - {fileID: 1248958429}
   m_Father: {fileID: 4919061993693336049}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2462,7 +2564,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 6
+  m_Radius: 4.5
   m_Center: {x: 0, y: 0, z: 2.5}
 --- !u!114 &6436913130086993038
 MonoBehaviour:

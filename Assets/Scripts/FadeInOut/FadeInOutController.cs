@@ -39,7 +39,10 @@ public class FadeInOutController : MonoBehaviour
             yield return null;
         }
         fadeImg.color = Color.black;
-        
+
+        // Game Exit 
+        if(sceneIndex == -1) Application.Quit();
+        // Game Move
         float progress = GameManager.instance.SceneMove(sceneIndex);
 
         yield return new WaitUntil(() => progress == 0);

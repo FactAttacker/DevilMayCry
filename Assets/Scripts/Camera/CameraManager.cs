@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Rendering.PostProcessing;
 public class CameraManager : MonoBehaviour
 {
     #region instance
@@ -20,6 +20,20 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     Transform[] zoomPos;
 
+    [SerializeField]
+    Transform[] cameraPos;
+
+    [SerializeField]
+    float cmSpeed = 1.5f;
+
+    [SerializeField]
+    PostProcessVolume chromatic;
+    bool isChromatic = false;
+
+    public bool canBossUlimate = false;
+
+
+    #region Effect
     enum EffectType
     {
         WAVE
@@ -33,11 +47,9 @@ public class CameraManager : MonoBehaviour
     }
     [SerializeField]
     Effect[] effects;
+    #endregion
 
-
-    [SerializeField]
-    float cmSpeed = 1.5f;
-
+    #region Shake
     [System.Serializable]
     class ShakeInfo
     {
@@ -49,12 +61,25 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     ShakeInfo shakeInfo;
     bool canShake = true;
+    #endregion
 
+    #region Type
     public enum TargetType { PLAYER, BOSS };
-    public enum CameraType { FOLLWER, ZOOM_IN, ZOOM_OUT,SHACKE};
+    public enum CameraMove { NORMAL, BACK };
+    public enum CameraType {
+        FOLLWER,
+        ZOOM_IN,
+        ZOOM_OUT,
+        SHACKE,
+        ZOOM_HOCK,
+        ZOOM_ATT_DOWN,
+    };
     public TargetType currentTarget = TargetType.BOSS;
     public CameraType currentCamera = CameraType.FOLLWER;
+    public CameraMove currentPos = CameraMove.NORMAL;
+    #endregion
 
+    bool isBossUlimate = false;
     Dictionary<EffectType, GameObject> effectDict;
     
     private void Awake()
@@ -99,6 +124,39 @@ public class CameraManager : MonoBehaviour
     public void OnPlayerZoomOut()
     {
         _camera.transform.position = Vector3.Lerp(_camera.transform.position, zoomPos[1].position, 3f * Time.deltaTime);
+    }
+
+    public void OnPlayerZoomHook()
+    {
+        _camera.transform.position = Vector3.Lerp(_camera.transform.position, zoomPos[2].position, 2f * Time.deltaTime);
+        Invoke(nameof(ResetZoom), 1f);
+    }
+    public void OnPlayerZoomAttackDown()
+    {
+        _camera.transform.position = Vector3.Lerp(_camera.transform.position, zoomPos[3].position, 3f * Time.deltaTime);
+        Invoke(nameof(ResetZoom), 1f);
+    }
+
+    public void OnBossUltimateAttack()
+    {
+        currentPos = CameraMove.BACK;
+        if (!isBossUlimate)
+        {
+            isBossUlimate = true;
+            SetChromaticEffect(0.1f);
+            StartCoroutine(CoBossUltimateAttack());
+        }
+    }
+    IEnumerator CoBossUltimateAttack()
+    {
+        yield return new WaitForSeconds(0.5f);
+        currentPos = CameraMove.NORMAL;
+        isBossUlimate = false;
+    }
+    void ResetZoom()
+    {
+        currentCamera = CameraType.FOLLWER;
+        _camera.transform.position = zoomPos[1].position;
     }
 
     /// <summary>
@@ -151,6 +209,36 @@ public class CameraManager : MonoBehaviour
         _camera.transform.position = zoomPos[1].position;
     }
 
+    public void SetChromaticEffect(float speed = 0.5f)
+    {
+        if (!isChromatic)
+        {
+            isChromatic = true;
+            StartCoroutine(CoChromaticEffect(speed));
+        }
+    }
+    IEnumerator CoChromaticEffect(float speed)
+    {
+        float time = 0f;
+        chromatic.weight = 0.5f;
+        while (time < 1)
+        {
+            chromatic.weight = Mathf.Lerp(1f,0f, time);
+            time += (Time.deltaTime * speed);
+            yield return null;
+        }
+        chromatic.weight = 1;
+        time = 0f;
+        while (time < 1)
+        {
+            chromatic.weight = Mathf.Lerp(0f,1f, time);
+            time += (Time.deltaTime * speed);
+            yield return null;
+        }
+        chromatic.weight = 0;
+        isChromatic = false;
+    }
+
     void Update()
     {
         switch (currentCamera)
@@ -165,11 +253,32 @@ public class CameraManager : MonoBehaviour
             case CameraType.ZOOM_OUT:
                 OnPlayerZoomOut();
                 break;
+            case CameraType.ZOOM_HOCK:
+                OnPlayerZoomHook();
+                SetChromaticEffect(2f);
+                break;
+            case CameraType.ZOOM_ATT_DOWN:
+                OnPlayerZoomAttackDown();
+                break;
             case CameraType.SHACKE:
                 ExeShake();
                 break;
         }
-        transform.position = Vector3.Lerp(transform.position, playerObj.transform.position, cmSpeed * Time.deltaTime);
+        if (canBossUlimate)
+        {
+            canBossUlimate = false;
+            OnBossUltimateAttack();
+        }
+
+        switch (currentPos)
+        {
+            case CameraMove.NORMAL:
+                transform.position = Vector3.Lerp(transform.position, playerObj.transform.position, cmSpeed * Time.deltaTime);
+                break;
+            case CameraMove.BACK:
+                transform.position = Vector3.Lerp(transform.position, cameraPos[0].transform.position, cmSpeed * Time.deltaTime);
+                break;
+        }
     }
 }
  

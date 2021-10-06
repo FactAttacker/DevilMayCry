@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 64351938}
   m_Layer: 8
   m_Name: BossHitTrigger
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 1248958430}
   m_Layer: 8
   m_Name: BossHitCollider
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 1641605310}
   m_Layer: 8
   m_Name: BossHitCollider
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 4919061993154834382}
   m_Layer: 8
   m_Name: BossHitTrigger
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -988,14 +988,11 @@ MonoBehaviour:
   hpBar: {fileID: 0}
   damagedHPBar: {fileID: 0}
   damageRates:
-  - 0.925
-  - 0.875
-  - 0.67
-  - 0.56
-  - 0.375
-  - 0.3
-  - 0.256
-  damageAnimPosibleCounts: 
+  - 0.82
+  - 0.66
+  - 0.5
+  - 0.33
+  - 0.18
   refreshSpeed: 0.15
   refreshWaitTime: 0.275
 --- !u!114 &4919061993693336058
@@ -1073,7 +1070,7 @@ MonoBehaviour:
   rayStartTr: {fileID: 4919061993045047318}
   rushSpeed: 85
   maxRushRange: 100
-  wallDetectingRayDist: 80
+  wallDetectingRayDist: 100
 --- !u!114 &4919061993693336061
 MonoBehaviour:
   m_ObjectHideFlags: 0

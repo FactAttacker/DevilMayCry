@@ -67,7 +67,7 @@ public class IdleState : BossState
 
     public override void OnEnd()
     {
-
+        StopAllCoroutines();
     }
 
     public override void OnReset()

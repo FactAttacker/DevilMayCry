@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossSoundManager : MonoBehaviour
+public class BossSFX_BasicAudio : MonoBehaviour
 {
     
 }

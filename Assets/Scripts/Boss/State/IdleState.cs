@@ -10,8 +10,7 @@ public class IdleState : BossState
     [SerializeField] float farDist = 10;
     [SerializeField] int roarWeight = 100, attackWeight = 100, rushWeight = 100, strikeWeight = 100, jumpWeight = 100;
 
-    [SerializeField] bool isBasicAttack = false, isRush = false, isStrike = false, isJump = false;
-    public bool isRoar = false;
+    public bool isBasicAttack = false, isRush = false, isStrike = false, isRoar = false, isJump = false;
 
     public bool IsCinematic
     {
@@ -27,7 +26,7 @@ public class IdleState : BossState
 
     public override void OnStart()
     {
-        Co_IdleCycle = StartCoroutine(Co_DecideNextState());
+        //Co_IdleCycle = StartCoroutine(Co_DecideNextState());
 
         //StartCoroutine(Test());
     }

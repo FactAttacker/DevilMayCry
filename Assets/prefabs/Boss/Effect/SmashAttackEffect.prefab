@@ -14640,7 +14640,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6444846574920821459}
   - component: {fileID: 6366133397419982887}
-  - component: {fileID: 6406688075414717889}
+  - component: {fileID: 4983431930435150769}
   m_Layer: 0
   m_Name: PostEffect3
   m_TagString: Untagged
@@ -14758,7 +14758,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &6406688075414717889
+--- !u!114 &4983431930435150769
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14767,7 +14767,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6447513360261476629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e897c7c3dce1d34ba14e52c5bac6c36, type: 3}
+  m_Script: {fileID: 11500000, guid: 6be731d61416a9943bfa88c679e1b484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AudioCurve:
@@ -14802,7 +14802,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   GraphTimeMultiplier: 3.5
   IsLoop: 0
 --- !u!1 &6447541514338316551
@@ -20291,7 +20291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6444226881575230961}
   - component: {fileID: 6366312423103555981}
-  - component: {fileID: 6406733971936326715}
+  - component: {fileID: 5844427153541997347}
   m_Layer: 0
   m_Name: PostEffect
   m_TagString: Untagged
@@ -20409,7 +20409,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &6406733971936326715
+--- !u!114 &5844427153541997347
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20418,7 +20418,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6447600416141783789}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e897c7c3dce1d34ba14e52c5bac6c36, type: 3}
+  m_Script: {fileID: 11500000, guid: 6be731d61416a9943bfa88c679e1b484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AudioCurve:
@@ -20444,7 +20444,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   GraphTimeMultiplier: 2
   IsLoop: 0
 --- !u!1 &6447606614175834929
@@ -31481,7 +31481,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6444199901303028823}
   - component: {fileID: 6366725216219118217}
-  - component: {fileID: 6406374761408094997}
+  - component: {fileID: 2135317021157659145}
   m_Layer: 0
   m_Name: Flame
   m_TagString: Untagged
@@ -31599,7 +31599,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &6406374761408094997
+--- !u!114 &2135317021157659145
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -31608,7 +31608,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6448184811667692849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e897c7c3dce1d34ba14e52c5bac6c36, type: 3}
+  m_Script: {fileID: 11500000, guid: 6be731d61416a9943bfa88c679e1b484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AudioCurve:
@@ -31643,7 +31643,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   GraphTimeMultiplier: 5.2
   IsLoop: 0
 --- !u!1 &6448198785649968299
@@ -31656,6 +31656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6445070775176472693}
   - component: {fileID: 6366808422512097201}
+  - component: {fileID: 3799332220688855842}
   m_Layer: 0
   m_Name: Rocks
   m_TagString: Untagged
@@ -31773,6 +31774,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &3799332220688855842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6448198785649968299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0165f0fb448be459c3db8fbd198715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6448237522433075487
 GameObject:
   m_ObjectHideFlags: 0
@@ -31783,6 +31796,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6445122868825572963}
   - component: {fileID: 6366876056620950847}
+  - component: {fileID: 2529940720203808025}
   m_Layer: 0
   m_Name: PostEffect2
   m_TagString: Untagged
@@ -31900,6 +31914,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &2529940720203808025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6448237522433075487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0165f0fb448be459c3db8fbd198715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6448244533013380665
 GameObject:
   m_ObjectHideFlags: 0

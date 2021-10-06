@@ -6,6 +6,7 @@ using UnityEngine;
 public class RoarState : BossState
 {
     Coroutine Co_roarCycle;
+    bool isNotKnockback = true;
 
     public override void OnAwake()
     {
@@ -51,5 +52,17 @@ public class RoarState : BossState
         StopCoroutine(Co_roarCycle);
     }
 
-    public void Roar_Knockback() => boss_DetectPlayerAndCalcDistance.playerTr.GetComponent<Player>().flyingBack = true;
+    public void Roar_Knockback()
+    {
+        if(!isNotKnockback)
+        {
+            isNotKnockback = false;
+            return;
+        }
+        else
+        {
+            boss_DetectPlayerAndCalcDistance.playerTr.GetComponent<Player>().flyingBack = true;
+        }
+            
+    }
 }

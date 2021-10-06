@@ -32,7 +32,6 @@ public class CameraManager : MonoBehaviour
 
     public bool canBossUlimate = false;
 
-
     #region Effect
     enum EffectType
     {
@@ -269,7 +268,6 @@ public class CameraManager : MonoBehaviour
             canBossUlimate = false;
             OnBossUltimateAttack();
         }
-
         switch (currentPos)
         {
             case CameraMove.NORMAL:

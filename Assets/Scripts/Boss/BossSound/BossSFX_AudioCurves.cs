@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class BossSFX_AudioCurves : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class BossSFX_AudioCurves : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        startVolume = audioSource.volume;
+        VoiceSoundManager.instatnce.SetEffectSound(audioSource);
         audioSource.volume = AudioCurve.Evaluate(0);
     }
 
@@ -30,7 +29,7 @@ public class BossSFX_AudioCurves : MonoBehaviour
         var time = Time.time - startTime;
         if (canUpdate)
         {
-            var eval = AudioCurve.Evaluate(time / GraphTimeMultiplier) * startVolume;
+            var eval = AudioCurve.Evaluate(time / GraphTimeMultiplier) * audioSource.volume;
             audioSource.volume = eval;
         }
         if (time >= GraphTimeMultiplier)

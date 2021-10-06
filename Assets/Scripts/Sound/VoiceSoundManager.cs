@@ -155,7 +155,7 @@ public class VoiceSoundManager : MonoBehaviour
     /// <param name="audio"></param>
     public void SetEffectSound(AudioSource audio)
     {
-        //audio.volume = effectVolum;
+        audio.volume = effectVolum;
         effectSoundFunc += () =>
         {
             if(audio != null) audio.volume = effectVolum;

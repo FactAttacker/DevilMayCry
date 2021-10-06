@@ -9,7 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: DecalCore
   m_Shader: {fileID: 4800000, guid: d8f400148b999fe41bd30759b3a9126b, type: 3}
-  m_ShaderKeywords: USE_ALPHA_POW USE_CUTOUT USE_CUTOUT_TEX USE_NOISE_DISTORTION _BLENDMODE_BLEND
+  m_ShaderKeywords: USE_ALPHA_POW USE_CUTOUT USE_CUTOUT_TEX USE_NOISE_DISTORTION
+    USE_QUAD_DECAL _BLENDMODE_BLEND
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -113,7 +114,7 @@ Material:
     - _UseNoiseDistortion: 1
     - _UseVertexStreamRandom: 0
     - _UseWorldSpaceUV: 0
-    - _ZTest1: 5
+    - _ZTest1: 4
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -121,3 +122,4 @@ Material:
     - _DistortionSpeedScale: {r: 0.5, g: 0, b: 0.1, a: 0.5}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _TintColor: {r: 2.4022677, g: 0.8013174, b: 0.07932021, a: 1}
+  m_BuildTextureStacks: []

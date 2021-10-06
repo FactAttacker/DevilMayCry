@@ -6,10 +6,6 @@ public class BossCinematic : MonoBehaviour
 {
     public static bool isNext = false;
 
-    private void Start()
-    {
-        StartCoroutine(Co_BossCinematic());
-    }
     public IEnumerator Co_BossCinematic()
     {
         IdleState idleState = GetComponent<IdleState>();

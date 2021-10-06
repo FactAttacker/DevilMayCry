@@ -26,7 +26,7 @@ public class IdleState : BossState
 
     public override void OnStart()
     {
-        //Co_IdleCycle = StartCoroutine(Co_DecideNextState());
+        Co_IdleCycle = StartCoroutine(Co_DecideNextState());
 
         //StartCoroutine(Test());
     }

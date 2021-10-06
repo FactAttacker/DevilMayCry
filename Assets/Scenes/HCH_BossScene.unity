@@ -2394,7 +2394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4919061993693336049, guid: 108dbb33a753b654dbfd487835717432, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 4919061993693336049, guid: 108dbb33a753b654dbfd487835717432, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2432,5 +2432,18 @@ PrefabInstance:
       propertyPath: damagedHPBar
       value: 
       objectReference: {fileID: 540571747}
-    m_RemovedComponents: []
+    - target: {fileID: 4919061993693336060, guid: 108dbb33a753b654dbfd487835717432, type: 3}
+      propertyPath: vezierVector1.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919061993693336060, guid: 108dbb33a753b654dbfd487835717432, type: 3}
+      propertyPath: vezierVector1.z
+      value: -150
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919061993693336060, guid: 108dbb33a753b654dbfd487835717432, type: 3}
+      propertyPath: vezierVector2.y
+      value: 100
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2094321922384580400, guid: 108dbb33a753b654dbfd487835717432, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 108dbb33a753b654dbfd487835717432, type: 3}

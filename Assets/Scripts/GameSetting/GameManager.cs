@@ -23,7 +23,8 @@ public class GameManager : MonoBehaviour
     public int currentScene; 
 
     public bool isBattle = false;
-  
+    public bool isPause = false;
+
     public void OnStartBattle() {
         isBattle = true;
     }

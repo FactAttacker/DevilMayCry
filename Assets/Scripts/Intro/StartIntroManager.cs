@@ -17,20 +17,11 @@ public class StartIntroManager : MonoBehaviour
     Coroutine menuCorotine;
     WaitForSeconds menuWait = new WaitForSeconds(0.2f);
 
-    [SerializeField]
-    AudioSource audio;
-
-    [SerializeField]
-    AudioClip clip;
-
     void Start()
     {
         for(int i =0; i < menuTrans.childCount; i++)
-        {
             bgList.Add(menuTrans.GetChild(i).Find("BG").gameObject);
-        }
     }
-  
    
     IEnumerator CoMenuSelecte(float v)
     {
@@ -39,10 +30,12 @@ public class StartIntroManager : MonoBehaviour
         {
             switch (v)
             {
+
                 case 1:
                     if (currentIndex == 0) currentIndex = bgList.Count - 1;
                     else --currentIndex;
                     break;
+
                 case -1:
                     if (currentIndex == (bgList.Count - 1)) currentIndex = 0;
                     else ++currentIndex;
@@ -53,53 +46,60 @@ public class StartIntroManager : MonoBehaviour
             {
                 bgList[i].SetActive(i == currentIndex);
             }
-
         }
         yield return menuWait;
         isMenuSelected = true;
     }
+
     void ChangeBGM()
     {
-        audio.Stop();
-        audio.clip = clip;
-        audio.loop = false;
+        AudioSource audio = VoiceSoundManager.instatnce.SetBGMChange(VoiceSoundManager.BGMType.START);
         audio.Play();
-        StartCoroutine(COChangeBGM());
+        StartCoroutine(COChangeBGM(audio));
     }
-    IEnumerator COChangeBGM()
+    IEnumerator COChangeBGM(AudioSource audio)
     {
-        yield return new WaitUntil(() => audio.time < (clip.length/10f) );
+        yield return new WaitUntil(() => audio.time < (audio.clip.length * 0.1f) );
         FadeInOutController.instance.OnFadeInOut(1);
     }
 
-    void Update()
+    void LateUpdate()
     {
-        float v = 0;
-
-        if (Input.GetKeyUp(KeyCode.UpArrow)
-         || Input.GetKeyUp(KeyCode.W)) v = 1;
-
-        if (Input.GetKeyUp(KeyCode.DownArrow)
-         || Input.GetKeyUp(KeyCode.S)) v = -1;
-
-        if (isMenuSelected && v != 0.0f)
+        // Game Option Not Using
+        if (!GameOption.instance.modal.modalObj.activeSelf)
         {
-            isMenuSelected = false;
-            if (menuCorotine != null) StopCoroutine(menuCorotine);
-            menuCorotine = StartCoroutine(CoMenuSelecte(v));
-        }
-        if (!FadeInOutController.instance.isFade &&
-            Input.GetKeyDown(KeyCode.Space))
-        {
-            switch (currentIndex)
+            float v = 0;
+
+            if (Input.GetKeyUp(KeyCode.UpArrow)
+             || Input.GetKeyUp(KeyCode.W)) v = 1;
+
+            if (Input.GetKeyUp(KeyCode.DownArrow)
+             || Input.GetKeyUp(KeyCode.S)) v = -1;
+
+            if (isMenuSelected && v != 0.0f)
             {
-                case 0:
-                    FadeInOutController.instance.isFade = true;
-                    ChangeBGM();
-                    break;
-                case 3:
-                    Application.Quit();
-                    break;
+                isMenuSelected = false;
+                if (menuCorotine != null) StopCoroutine(menuCorotine);
+                menuCorotine = StartCoroutine(CoMenuSelecte(v));
+                Canvas.ForceUpdateCanvases();
+            }
+        
+            if (!FadeInOutController.instance.isFade && Input.GetKeyDown(KeyCode.Space))
+            {
+                switch (currentIndex)
+                {
+                    case 0:
+                        FadeInOutController.instance.isFade = true;
+                        ChangeBGM();
+                        break;
+                    case 1://Option
+                    case 2://Creator
+                        GameOption.instance.OpenIndexModal(currentIndex);
+                        break;
+                    case 3:
+                        Application.Quit();
+                        break;
+                }
             }
         }
     }

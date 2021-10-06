@@ -4875,6 +4875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bloodEffect: {fileID: 370139772}
   damage: 0
+  hit: 0
 --- !u!1 &655188094
 GameObject:
   m_ObjectHideFlags: 0
@@ -7337,6 +7338,126 @@ MonoBehaviour:
   boneID: 37
   ikEnabled: 0
   ikWeight: 1
+--- !u!82 &5889578753863820852
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2951206889542931278}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &7497975427720280991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2951206889542931278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d7456aae8fbfd4baa84e69387eb05e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordAudio: {fileID: 0}
+  swordSoundClip:
+  - {fileID: 8300000, guid: 65586d1d4af4a6749af19fab11d25eba, type: 3}
+  - {fileID: 8300000, guid: 94de69e1aba84a04da53af01aa945211, type: 3}
+  - {fileID: 8300000, guid: a7eddd4f970dc4a4d8b53d2b50e48b91, type: 3}
+  - {fileID: 8300000, guid: 1671b0e6a42d183429e2c10c0efed317, type: 3}
+  - {fileID: 8300000, guid: 708dd594a1d28564cbfdc856a5d05e25, type: 3}
+  - {fileID: 8300000, guid: 1d22e4daf9a4b81419a8f7ef685cce1b, type: 3}
+  - {fileID: 8300000, guid: cd9be6401870b934f8756cfd0288ce8f, type: 3}
+  - {fileID: 8300000, guid: 6c6a216742fe9c442926657834b05852, type: 3}
+  - {fileID: 8300000, guid: 2bb571a3dfc8c2f41870692dff4b794a, type: 3}
+  - {fileID: 8300000, guid: 72266d28a756e804e990eca3b10a73f7, type: 3}
 --- !u!1 &3009531169797366022
 GameObject:
   m_ObjectHideFlags: 0
@@ -8250,6 +8371,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knuckBack: 0
   flyingBack: 0
+  flying: 0
+  boss: {fileID: 0}
   danteToe: {fileID: 655188095}
   walk_Speed: 10
   speed: 0
@@ -8267,8 +8390,10 @@ MonoBehaviour:
   outPutSword: 0
   firstSwordPosition: {x: 0, y: 0, z: 0}
   firstSwordRotation: {x: 0, y: 0, z: 0}
-  hook: {fileID: 8020615599989438273}
   swordEffect: {fileID: 1685847839357166108}
+  hook: {fileID: 8020615599989438273}
+  dante_Audio: []
+  h: 0
   w_DoubleClickSecond: 0.25
   a_DoubleClickSecond: 0.25
   s_DoubleClickSecond: 0.25
@@ -8280,7 +8405,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3134092122249849569}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bca5ef2b30a3e844580c1477e4fdf9f2, type: 3}
   m_Name: 
@@ -8308,7 +8433,7 @@ MonoBehaviour:
   CharacterEffect2: {fileID: 160412, guid: 893dda7005a1de7418c7775452d3083d, type: 3}
   CharacterAttachPoint2: {fileID: 829929947}
   CharacterEffect2_DestroyTime: 10
-  MainEffect: {fileID: 1601494591900918, guid: 61ee9554f7c3b03408fc8258477fddf5, type: 3}
+  MainEffect: {fileID: 1601494591900918, guid: 7c802f1fbfa39664ab3e7e207dab0a7d, type: 3}
   AttachPoint: {fileID: 829929947}
   OverrideAttachPointToTarget: {fileID: 0}
   Effect_DestroyTime: 10
@@ -13107,14 +13232,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7055ff1255134488f94aee0d8d9bcf3f, type: 3}
---- !u!4 &2575807934195042804 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7055ff1255134488f94aee0d8d9bcf3f, type: 3}
-  m_PrefabInstance: {fileID: 2609170600243588639}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2951206889542931278 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7055ff1255134488f94aee0d8d9bcf3f, type: 3}
+  m_PrefabInstance: {fileID: 2609170600243588639}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2575807934195042804 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7055ff1255134488f94aee0d8d9bcf3f, type: 3}
   m_PrefabInstance: {fileID: 2609170600243588639}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8680484274313561400
@@ -13184,6 +13309,14 @@ PrefabInstance:
       propertyPath: returnPosition
       value: 
       objectReference: {fileID: 1904175750202439131}
+    - target: {fileID: 8680484275046402574, guid: 08e2c88cd20c39349b9a2e41401abb5a, type: 3}
+      propertyPath: MainEffect
+      value: 
+      objectReference: {fileID: 1935630441017222, guid: a8654bb295e3b014294c1cb4e27d54a6, type: 3}
+    - target: {fileID: 8680484275046402574, guid: 08e2c88cd20c39349b9a2e41401abb5a, type: 3}
+      propertyPath: CharacterEffect
+      value: 
+      objectReference: {fileID: 1935630441017222, guid: a8654bb295e3b014294c1cb4e27d54a6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08e2c88cd20c39349b9a2e41401abb5a, type: 3}
 --- !u!1 &8020615599989438273 stripped

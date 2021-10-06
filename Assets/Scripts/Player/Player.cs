@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    //att
+    float damage_Right = 300f;
+    float damage_Left = 300f;
+    float damage_Forward = 300f;
+    float damage_Up =200f;
+    float damage_Down = 300f;
+    //KnuckBackrelated
     public bool knuckBack = false;
     public bool flyingBack = false;
+    public bool flying = false;
+    public Transform boss;
 
     Sword sword;
 
@@ -42,26 +51,42 @@ public class Player : MonoBehaviour
     public bool outPutSword = false;
     public Vector3 firstSwordPosition;
     public Vector3 firstSwordRotation;
-
+    public GameObject swordEffect;
 
     //Hook
     public GameObject hook;
+    Vector3 fixPosition;
 
-
-    public GameObject swordEffect;
 
     //AnimationEvent
-    public void RigidOnOff(int onOff)
-    {
-
-        rb.isKinematic = onOff == 1;
-    }
     public void FlyingBack() 
     {
-        rb.AddForce(-transform.forward* 20f,ForceMode.Impulse);
+        VoiceSoundManager.instatnce.OnDanteVoice("Dante-1");
+        transform.LookAt(boss);
+        rb.AddForce(-transform.forward * 30f,ForceMode.Impulse);
+    }
+    public void Flying(float knucktime) 
+    {
+        anim.SetBool("MoveAttack", false);
+        if (flying) 
+        {
+            CancelInvoke(nameof(EndFlying));
+
+        }
+        flying = true;
+        //print(flying);
+        Invoke(nameof(EndFlying), knucktime);
+        //print(knucktime);
+    }
+
+    public void EndFlying() 
+    {
+        flying = false;
     }
 
 
+
+    public AudioClip[] dante_Audio;
 
     void Start()
     {
@@ -79,17 +104,21 @@ public class Player : MonoBehaviour
 
 
 
+        boss = GameObject.Find("Boss_Perderos").transform;
+        fixPosition= new Vector3(1, 0, 1);
+        //dante_Audio = VoiceSoundManager.instatnce.OnDanteVoice("Dante-2"), VoiceSoundManager.instatnce.OnDanteVoice("Dante-3"),VoiceSoundManager.instatnce.OnDanteVoice("Dante-2");
     }
 
    
     RaycastHit hit;
     void Update()
     {
-        
         if (knuckBack == true)
         {
+            
+            VoiceSoundManager.instatnce.OnDanteVoice("Dante-2");
             knuckBack = false;
-
+            transform.LookAt(boss);
             anim.SetTrigger("KnuckBack");
             rb.AddForce(-transform.forward * 7f, ForceMode.Impulse);
         }
@@ -100,11 +129,13 @@ public class Player : MonoBehaviour
             anim.SetTrigger("flyingBack");
 
         }
-
-        if (GameManager.instance.isBattle)
+        if ((GameManager.instance == null || GameManager.instance.isBattle) && flying == false)
         {
             move();
-            Dodge();
+            if (jumpPing == false) 
+            {
+                Dodge();
+            }
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 InvokeRepeating("Change_SpeedPlus", 0.3f, 0.3f);
@@ -117,6 +148,8 @@ public class Player : MonoBehaviour
             }
 
             InputControl();
+
+            
         }
         //AnimationFinished();
     }
@@ -132,32 +165,39 @@ public class Player : MonoBehaviour
             CancelInvoke("Change_SpeedPlus");
         }
     }
+    public float h;
+    float v;
     void move()
     {
 
 
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-        anim.SetBool("walkWithSword", h != 0 || v != 0);
+        h = Input.GetAxisRaw("Horizontal");
+        v = Input.GetAxisRaw("Vertical");
+       
         MoveDir = Camera.main.transform.right * h + Camera.main.transform.forward * v;
         MoveDir.y = 0;
         transform.position += speed * Time.deltaTime * MoveDir;
         transform.LookAt(transform.position + MoveDir);
 
+
+        anim.SetBool("walkWithSword", h != 0 || v != 0);
+       
         //MoveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-
-
-
-
 
         if (Input.GetButtonDown("Jump") && !jumpPing)
         {
             rb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
 
-            anim.SetTrigger("isJump");
+            anim.SetBool("isJump",true);
+            anim.SetTrigger("jumping");
             jumpPing = true;
+            Debug.Log(transform.position.y);
         }
 
+        if (transform.position.y < -1f)
+        {
+            transform.position = new Vector3(transform.position.x, 0.2f, transform.position.z);
+        }
     }
 
 
@@ -281,7 +321,7 @@ public class Player : MonoBehaviour
 
     IEnumerator OutPutSword()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         katana.transform.localEulerAngles = new Vector3(66f, -230f, -60f);
         katana.transform.SetParent(rightHand.transform, false);
         katana.transform.localPosition = new Vector3(0.12f, -0.136f, 0.5f);
@@ -290,7 +330,7 @@ public class Player : MonoBehaviour
 
     IEnumerator InputSword()
     {
-        yield return new WaitForSeconds(1.3f);
+        yield return null;
         katana.transform.SetParent(swordCase.transform, false);
         katana.transform.localPosition = new Vector3(0.01705508f, -0.4062368f, -0.143f);
         katana.transform.localEulerAngles = new Vector3(0f, -180f, 20f);
@@ -304,96 +344,163 @@ public class Player : MonoBehaviour
         //StartCoroutine(InputSword());
         attackState = FighterAttackState.Attack1;
 
-        rb.AddForce(Vector3.down * jumpSpeed, ForceMode.Impulse);
-        
+        rb.AddForce(Vector3.down * 6f, ForceMode.Impulse);
+        //if (outPutSword == true)
+        //{
+        //    anim.ResetTrigger("outPutSword");
+        //}
     }
 
     void InputControl()
-    {
-
-        if (Input.GetKeyDown(KeyCode.J))
+    {      
+        anim.SetBool("MoveAttack", v!=0||h!=0);
+   
+        if (!flying) 
         {
-            //hook.SetActive(true);
-            anim.SetTrigger("loop");
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            swordEffect.SetActive(true);
-            swordCollider.SetActive(true);
-            if (nextAttack)
+            if (Input.GetKeyDown(KeyCode.J))
             {
-                if (outPutSword == false)
+                //hook.SetActive(true);
+                //VoiceSoundManager.instatnce.OnDanteVoice("Dante-HoHou");
+                anim.SetTrigger("loop");
+
+            }
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                
+                swordEffect.SetActive(true);
+                swordCollider.SetActive(true);
+                if (nextAttack)
                 {
-                    anim.SetTrigger("outPutSword");
-                    StartCoroutine(OutPutSword());
-                    outPutSword = true;
-                }
-                switch (attackState)
-                {
-                    case FighterAttackState.Attack1:
-                       
-                        anim.SetTrigger("firstAttack");
-                        nextAttack = false;
-                        sword.damage = 300f;
-                        attackState = FighterAttackState.Attack2;
-                        StartCoroutine("Delay");
+                 
+                    switch (attackState)
+                    {
+                        case FighterAttackState.Attack1:
+                           
+                            if (outPutSword == true)
+                            {
+                                anim.SetTrigger("firstAttack");
+                                //VoiceSoundManager.instatnce.OnDanteVoice("Dante-0");
+                                //print(outPutSword);
+                            }
+                            else if(outPutSword == false)
+                            {
+                                anim.SetTrigger("outPutSword");
+                                StartCoroutine(OutPutSword());
+                               
+                            }
+                            //Sound
+                            //VoiceSoundManager.instatnce.OnDanteVoice("Dante-0");
+                            if (sword.hit == true)
+                            {
+                                SwordSound.instatnce.OnSwordSound(6);
+                            }
+                            else 
+                            {
+                                SwordSound.instatnce.OnSwordSound(0);
+                            }
+                            //Damage
+                            sword.damage = damage_Right;
+                            //Attack Change
+                            nextAttack = false;
+                            attackState = FighterAttackState.Attack2;
+                            StartCoroutine("Delay");
+                            Invoke(nameof(ResetAttackState), 1f);
+                         
+                            break;
 
-                        Invoke(nameof(ResetAttackState),1f);
-                        break;
-                    case FighterAttackState.Attack2:
-                        //swordEffect.SetActive(true);
-                        CancelInvoke(nameof(ResetAttackState));
-                        anim.SetTrigger("secoundAttack");
-                        nextAttack = false;
-                        sword.damage = 300f;
+                        case FighterAttackState.Attack2:
+                            //VoiceSoundManager.instatnce.OnDanteVoice("Dante-0");
+                            if (sword.hit == true)
+                            {
+                                SwordSound.instatnce.OnSwordSound(7);
+                            }
+                            else
+                            {
+                                SwordSound.instatnce.OnSwordSound(1);
+                            }
+                            CancelInvoke(nameof(ResetAttackState));
+                            anim.SetTrigger("secoundAttack");
+                            nextAttack = false;
+                            sword.damage = damage_Left;
+                            attackState = FighterAttackState.Attack3;
+                            StartCoroutine("Delay");
 
-                        attackState = FighterAttackState.Attack3;
-                        StartCoroutine("Delay");
+                            Invoke(nameof(ResetAttackState), 1f);
+                           
+                            break;
+                        case FighterAttackState.Attack3:
+                            //VoiceSoundManager.instatnce.OnDanteVoice("Dante-Chua");
+                            if (sword.hit == true)
+                            {
+                                SwordSound.instatnce.OnSwordSound(8);
+                            }
+                            else
+                            {
+                                SwordSound.instatnce.OnSwordSound(2);
+                            }
+                            CancelInvoke(nameof(ResetAttackState));
+                            anim.SetTrigger("thirdAttack");
+                            nextAttack = false;
+                            sword.damage = damage_Forward;
+                            attackState = FighterAttackState.Attack4;
+                            StartCoroutine("Delay");
+                            Invoke(nameof(ResetAttackState), 1f);
+                           
+                            break;
 
-                        Invoke(nameof(ResetAttackState), 1f);
-                        break;
-                    case FighterAttackState.Attack3:
-                        CancelInvoke(nameof(ResetAttackState));
-                        anim.SetTrigger("thirdAttack");
-                        nextAttack = false;
-                        sword.damage = 300f;
-                        attackState = FighterAttackState.Attack4;
+                        case FighterAttackState.Attack4:
+                            anim.SetBool("MoveAttack", false);
+                            //VoiceSoundManager.instatnce.OnDanteVoice("Dante-Haaaaaaaa");
+                            if (sword.hit == true)
+                            {
+                                SwordSound.instatnce.OnSwordSound(4);
+                            }
+                            else
+                            {
+                                SwordSound.instatnce.OnSwordSound(4);
+                            }
+                            CancelInvoke(nameof(ResetAttackState));
+                            anim.SetTrigger("lastAttack");
+                            StartCoroutine("JumpAttack");
+                            nextAttack = false;
+                            sword.damage = damage_Up;                          
+                            attackState = FighterAttackState.hiddenAttack;
+                            StartCoroutine("Delay");
+                            Invoke(nameof(ResetAttackState), 1f);
+                            
+                            break;
 
-                        StartCoroutine("Delay");
-
-                        Invoke(nameof(ResetAttackState), 1f);
-                        break;
-
-                    case FighterAttackState.Attack4:
-                        //swordEffect.SetActive(true);
-                        CancelInvoke(nameof(ResetAttackState));
-                        anim.SetTrigger("lastAttack");
-                        StartCoroutine("JumpAttack");
-                        nextAttack = false;
-                        sword.damage = 300f;
-                        attackState = FighterAttackState.hiddenAttack;
-                        StartCoroutine("Delay");
-
-                        Invoke(nameof(ResetAttackState), 1f);
-                        break;
-
-                    case FighterAttackState.hiddenAttack:
-                        //swordEffect.SetActive(true);
-                        CancelInvoke(nameof(ResetAttackState));
-                        anim.SetTrigger("hiddenAttack");
-                        StartCoroutine("DownAttack");
-                        nextAttack = false;
-                        attackState = FighterAttackState.Attack1;
-                        sword.damage = 300f;
-                        StartCoroutine("Delay");
-                        StartCoroutine(InputSword());
-
-                        Invoke(nameof(ResetAttackState), 1f);
-                        break;
+                        case FighterAttackState.hiddenAttack:
+                            if (sword.hit == true)
+                            {
+                                SwordSound.instatnce.OnSwordSound(8);
+                            }
+                            else
+                            {
+                                SwordSound.instatnce.OnSwordSound(3);
+                            }
+                            //VoiceSoundManager.instatnce.OnDanteVoice("Dante-Down");
+                            anim.SetBool("MoveAttack", false);
+                            SwordSound.instatnce.OnSwordSound(4);
+                            CancelInvoke(nameof(ResetAttackState));
+                            anim.SetTrigger("hiddenAttack");
+                            StartCoroutine("DownAttack");
+                            nextAttack = false;
+                            attackState = FighterAttackState.Attack1;
+                            sword.damage = damage_Down;
+                            StartCoroutine("Delay");
+                            //StartCoroutine(InputSword());
+                            outPutSword = false;
+                            Invoke(nameof(ResetAttackState), 1f);
+                            
+                            break;
+                    }
                 }
             }
+            //anim.SetBool("MoveAttack", h != 0 || v != 0);
         }
+
+       
     }
     IEnumerator Delay()
     {
@@ -413,12 +520,12 @@ public class Player : MonoBehaviour
     IEnumerator JumpAttack()
     {
         yield return new WaitForSeconds(0.2f);
-        rb.AddForce(Vector3.up * 15f, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * 25f, ForceMode.Impulse);
     }
     IEnumerator DownAttack()
     {
         yield return new WaitForSeconds(0.1f);
-        rb.AddForce(Vector3.down * jumpSpeed, ForceMode.Impulse);
+        rb.AddForce(Vector3.down * (jumpSpeed+15f), ForceMode.Impulse);
     }
 
     bool effectOnOff = false;
@@ -436,6 +543,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             jumpPing = false;
+            anim.SetBool("isJump", false);
         }
     }
 }

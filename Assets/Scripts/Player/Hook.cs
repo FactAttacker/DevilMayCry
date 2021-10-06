@@ -14,12 +14,13 @@ public class Hook : MonoBehaviour
     Vector3 hitPosition;
 
     LineRenderer lr;
+    RaycastHit hit;
 
     bool isHooking = false;
     bool enemyHooked = false;
 
     public float ropeSpeed;
-    float hookMaxDistance = 10f;
+    float hookMaxDistance = 20f;
     float hookDistance = 0f;
     float hook_Speed = 1500f;
 
@@ -36,7 +37,7 @@ public class Hook : MonoBehaviour
         //transform.position = hitPosition;
     }
 
-
+    
 
     private void Update()
     {
@@ -64,6 +65,7 @@ public class Hook : MonoBehaviour
         isHooking = true;
         rb.isKinematic = false;
         rb.AddForce(player.transform.forward * hook_Speed);
+        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 콜라이더에서 레이캐스트로 변경
     }
 
     void ReturnHook()
@@ -92,6 +94,7 @@ public class Hook : MonoBehaviour
             playerAnim.SetTrigger("prepair");
             playerAnim.SetBool("isFlying", enemyHooked);
             player.transform.position = Vector3.Lerp(player.transform.position, hitPosition, hookMaxDistance * Time.deltaTime);
+            
             if (Vector3.Distance(player.transform.position, hitPosition) < 2f)
             {
                 enemyHooked = false;
@@ -102,13 +105,16 @@ public class Hook : MonoBehaviour
 
         }
     }
+
+
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Cube")
         {
             //Instantiate(effect_Electronic_attach);
-            enemyHooked = true;
             //wall = collision.gameObject;
+            enemyHooked = true;
             hitPosition = collision.contacts[0].point;
             //Transform hit = hitPosition;
             //effect.OverrideAttachPointToTarget.position = hitPosition;

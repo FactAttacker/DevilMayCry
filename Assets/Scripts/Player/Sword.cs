@@ -6,6 +6,8 @@ public class Sword : MonoBehaviour
 {   
     public GameObject bloodEffect ;
     public float damage;
+
+    public bool hit = false;
     private void OnEnable()
     {
         bloodEffect.SetActive(false);
@@ -32,10 +34,11 @@ public class Sword : MonoBehaviour
             print("demage");
             CameraManager.instance.OnShake(0.3f, 0.1f);
             bloodEffect.SetActive(true);
-            
+            hit = true;
             StartCoroutine(FadeBloodEffect());
         }
     }
+
 
 
     IEnumerator FadeBloodEffect()
@@ -46,5 +49,7 @@ public class Sword : MonoBehaviour
     private void OnDisable()
     {
         bloodEffect.SetActive(false);
+        hit = false;
     }
+
 }

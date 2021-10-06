@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.24647538, g: 0.28234535, b: 0.3457032, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5374,33 +5374,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2094321921734259749, guid: d630cd3c747d4f5449344b43fe57e7f5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2094321921845476048, guid: d630cd3c747d4f5449344b43fe57e7f5, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2094321921845476048, guid: d630cd3c747d4f5449344b43fe57e7f5, type: 3}
-      propertyPath: m_TagString
-      value: Cube
-      objectReference: {fileID: 0}
-    - target: {fileID: 2094321922379646183, guid: d630cd3c747d4f5449344b43fe57e7f5, type: 3}
-      propertyPath: hpBar
-      value: 
-      objectReference: {fileID: 1757967104}
-    - target: {fileID: 2094321922379646183, guid: d630cd3c747d4f5449344b43fe57e7f5, type: 3}
-      propertyPath: damagedHPBar
-      value: 
-      objectReference: {fileID: 162424309}
     - target: {fileID: 2094321922379646188, guid: d630cd3c747d4f5449344b43fe57e7f5, type: 3}
       propertyPath: m_Name
       value: Boss_Perderos
-      objectReference: {fileID: 0}
-    - target: {fileID: 2094321922379646188, guid: d630cd3c747d4f5449344b43fe57e7f5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2094321922379646189, guid: d630cd3c747d4f5449344b43fe57e7f5, type: 3}
       propertyPath: m_RootOrder
@@ -5446,12 +5422,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2094321923579276543, guid: d630cd3c747d4f5449344b43fe57e7f5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 2094321923319513428, guid: d630cd3c747d4f5449344b43fe57e7f5, type: 3}
+      propertyPath: m_TagString
+      value: Cube
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2094321921845476051, guid: d630cd3c747d4f5449344b43fe57e7f5, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d630cd3c747d4f5449344b43fe57e7f5, type: 3}
 --- !u!1 &710366200 stripped
 GameObject:
@@ -7614,6 +7589,18 @@ PrefabInstance:
       propertyPath: ShapeModule.radius.value
       value: 0.0001
       objectReference: {fileID: 0}
+    - target: {fileID: 743591734, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: MainEffect
+      value: 
+      objectReference: {fileID: 1748139164946814, guid: 80460394d124443448e048694575217d, type: 3}
+    - target: {fileID: 743591734, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: CharacterEffect
+      value: 
+      objectReference: {fileID: 1935630441017222, guid: a8654bb295e3b014294c1cb4e27d54a6, type: 3}
+    - target: {fileID: 994388775, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: MainEffect
+      value: 
+      objectReference: {fileID: 1601494591900918, guid: 7c802f1fbfa39664ab3e7e207dab0a7d, type: 3}
     - target: {fileID: 783612055417433539, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
       propertyPath: enemy
       value: 
@@ -7674,14 +7661,78 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dante_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5763450983244391703, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5889578753863820852, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7170760314246471676, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
       propertyPath: hpBar
       value: 
       objectReference: {fileID: 832272360}
     - target: {fileID: 7170760314246471676, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7170760314246471676, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
       propertyPath: damagedHPBar
       value: 
       objectReference: {fileID: 1325601219}
+    - target: {fileID: 7497975427720280991, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: swordSoundClip.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497975427720280991, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: swordSoundClip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: a7eddd4f970dc4a4d8b53d2b50e48b91, type: 3}
+    - target: {fileID: 7497975427720280991, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: swordSoundClip.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1671b0e6a42d183429e2c10c0efed317, type: 3}
+    - target: {fileID: 7497975427720280991, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: swordSoundClip.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 708dd594a1d28564cbfdc856a5d05e25, type: 3}
+    - target: {fileID: 7497975427720280991, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: swordSoundClip.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1671b0e6a42d183429e2c10c0efed317, type: 3}
+    - target: {fileID: 7497975427720280991, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: swordSoundClip.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 65586d1d4af4a6749af19fab11d25eba, type: 3}
+    - target: {fileID: 7497975427720280991, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: swordSoundClip.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 94de69e1aba84a04da53af01aa945211, type: 3}
+    - target: {fileID: 7497975427720280991, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: swordSoundClip.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2bb571a3dfc8c2f41870692dff4b794a, type: 3}
+    - target: {fileID: 7497975427720280991, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: swordSoundClip.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 72266d28a756e804e990eca3b10a73f7, type: 3}
+    - target: {fileID: 7497975427720280991, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: swordSoundClip.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6c6a216742fe9c442926657834b05852, type: 3}
+    - target: {fileID: 8996783222554447273, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: MyColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996783222554447273, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: MyColor.g
+      value: 0.026977448
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996783222554447273, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: MyColor.r
+      value: 0.8301887
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
 --- !u!4 &994388767 stripped
@@ -17052,16 +17103,20 @@ MonoBehaviour:
   zoomPos:
   - {fileID: 1516512700}
   - {fileID: 1960966664}
+  cameraPos: []
+  cmSpeed: 1.5
+  chromatic: {fileID: 0}
+  canBossUlimate: 0
   effects:
   - type: 0
     obj: {fileID: 1566168067}
-  cmSpeed: 1.5
   shakeInfo:
     vector: {x: 0, y: 0, z: 0}
     time: 1.5
     amount: 0.5
   currentTarget: 1
   currentCamera: 0
+  currentPos: 0
 --- !u!4 &2120496278
 Transform:
   m_ObjectHideFlags: 0

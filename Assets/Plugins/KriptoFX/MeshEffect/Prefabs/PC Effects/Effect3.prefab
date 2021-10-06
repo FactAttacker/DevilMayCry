@@ -143,6 +143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424952}
   - component: {fileID: 11422040}
+  - component: {fileID: -8741972906817829264}
   m_Layer: 0
   m_Name: Effect3
   m_TagString: Untagged
@@ -184,6 +185,18 @@ MonoBehaviour:
   Color: {r: 0, g: 0, b: 0, a: 1}
   IsActive: 1
   FadeTime: 1.5
+--- !u!114 &-8741972906817829264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64592b2cbc9a54557b1ed38278ffecc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1000012484013212
 GameObject:
   m_ObjectHideFlags: 0

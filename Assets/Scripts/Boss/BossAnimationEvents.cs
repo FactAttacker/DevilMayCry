@@ -19,6 +19,12 @@ public class BossAnimationEvents : MonoBehaviour
         GameObject effectClone = BossSystem.Instance.BossEffectManager.GetEffectToName(_effectName);
         effectClone.SetActive(true);
     }
+    public void OnEffect(string _effectName, Vector3 _position)
+    {
+        GameObject effectClone = BossSystem.Instance.BossEffectManager.GetEffectToName(_effectName);
+        effectClone.SetActive(true);
+        effectClone.transform.position = _position;
+    }
 
     public void OnEffect(string _effectName, Transform _parent)
     {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18218824, g: 0.22464132, b: 0.28850228, a: 1}
+  m_IndirectSpecularColor: {r: 0.18218797, g: 0.22464105, b: 0.28850168, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16078,6 +16078,10 @@ PrefabInstance:
       value: Dante_Prefab
       objectReference: {fileID: 0}
     - target: {fileID: 5763450983244391703, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7170760314246471676, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}

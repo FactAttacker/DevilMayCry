@@ -38,12 +38,12 @@ public class StrikeAttackState : BossState
 
     IEnumerator Co_StrikeAttackCycle()
     {
-        bossStateMachine.anim.SetTrigger("StrikeAttack");
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Strike Attack State"));
+        BossSystem.Instance.Animator.SetTrigger("StrikeAttack");
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).IsName("Strike Attack State"));
         // Strike Attack 상태에서의 효과
         yield return StartCoroutine(Co_StrikeAttack());
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
-        bossStateMachine.SetState(GetComponent<AttackDelayState>());
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
+        bossStateMachine.SetState(BossSystem.Instance.AttackDelayState);
         StopCoroutine(Co_strikeAttackCycle);
     }
 
@@ -53,7 +53,7 @@ public class StrikeAttackState : BossState
     }
     public void StrikeAttack() => StartCoroutine(Co_StrikeAttack());
 
-    public void SetStrikeAttackSpeed(float _attackSpeed) => bossStateMachine.anim.SetFloat("StrikeAttackSpeed", _attackSpeed);
+    public void SetStrikeAttackSpeed(float _attackSpeed) => BossSystem.Instance.Animator.SetFloat("StrikeAttackSpeed", _attackSpeed);
 
     public void OnStrikeAttackEffect(string _effectName)
     {

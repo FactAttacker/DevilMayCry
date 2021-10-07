@@ -38,8 +38,8 @@ public class AttackDelayState : BossState
 
     IEnumerator Co_AttackDelay()
     {
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
-        bossStateMachine.SetState(GetComponent<IdleState>());
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
+        bossStateMachine.SetState(BossSystem.Instance.IdleState);
         StopCoroutine(Co_attackDelay);
     }
 }

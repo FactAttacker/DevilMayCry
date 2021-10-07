@@ -40,15 +40,15 @@ public class BasicAttackState : BossState
 
     IEnumerator Co_BasicAttackCycle()
     {
-        bossStateMachine.anim.SetTrigger("BasicAttack");
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Basic Attack State"));
+        BossSystem.Instance.Animator.SetTrigger("BasicAttack");
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).IsName("Basic Attack State"));
         //Basic Attack 상태에서의 효과
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1);
-        bossStateMachine.SetState(GetComponent<AttackDelayState>());
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1);
+        bossStateMachine.SetState(BossSystem.Instance.AttackDelayState);
         StopCoroutine(Co_basicAttackCycle);
     }
 
-    public void SetBasicAttackSpeed(float _attackSpeed) => bossStateMachine.anim.SetFloat("BasicAttackSpeed", _attackSpeed);
+    public void SetBasicAttackSpeed(float _attackSpeed) => BossSystem.Instance.Animator.SetFloat("BasicAttackSpeed", _attackSpeed);
 
     public void OnPlusBasicAttackCount()
     {

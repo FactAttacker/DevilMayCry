@@ -43,15 +43,15 @@ public class RushAttackState : BossState
 
     IEnumerator Co_RushAttackCycle()
     {
-        bossStateMachine.anim.SetTrigger("Rotate");
+        BossSystem.Instance.Animator.SetTrigger("Rotate");
         yield return GetComponent<BossRotate>().Co_RushRotate();
-        bossStateMachine.anim.SetTrigger("Rush");
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Rush State"));
+        BossSystem.Instance.Animator.SetTrigger("Rush");
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).IsName("Rush State"));
         yield return Co_rush = StartCoroutine(Co_Rush());
         yield return StartCoroutine(Co_RushAttack());
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Rush Attack State"));
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
-        bossStateMachine.SetState(GetComponent<AttackDelayState>());
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).IsName("Rush Attack State"));
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
+        bossStateMachine.SetState(BossSystem.Instance.AttackDelayState);
         StopAllCoroutines();
     }
 
@@ -61,7 +61,7 @@ public class RushAttackState : BossState
         BossSystem.Instance.BossAnimationEvents.OnBossVoice("Boss-Rush1");
 
         float rushRange = 0;
-        while ( GetComponent<Boss_DetectPlayerAndCalcDistance>().distance > playerDetectedDistance
+        while (BossSystem.Instance.Boss_DetectPlayerAndCalcDistance.distance > playerDetectedDistance
                && rushRange <= maxRushRange
                && !IsThereWallToFront())
         {
@@ -69,7 +69,7 @@ public class RushAttackState : BossState
             transform.position += transform.forward * Time.deltaTime * rushSpeed;
             yield return null;
         }
-        bossStateMachine.anim.SetTrigger("RushAttack");
+        BossSystem.Instance.Animator.SetTrigger("RushAttack");
     }
 
     [SerializeField] float wallDetectingRayDist = 10;
@@ -92,9 +92,9 @@ public class RushAttackState : BossState
         }
     }
 
-    public void SetRushAttackSpeed(float _attackSpeed) => bossStateMachine.anim.SetFloat("RushAttackSpeed", _attackSpeed);
+    public void SetRushAttackSpeed(float _attackSpeed) => BossSystem.Instance.Animator.SetFloat("RushAttackSpeed", _attackSpeed);
 
-    public void OnRushEffect(string _effectName)
+    public void OnRushAttackEffect(string _effectName)
     {
         Vector3 tempPos = BossSystem.Instance.AttackColliderManager.ColliderArr[2].transform.position;
         tempPos.y = 0;

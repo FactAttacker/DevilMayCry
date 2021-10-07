@@ -35,27 +35,27 @@ public class IdleState : BossState
     {
         if (isBasicAttack)
         {
-            bossStateMachine.SetState(GetComponent<BasicAttackState>());
+            bossStateMachine.SetState(BossSystem.Instance.BasicAttackState);
             isBasicAttack = false;
         }
         if (isRoar)
         {
-            bossStateMachine.SetState(GetComponent<RoarState>());
+            bossStateMachine.SetState(BossSystem.Instance.RoarState);
             isRoar = false;
         }
         if (isRush)
         {
-            bossStateMachine.SetState(GetComponent<RushAttackState>());
+            bossStateMachine.SetState(BossSystem.Instance.RushAttackState);
             isRush = false;
         }
         if (isStrike)
         {
-            bossStateMachine.SetState(GetComponent<StrikeAttackState>());
+            bossStateMachine.SetState(BossSystem.Instance.StrikeAttackState);
             isStrike = false;
         }
         if (isJump)
         {
-            bossStateMachine.SetState(GetComponent<JumpAttackState>());
+            bossStateMachine.SetState(BossSystem.Instance.JumpAttackState);
             isJump = false;
         }
     }
@@ -78,8 +78,8 @@ public class IdleState : BossState
     // ???? ?? - ??? ?? ?
     IEnumerator Test()
     {
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Idle State"));
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).IsName("Idle State"));
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
         bossStateMachine.SetState(GetComponent<RoarState>());
 
     }
@@ -92,8 +92,8 @@ public class IdleState : BossState
         {
             yield return new WaitUntil(() => GameManager.instance.isBattle);
         }
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Idle State"));
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f);
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).IsName("Idle State"));
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f);
 
         if (boss_DetectPlayerAndCalcDistance.distance >= farDist)
         {
@@ -102,9 +102,9 @@ public class IdleState : BossState
             BossState _nextState;
 
             if (randomWeight <= rushWeight)
-                _nextState = GetComponent<RushAttackState>();
+                _nextState = BossSystem.Instance.RushAttackState;
             else
-                _nextState = GetComponent<JumpAttackState>();
+                _nextState = BossSystem.Instance.JumpAttackState;
             bossStateMachine.SetState(_nextState);
         }
         else
@@ -114,11 +114,11 @@ public class IdleState : BossState
             BossState _nextState;
 
             if (randomWeight <= roarWeight)
-                _nextState = GetComponent<RoarState>();
+                _nextState = BossSystem.Instance.RoarState;
             else if (randomWeight > roarWeight && randomWeight <= roarWeight + attackWeight)
-                _nextState = GetComponent<BasicAttackState>();
+                _nextState = BossSystem.Instance.BasicAttackState;
             else
-                _nextState = GetComponent<StrikeAttackState>();
+                _nextState = BossSystem.Instance.StrikeAttackState;
             bossStateMachine.SetState(_nextState);
         }
         StopCoroutine(Co_IdleCycle);

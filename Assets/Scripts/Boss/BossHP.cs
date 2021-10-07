@@ -36,15 +36,17 @@ public class BossHP : MonoBehaviour
             {
                 if (CurrHP / MaxHP <= damageRates[i] && damageAnimPosibleCounts[i] == 1)
                 {
-                    if(ultimateIndex == i)
+                    if(i == ultimateIndex)
                     {
                         BossSystem.Instance.BossStateMachine.SetState(BossSystem.Instance.UltimateAttackState, true);
+                        break;
                     }
                     Co_damaged = StartCoroutine(Co_Damaged());
                     damageAnimPosibleCounts[i] = 0;
                     break;
                 }
             }
+            if (hpBar == null || damagedHPBar == null) return;
             RefreshHPBar(value);
         }
     }
@@ -107,7 +109,7 @@ public class BossHP : MonoBehaviour
 
     public IEnumerator Co_Damaged()
     {
-        Animator anim = GetComponent<BossStateMachine>().anim;
+        Animator anim = BossSystem.Instance.Animator;
 
         anim.SetTrigger("Damaged");
         yield return new WaitUntil(() => anim.GetCurrentAnimatorStateInfo(0).IsName("Damaged State"));

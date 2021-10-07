@@ -21091,6 +21091,7 @@ GameObject:
   - component: {fileID: 6444834925532105591}
   - component: {fileID: 6406891058938591221}
   - component: {fileID: -6578601551151674117}
+  - component: {fileID: -3177754735399989969}
   m_Layer: 0
   m_Name: SmashAttackEffect
   m_TagString: Untagged
@@ -21154,6 +21155,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64592b2cbc9a54557b1ed38278ffecc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3177754735399989969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6447675409882602741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4625adaafba374f439bb1e207849b42a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disactiveSecond: 2
 --- !u!1 &6447694571174127677
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class HookCollisionAudio : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        TryGetComponent(out AudioSource audio);
+        VoiceSoundManager.instatnce.SetEffectSound(audio);
     }
 }

@@ -69,7 +69,7 @@ public class CameraManager : MonoBehaviour
         FOLLWER,
         ZOOM_IN,
         ZOOM_OUT,
-        SHACKE,
+        SHAKE,
         ZOOM_HOCK,
         ZOOM_ATT_DOWN,
     };
@@ -167,7 +167,7 @@ public class CameraManager : MonoBehaviour
     {
         shakeInfo.time = time;
         shakeInfo.amount = amount;
-        currentCamera = CameraType.SHACKE;
+        currentCamera = CameraType.SHAKE;
     }
 
     /// <summary>
@@ -259,7 +259,7 @@ public class CameraManager : MonoBehaviour
             case CameraType.ZOOM_ATT_DOWN:
                 OnPlayerZoomAttackDown();
                 break;
-            case CameraType.SHACKE:
+            case CameraType.SHAKE:
                 ExeShake();
                 break;
         }

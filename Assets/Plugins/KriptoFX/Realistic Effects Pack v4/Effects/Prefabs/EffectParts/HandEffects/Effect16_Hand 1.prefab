@@ -5370,7 +5370,7 @@ GameObject:
   - component: {fileID: 114983616720901702}
   - component: {fileID: -2449288061790007821}
   m_Layer: 0
-  m_Name: Effect16_Hand
+  m_Name: Effect16_Hand 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10364,7 +10364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4912906036777500}
   - component: {fileID: 82241679328227814}
-  - component: {fileID: 114165414827786202}
+  - component: {fileID: 7321034968680714268}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -10482,7 +10482,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114165414827786202
+--- !u!114 &7321034968680714268
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10491,7 +10491,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1355751665801170}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e897c7c3dce1d34ba14e52c5bac6c36, type: 3}
+  m_Script: {fileID: 11500000, guid: aca1ee4baf51d0c4b8e985101a75fb40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AudioCurve:
@@ -10504,8 +10504,8 @@ MonoBehaviour:
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
@@ -10513,8 +10513,8 @@ MonoBehaviour:
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

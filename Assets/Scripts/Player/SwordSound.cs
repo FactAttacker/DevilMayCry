@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SwordSound : MonoBehaviour
 {
+    public bool danteSay = false;
     public static SwordSound instatnce;
     private void Awake()
     {
@@ -26,9 +27,17 @@ public class SwordSound : MonoBehaviour
     }
     public void OnSwordSound(int count) 
     {
-        swordAudio.Stop();
-        swordAudio.clip = swordSoundClip[count];
-        swordAudio.Play();
+        if (danteSay)
+        {
+            swordAudio.Stop();
+            swordAudio.clip = swordSoundClip[count];
+            swordAudio.Play();
+        }
+        else 
+        {
+            swordAudio.Stop();
+        }
+        
 
     }
 }

@@ -10,6 +10,12 @@ public class DownAttackEffectSound : MonoBehaviour
     private float currentTime = 0;
     private bool isEnabled;
 
+    private void Awake()
+    {
+        TryGetComponent(out AudioSource audio);
+        VoiceSoundManager.instatnce.SetEffectSound(audio);
+    }
+
     // Use this for initialization
     void OnEnable()
     {

@@ -155,7 +155,8 @@ public class VoiceSoundManager : MonoBehaviour
     /// <param name="audio"></param>
     public void SetEffectSound(AudioSource audio)
     {
-        audio.volume = effectVolum;
+
+        if(audio!=null)audio.volume = effectVolum;
         effectSoundFunc += () =>
         {
             if(audio != null) audio.volume = effectVolum;
@@ -199,11 +200,17 @@ public class VoiceSoundManager : MonoBehaviour
     public void OnBossVoice(string str)
     {
         AudioSource audio = voiceItems[0].audio;
+
+        if (audio.isPlaying && GlobalState.captionDict.ContainsKey(audio.clip.name)
+            && GlobalState.captionDict[audio.clip.name].KR != "") return;
+
         audio.Stop();
         audio.clip = bossVoiceDict[str];
         audio.Play();
 
-        if (!CaptionManager.instatnce.isPlay)
+        bool isCaption = GlobalState.captionDict.ContainsKey(str)
+            && GlobalState.captionDict[str].KR != "";
+        if (!CaptionManager.instatnce.isPlay && isCaption)
         {
             print(str);
             OnCaption(str);
@@ -218,14 +225,17 @@ public class VoiceSoundManager : MonoBehaviour
     public void OnDanteVoice(string str)
     {
         AudioSource audio = voiceItems[1].audio;
+
+        if (audio.isPlaying && GlobalState.captionDict.ContainsKey(audio.clip.name)
+            && GlobalState.captionDict[audio.clip.name].KR != "") return;  
+
         audio.Stop();
         audio.clip = danteVoiceDict[str];
         audio.Play();
 
-        if (!CaptionManager.instatnce.isPlay &&
-            GlobalState.captionDict.ContainsKey(str)
-            && GlobalState.captionDict[str].KR != ""
-        )
+        bool isCaption = GlobalState.captionDict.ContainsKey(str)
+            && GlobalState.captionDict[str].KR != "";
+        if (!CaptionManager.instatnce.isPlay && isCaption)
         {
             print(str);
             OnCaption(str);

@@ -21,10 +21,11 @@ public class SwordCharginAttack : MonoBehaviour
         print(chargetime);
         if (chargetime > 0.2f)
         {
-            anim.SetBool("Charging", false);
+            anim.SetTrigger("ChargeAttack");
             CancelInvoke("ChargeTime");
             chargetime = 0f;
-            anim.SetTrigger("ChargeAttack");
+            //anim.SetBool("Charging", false);
+
         }
     }
     void Update()
@@ -45,5 +46,6 @@ public class SwordCharginAttack : MonoBehaviour
             chargetime = 0f;
             
         }
+
     }
 }

@@ -20,7 +20,7 @@ public class Hook : MonoBehaviour
     bool enemyHooked = false;
 
     public float ropeSpeed;
-    float hookMaxDistance = 20f;
+    float hookMaxDistance = 40f;
     float hookDistance = 0f;
     float hook_Speed = 1500f;
 
@@ -110,8 +110,9 @@ public class Hook : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Cube")
+        if (collision.gameObject.tag == "Boss")
         {
+            //CameraManager.instance.currentCamera = CameraManager.CameraType.ZOOM_HOCK;
             //Instantiate(effect_Electronic_attach);
             //wall = collision.gameObject;
             enemyHooked = true;

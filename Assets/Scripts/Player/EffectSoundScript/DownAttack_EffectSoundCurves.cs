@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DownAttack_EffectSoundCurves : MonoBehaviour
@@ -16,7 +14,7 @@ public class DownAttack_EffectSoundCurves : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        startVolume = audioSource.volume;
+        VoiceSoundManager.instatnce.SetEffectSound(audioSource);
         audioSource.volume = AudioCurve.Evaluate(0);
     }
 
@@ -31,7 +29,7 @@ public class DownAttack_EffectSoundCurves : MonoBehaviour
         var time = Time.time - startTime;
         if (canUpdate)
         {
-            var eval = AudioCurve.Evaluate(time / GraphTimeMultiplier) * startVolume;
+            var eval = AudioCurve.Evaluate(time / GraphTimeMultiplier) * audioSource.volume;
             audioSource.volume = eval;
         }
         if (time >= GraphTimeMultiplier)

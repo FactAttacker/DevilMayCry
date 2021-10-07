@@ -52,7 +52,8 @@ public class GameOption : MonoBehaviour
             {
                 BGM,
                 EFFECT,
-                //EXIT
+                LOBBY,
+                EXIT
             }
             public Type type;
             public Text text;
@@ -89,6 +90,10 @@ public class GameOption : MonoBehaviour
     /// <param name="i"></param>
     public void OpenIndexModal(int i)
     {
+        int index = SceneManager.GetActiveScene().buildIndex;
+        focusMg.items[2].text.gameObject.SetActive(index != 0);
+        focusMg.items[3].text.gameObject.SetActive(index != 0);
+
         OpenOptionWindow();
         modal.boxes[i - 1].box.SetActive(true);
         switch (i)
@@ -116,17 +121,13 @@ public class GameOption : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                foreach (Modal.Box content in modal.boxes)
-                {
-                    content.box.SetActive(false);
-                }
+                foreach (Modal.Box content in modal.boxes) content.box.SetActive(false);
                 modal.modalObj.SetActive(false);
                 if (SceneManager.GetActiveScene().buildIndex != 0){
                     GameManager.instance.isBattle = true;
                     //GameManager.instance.isPause = false; //추후 isPause로 플레이어 움직임 정지
                     Time.timeScale = 1;
                 }
-                
             }
 
             if (modal.boxes[0].box.activeSelf)
@@ -173,6 +174,25 @@ public class GameOption : MonoBehaviour
                             if (value > 1) value = 1;
                             VoiceSoundManager.instatnce.EffectVolum = (float)(Math.Truncate(value * 10) / 10);
                             SetVolumText(focusMg.index, (int)(VoiceSoundManager.instatnce.EffectVolum * 10));
+                            break;
+                    }
+                }
+
+                if (Input.GetKeyUp(KeyCode.Space))
+                {
+                    switch (focusMg.index)
+                    {
+                        case 2: //Lobby
+                            GameManager.instance.isBattle = false;
+                            modal.modalObj.SetActive(false);
+                            VoiceSoundManager.instatnce.SetBGMChange(0).PlayDelayed(0.2f);
+                            Time.timeScale = 1;
+                            FadeInOutController.instance.OnFadeInOut(0);
+                            break;
+                        case 3: //Exit
+                            modal.modalObj.SetActive(false);
+                            Time.timeScale = 1;
+                            FadeInOutController.instance.OnFadeInOut(-1);
                             break;
                     }
                 }

@@ -54,6 +54,7 @@ public class StartIntroManager : MonoBehaviour
     void ChangeBGM()
     {
         AudioSource audio = VoiceSoundManager.instatnce.SetBGMChange(VoiceSoundManager.BGMType.START);
+        audio.Stop();
         audio.Play();
         StartCoroutine(COChangeBGM(audio));
     }

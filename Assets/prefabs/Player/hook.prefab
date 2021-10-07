@@ -267,7 +267,7 @@ MonoBehaviour:
   CharacterEffect2: {fileID: 0}
   CharacterAttachPoint2: {fileID: 0}
   CharacterEffect2_DestroyTime: 10
-  MainEffect: {fileID: 1748139164946814, guid: 4f14e37b24a0f9c41a81220f59ae87f6, type: 3}
+  MainEffect: {fileID: 1748139164946814, guid: 80460394d124443448e048694575217d, type: 3}
   AttachPoint: {fileID: 6190463307828524989}
   OverrideAttachPointToTarget: {fileID: 0}
   Effect_DestroyTime: 3

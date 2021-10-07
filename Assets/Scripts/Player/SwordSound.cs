@@ -11,11 +11,6 @@ public class SwordSound : MonoBehaviour
         instatnce = this;
         DontDestroyOnLoad(gameObject);
     }
-    
-   
-
-    
-
    
     [SerializeField]
     public AudioSource swordAudio;
@@ -25,11 +20,15 @@ public class SwordSound : MonoBehaviour
 
     private void Start()
     {
+
         swordAudio = GetComponent<AudioSource>();
+        VoiceSoundManager.instatnce.SetEffectSound(swordAudio);
     }
     public void OnSwordSound(int count) 
     {
+        swordAudio.Stop();
         swordAudio.clip = swordSoundClip[count];
         swordAudio.Play();
+
     }
 }

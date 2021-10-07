@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BossHP : MonoBehaviour
 {
-    #region 변수
+    #region Variable
 
     Coroutine Co_damaged;
     Coroutine Co_RefreshHPBar;
@@ -13,16 +13,18 @@ public class BossHP : MonoBehaviour
     // 배경 HP바 이미지, 중간 흰 막대 이미지(HP바 끝 이미지), HP바 이미지. Damage Hp바 이미지
     [SerializeField] Image hpBar, damagedHPBar;
 
-    [SerializeField, Range(0f, 1f), Tooltip("행 = HP 비율, 열 = 0(애니메이션 실행 불가능) 1(애니메이션 실행 가능 -> 세팅은 전부 1로)")] float[] damageRates;
-    [SerializeField, Range(0, 1), Tooltip("0(애니메이션 실행 불가능), 1(애니메이션 실행 가능)")] int[] damageAnimPosibleCounts;
+    [SerializeField, Range(0f, 1f), Tooltip("설정된 비율에 따라 보스의 피격 애니메이션 및 이벤트 실행")] float[] damageRates;
+    [Range(0, 1), Tooltip("0(애니메이션 실행 불가능), 1(애니메이션 실행 가능)")] int[] damageAnimPosibleCounts;
 
     [SerializeField, Tooltip("HP Bar UI의 fillAmount 변화 속도")] float refreshSpeed = 1;
     [SerializeField, Tooltip("붉은 HP Bar 변화 전 대기시간")] float refreshWaitTime = 0.1f;
     WaitForSeconds waitRefreshSeconds;
 
+    [SerializeField, Tooltip("damageRates 인덱스 중 궁극기가 실행될 인덱스")] int ultimateIndex;
+
     #endregion
 
-    #region 속성
+    #region Property
 
     public float CurrHP
     {
@@ -34,11 +36,18 @@ public class BossHP : MonoBehaviour
             {
                 if (CurrHP / MaxHP <= damageRates[i] && damageAnimPosibleCounts[i] == 1)
                 {
-                    Co_damaged = StartCoroutine(Co_Damaged());
                     damageAnimPosibleCounts[i] = 0;
+
+                    if (i == ultimateIndex)
+                    {
+                        BossSystem.Instance.BossStateMachine.SetState(BossSystem.Instance.UltimateAttackState, true);
+                        break;
+                    }
+                    Co_damaged = StartCoroutine(Co_Damaged());
                     break;
                 }
             }
+            if (hpBar == null || damagedHPBar == null) return;
             RefreshHPBar(value);
         }
     }
@@ -53,7 +62,7 @@ public class BossHP : MonoBehaviour
 
     #endregion
 
-    #region 유니티 생명 주기
+    #region Unity Life Cycle
 
     private void Start()
     {
@@ -72,7 +81,7 @@ public class BossHP : MonoBehaviour
 
     #endregion
 
-    #region 구현부
+    #region Implementation Space
 
     void RefreshHPBar(float value)
     {
@@ -80,7 +89,7 @@ public class BossHP : MonoBehaviour
         Co_RefreshHPBar = StartCoroutine(Co_RefreshHPBarCycle(value));
     }
 
-    #region 코루틴
+    #region Coroutine
 
     IEnumerator Co_RefreshHPBarCycle(float _value)
     {
@@ -101,7 +110,7 @@ public class BossHP : MonoBehaviour
 
     public IEnumerator Co_Damaged()
     {
-        Animator anim = GetComponent<BossStateMachine>().anim;
+        Animator anim = BossSystem.Instance.Animator;
 
         anim.SetTrigger("Damaged");
         yield return new WaitUntil(() => anim.GetCurrentAnimatorStateInfo(0).IsName("Damaged State"));
@@ -115,15 +124,6 @@ public class BossHP : MonoBehaviour
     }
 
     #endregion
-
-    #endregion
-
-    #region 테스트용
-
-    public void Damage(float dmg)
-    {
-        TakeDamage = dmg;
-    }
 
     #endregion
 }

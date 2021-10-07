@@ -10,6 +10,7 @@ public class JumpAttackState : BossState
     Vector3 vezierVector0, vezierVector1, vezierVector2, vezierVector3;
     [SerializeField] float jumpHeight;
     [SerializeField] Transform targetPos;
+    [SerializeField] Transform effectTr;
     public override void OnAwake()
     {
 
@@ -46,12 +47,12 @@ public class JumpAttackState : BossState
 
     IEnumerator Co_JumpAttackCycle()
     {
-        bossStateMachine.anim.SetTrigger("Jump");
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Jump State"));
+        BossSystem.Instance.Animator.SetTrigger("Jump");
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).IsName("Jump State"));
         yield return StartCoroutine(Co_Jump());
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Jump Strike Attack State"));
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
-        bossStateMachine.SetState(GetComponent<AttackDelayState>());
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).IsName("Jump Strike Attack State"));
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
+        bossStateMachine.SetState(BossSystem.Instance.AttackDelayState);
         StopCoroutine(Co_jumpAttackCycle);
     }
 
@@ -67,21 +68,21 @@ public class JumpAttackState : BossState
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Vector3.zero - new Vector3(transform.position.x, 0, transform.position.z)), rate * 2);
             yield return null;
         }
-        bossStateMachine.anim.SetTrigger("StrikeAttack");
+        BossSystem.Instance.Animator.SetTrigger("StrikeAttack");
         while (rate < 1f)
         {
             rate += Time.deltaTime/2.5f;
             transform.position = VezierCurve(rate);
             yield return null;
         }
-        transform.position = Vector3.zero;
+        transform.position = targetPos.position;
         yield return null;
     }
 
     IEnumerator Co_JumpAttack1()
     {
-        bossStateMachine.anim.SetTrigger("Jump");
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Jump State"));
+        BossSystem.Instance.Animator.SetTrigger("Jump");
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).IsName("Jump State"));
         yield return new WaitForSeconds(0.5f);
         isJumpAtk = true;
         yield return StartCoroutine(Co_Jump());
@@ -90,26 +91,20 @@ public class JumpAttackState : BossState
 
     IEnumerator Co_JumpAttack2()
     {
-        bossStateMachine.anim.SetTrigger("StrikeAttack");
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Jump Strike Attack State"));
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
-        bossStateMachine.SetState(GetComponent<AttackDelayState>());
+        BossSystem.Instance.Animator.SetTrigger("StrikeAttack");
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).IsName("Jump Strike Attack State"));
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
+        bossStateMachine.SetState(BossSystem.Instance.AttackDelayState);
         StopCoroutine(Co_jumpAttackCycle);
     }
 
-    public void SetJumpAttackSpeed(float _attackSpeed) => bossStateMachine.anim.SetFloat("JumpAttackSpeed", _attackSpeed);
+    public void SetJumpAttackSpeed(float _attackSpeed) => BossSystem.Instance.Animator.SetFloat("JumpAttackSpeed", _attackSpeed);
 
-    void Knockback()
+    public void OnJumpAttackEffect(string _effectName)
     {
-        BossSystem.Instance.Boss_DetectPlayerAndCalcDistance.playerScript.flyingBack = true;
-    }
-
-    public void OnRushAttackEffect(string _effectName)
-    {
-        Vector3 tempPos = BossSystem.Instance.AttackColliderManager.ColliderArr[2].transform.position;
+        Vector3 tempPos = effectTr.position;
         tempPos.y = 0;
         BossSystem.Instance.BossAnimationEvents.OnEffect(_effectName, tempPos, Quaternion.identity);
-        Knockback();
     }
 
     Vector3 VezierCurve(float rate)

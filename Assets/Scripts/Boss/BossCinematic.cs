@@ -6,6 +6,11 @@ public class BossCinematic : MonoBehaviour
 {
     public static bool isNext = false;
 
+    private void Start()
+    {
+        StartCoroutine(Co_BossCinematic());
+    }
+
     public IEnumerator Co_BossCinematic()
     {
         IdleState idleState = GetComponent<IdleState>();
@@ -17,5 +22,10 @@ public class BossCinematic : MonoBehaviour
         yield return new WaitUntil(() => isNext);
         isNext = false;
         BossSystem.Instance.BossStateMachine.SetState(GetComponent<RoarState>());
+    }
+
+    public void IsNext()
+    {
+        isNext = true;
     }
 }

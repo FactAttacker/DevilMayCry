@@ -15,6 +15,23 @@ public class BossEffectManager : MonoBehaviour
     [SerializeField, Header("보스가 쓸 이펙트 목록")] GameObject[] bossEffects;
     Dictionary<string, GameObject> effectListsArray = new Dictionary<string, GameObject>();
 
+    #region Unity Life Cycle
+
+    private void Awake()
+    {
+        Object[] effects = Resources.LoadAll("Effect/BossEffect", typeof(GameObject));
+        bossEffects = new GameObject[effects.Length];
+        for (int i = 0; i < bossEffects.Length; i++)
+        {
+            bossEffects[i] = effects[i] as GameObject;
+        }
+
+        for (int i = 0; i < effects.Length; i++)
+        {
+            print(effects[i].name);
+        }
+    }
+
     void Start()
     {
         bossEffectArr = new BossEffect[bossEffects.Length];
@@ -32,6 +49,10 @@ public class BossEffectManager : MonoBehaviour
             }
         }
     }
+
+    #endregion
+
+    #region Implementation Space
 
     public GameObject GetEffectToName(string _effectName)
     {
@@ -52,4 +73,6 @@ public class BossEffectManager : MonoBehaviour
         print(returnEffect.name);
         return returnEffect;
     }
+
+    #endregion
 }

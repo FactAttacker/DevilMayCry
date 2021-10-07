@@ -45,10 +45,10 @@ public class RoarState : BossState
             VoiceSoundManager.instatnce.OnBossVoice("Boss-2");
         }
         yield return new WaitForSeconds(1.8f);
-        bossStateMachine.anim.SetTrigger("Roar");
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).IsName("Roar State"));
-        yield return new WaitUntil(() => bossStateMachine.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
-        bossStateMachine.SetState(GetComponent<AttackDelayState>());
+        BossSystem.Instance.Animator.SetTrigger("Roar");
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).IsName("Roar State"));
+        yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f);
+        bossStateMachine.SetState(BossSystem.Instance.AttackDelayState);
         StopCoroutine(Co_roarCycle);
     }
 

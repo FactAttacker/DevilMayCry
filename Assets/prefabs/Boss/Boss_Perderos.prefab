@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 64351938}
   m_Layer: 8
   m_Name: BossHitTrigger
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 4, z: 5}
+  m_Size: {x: 6, y: 4.8, z: 6}
   m_Center: {x: 0, y: 4.5, z: 1.75}
 --- !u!1 &1248958428
 GameObject:
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 1248958430}
   m_Layer: 8
   m_Name: BossHitCollider
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 1641605310}
   m_Layer: 8
   m_Name: BossHitCollider
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,8 +130,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 3.85}
-  m_Center: {x: 0, y: 2.5, z: -1.75}
+  m_Size: {x: 5, y: 5, z: 4.5}
+  m_Center: {x: 0, y: 2.5, z: -0.5}
 --- !u!1 &4919061992997110377
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 4919061993154834382}
   m_Layer: 8
   m_Name: BossHitTrigger
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -269,8 +269,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 3.85}
-  m_Center: {x: 0, y: 2.5, z: -1.75}
+  m_Size: {x: 6, y: 6, z: 6}
+  m_Center: {x: 0, y: 2.5, z: -0.5}
 --- !u!1 &4919061993164880339
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,11 +898,11 @@ GameObject:
   - component: {fileID: 4919061993693336062}
   - component: {fileID: 4919061993693336061}
   - component: {fileID: 4919061993693336060}
+  - component: {fileID: 2795666703896730589}
   - component: {fileID: 4919061993693336051}
   - component: {fileID: 4919061993693336050}
   - component: {fileID: 6436913129656721114}
   - component: {fileID: 3027813238013320970}
-  - component: {fileID: 3131462198796555932}
   m_Layer: 8
   m_Name: Boss_Perderos
   m_TagString: Boss
@@ -925,6 +925,7 @@ Transform:
   - {fileID: 4919061993756716059}
   - {fileID: 4919061994900952137}
   - {fileID: 4919061993045047318}
+  - {fileID: 2152288707069941502}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -972,7 +973,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9cfc54e0b72dc488097c877f8dc14b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!114 &4919061993693336059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -988,16 +988,12 @@ MonoBehaviour:
   hpBar: {fileID: 0}
   damagedHPBar: {fileID: 0}
   damageRates:
-  - 0.925
   - 0.875
-  - 0.67
-  - 0.56
-  - 0.375
-  - 0.3
-  - 0.256
-  damageAnimPosibleCounts: 
+  - 0.5
+  - 0.2
   refreshSpeed: 0.15
   refreshWaitTime: 0.275
+  ultimateIndex: 1
 --- !u!114 &4919061993693336058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1073,7 +1069,7 @@ MonoBehaviour:
   rayStartTr: {fileID: 4919061993045047318}
   rushSpeed: 85
   maxRushRange: 100
-  wallDetectingRayDist: 80
+  wallDetectingRayDist: 100
 --- !u!114 &4919061993693336061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1101,6 +1097,19 @@ MonoBehaviour:
   isJumpAtk: 0
   jumpHeight: 300
   targetPos: {fileID: 0}
+--- !u!114 &2795666703896730589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919061993693336048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354e2e081c4261946b48baf2c1923857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UltimateEffectTr: {fileID: 2152288707069941502}
 --- !u!114 &4919061993693336051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1152,18 +1161,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e27910eede8077142ba13a9a7549b1c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3131462198796555932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4919061993693336048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6920eb591903a148a6fd6530898f71f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4919061993737464676
@@ -2565,8 +2562,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4.5
-  m_Center: {x: 0, y: 0, z: 2.5}
+  m_Radius: 7
+  m_Center: {x: 0, y: 0, z: 4}
 --- !u!114 &6436913130086993038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2595,3 +2592,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &8833013813793034830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2152288707069941502}
+  m_Layer: 0
+  m_Name: UltimateEffectTr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2152288707069941502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8833013813793034830}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4919061993693336049}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -517,13 +517,6 @@ ModelImporter:
         floatParameter: 0.96
         intParameter: 0
         messageOptions: 0
-      - time: 0.38177016
-        functionName: ColliderCheckOn
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 2
-        messageOptions: 0
       - time: 0.39240503
         functionName: OnCameraShake
         data: 0.9,0.5
@@ -531,16 +524,9 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.4509517
-        functionName: ColliderCheckOff
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       - time: 0.45894548
-        functionName: OnRushAttackEffect
-        data: SmashAttackEffect
+        functionName: OnJumpAttackEffect
+        data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0

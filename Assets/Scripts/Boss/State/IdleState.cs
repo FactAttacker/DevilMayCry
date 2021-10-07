@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class IdleState : BossState
@@ -88,7 +89,9 @@ public class IdleState : BossState
     /// <returns></returns>
     IEnumerator Co_DecideNextState()
     {
-        if(GameManager.instance != null)
+        yield return new WaitUntil(() => SceneManager.GetActiveScene().name == "Battle-CameraProcessing");
+
+        if (GameManager.instance != null)
         {
             yield return new WaitUntil(() => GameManager.instance.isBattle);
         }

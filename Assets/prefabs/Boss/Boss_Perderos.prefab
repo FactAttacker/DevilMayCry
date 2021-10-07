@@ -130,8 +130,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 3.85}
-  m_Center: {x: 0, y: 2.5, z: -1.75}
+  m_Size: {x: 5, y: 5, z: 4.5}
+  m_Center: {x: 0, y: 2.5, z: -0.5}
 --- !u!1 &4919061992997110377
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,8 +269,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 6, z: 5.5}
-  m_Center: {x: 0, y: 2.5, z: -1.75}
+  m_Size: {x: 6, y: 6, z: 6}
+  m_Center: {x: 0, y: 2.5, z: -0.5}
 --- !u!1 &4919061993164880339
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,7 +903,6 @@ GameObject:
   - component: {fileID: 4919061993693336050}
   - component: {fileID: 6436913129656721114}
   - component: {fileID: 3027813238013320970}
-  - component: {fileID: 3131462198796555932}
   m_Layer: 8
   m_Name: Boss_Perderos
   m_TagString: Boss
@@ -1162,18 +1161,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e27910eede8077142ba13a9a7549b1c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3131462198796555932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4919061993693336048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6920eb591903a148a6fd6530898f71f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4919061993737464676
@@ -2575,8 +2562,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4.5
-  m_Center: {x: 0, y: 0, z: 2.5}
+  m_Radius: 7
+  m_Center: {x: 0, y: 0, z: 4}
 --- !u!114 &6436913130086993038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2629,7 +2616,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8833013813793034830}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.166667, z: -0.4166667}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4919061993693336049}

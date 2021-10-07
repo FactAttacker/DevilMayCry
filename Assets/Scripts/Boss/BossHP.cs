@@ -36,13 +36,14 @@ public class BossHP : MonoBehaviour
             {
                 if (CurrHP / MaxHP <= damageRates[i] && damageAnimPosibleCounts[i] == 1)
                 {
-                    if(i == ultimateIndex)
+                    damageAnimPosibleCounts[i] = 0;
+
+                    if (i == ultimateIndex)
                     {
                         BossSystem.Instance.BossStateMachine.SetState(BossSystem.Instance.UltimateAttackState, true);
                         break;
                     }
                     Co_damaged = StartCoroutine(Co_Damaged());
-                    damageAnimPosibleCounts[i] = 0;
                     break;
                 }
             }

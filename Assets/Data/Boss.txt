@@ -1,1 +1,1 @@
-﻿[{"ID":0,"MaxHP":10000,"MoveSpeed":10.0,"PlayerDetectDistance":45.0}]
+﻿[{"ID":0,"MaxHP":25000,"MoveSpeed":10.0,"PlayerDetectDistance":52.0}]

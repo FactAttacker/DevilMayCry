@@ -17,20 +17,20 @@ public class BossEffectManager : MonoBehaviour
 
     #region Unity Life Cycle
 
-    //private void Awake()
-    //{
-    //    Object[] effects = Resources.LoadAll("Effect/BossEffect", typeof(GameObject));
-    //    bossEffects = new GameObject[effects.Length];
-    //    for (int i = 0; i < bossEffects.Length; i++)
-    //    {
-    //        bossEffects[i] = effects[i] as GameObject;
-    //    }
-        
-    //    for (int i = 0; i < effects.Length; i++)
-    //    {
-    //        print(effects[i].name);
-    //    }
-    //}
+    private void Awake()
+    {
+        Object[] effects = Resources.LoadAll("Effect/BossEffect", typeof(GameObject));
+        bossEffects = new GameObject[effects.Length];
+        for (int i = 0; i < bossEffects.Length; i++)
+        {
+            bossEffects[i] = effects[i] as GameObject;
+        }
+
+        for (int i = 0; i < effects.Length; i++)
+        {
+            print(effects[i].name);
+        }
+    }
 
     void Start()
     {

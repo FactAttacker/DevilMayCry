@@ -9,11 +9,15 @@ public class BossStateMachine : MonoBehaviour
 
     void Start()
     {
-        SetState(BossSystem.Instance.IdleState);
+        SetState(GetComponent<IdleState>());
     }
 
     public void SetState(BossState _nextState, bool _isReset = true)
     {
+        if(_nextState == null)
+        {
+            return;
+        }
         prevState = CurrState;
         prevState?.OnEnd();
         if(_isReset) prevState?.OnReset();

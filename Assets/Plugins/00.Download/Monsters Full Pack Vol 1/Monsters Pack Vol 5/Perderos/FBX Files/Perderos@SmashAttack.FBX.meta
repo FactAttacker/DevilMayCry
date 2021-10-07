@@ -521,7 +521,7 @@ ModelImporter:
       takeName: Take 001
       internalID: 0
       firstFrame: 0
-      lastFrame: 18
+      lastFrame: 34.4
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -545,61 +545,89 @@ ModelImporter:
         functionName: SetUltimateAttackSpeed
         data: 
         objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.5
+        floatParameter: 0.4
         intParameter: 0
         messageOptions: 0
-      - time: 0.33008894
+      - time: 0.092612
         functionName: SetUltimateAttackSpeed
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0.25
         intParameter: 0
         messageOptions: 0
-      - time: 0.4387123
-        functionName: SetUltimateAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.2
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.5131698
-        functionName: SetUltimateAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.15
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.61306965
-        functionName: SetUltimateAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.1
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.6793824
-        functionName: SetUltimateAttackSpeed
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.085
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.77051485
+      - time: 0.14910834
         functionName: SetUltimateAttackSpeed
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0.175
         intParameter: 0
         messageOptions: 0
-      - time: 0.8495959
+      - time: 0.20871437
         functionName: SetUltimateAttackSpeed
         data: 
         objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.25
+        floatParameter: 0.125
         intParameter: 0
         messageOptions: 0
-      - time: 0.7629428
-        functionName: OnUltimateAttackEffect
-        data: Metheo
+      - time: 0.27561092
+        functionName: SetUltimateAttackSpeed
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0.05
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.33284774
+        functionName: SetUltimateAttackSpeed
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0.035
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.36952475
+        functionName: SetUltimateAttackSpeed
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0.175
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.43870482
+        functionName: SetUltimateAttackSpeed
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0.35
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.49476624
+        functionName: SetUltimateAttackSpeed
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0.5
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.56470495
+        functionName: SetUltimateAttackSpeed
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0.8
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.715713
+        functionName: SetUltimateAttackSpeed
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0.375
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.85467756
+        functionName: SetUltimateAttackSpeed
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0.45
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.46775657
+        functionName: OnBossVoice
+        data: Boss-RushAttack1
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0

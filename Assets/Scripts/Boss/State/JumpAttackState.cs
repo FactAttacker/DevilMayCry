@@ -10,6 +10,7 @@ public class JumpAttackState : BossState
     Vector3 vezierVector0, vezierVector1, vezierVector2, vezierVector3;
     [SerializeField] float jumpHeight;
     [SerializeField] Transform targetPos;
+    [SerializeField] Transform effectTr;
     public override void OnAwake()
     {
 
@@ -74,7 +75,7 @@ public class JumpAttackState : BossState
             transform.position = VezierCurve(rate);
             yield return null;
         }
-        transform.position = Vector3.zero;
+        transform.position = targetPos.position;
         yield return null;
     }
 
@@ -101,7 +102,7 @@ public class JumpAttackState : BossState
 
     public void OnJumpAttackEffect(string _effectName)
     {
-        Vector3 tempPos = BossSystem.Instance.AttackColliderManager.ColliderArr[2].transform.position;
+        Vector3 tempPos = effectTr.position;
         tempPos.y = 0;
         BossSystem.Instance.BossAnimationEvents.OnEffect(_effectName, tempPos, Quaternion.identity);
     }

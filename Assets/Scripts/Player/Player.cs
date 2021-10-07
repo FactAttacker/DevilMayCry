@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameObject chargingCollider;
     //att
     float damage_Right = 300f;
     float damage_Left = 300f;
@@ -68,7 +69,7 @@ public class Player : MonoBehaviour
     public void Flying(float knucktime) 
     {
         anim.SetBool("MoveAttack", false);
-        if (flying) 
+        if (flying && states.die == false) 
         {
             CancelInvoke(nameof(EndFlying));
 
@@ -85,7 +86,7 @@ public class Player : MonoBehaviour
     }
 
 
-
+    PlayerState states;
     public AudioClip[] dante_Audio;
 
     void Start()
@@ -102,7 +103,7 @@ public class Player : MonoBehaviour
         myTransform = GetComponent<Transform>();
         sword = swordCollider.GetComponent<Sword>();
 
-
+        states = GetComponent<PlayerState>();
 
         boss = GameObject.Find("Boss_Perderos").transform;
         fixPosition= new Vector3(1, 0, 1);
@@ -111,9 +112,17 @@ public class Player : MonoBehaviour
 
    
     RaycastHit hit;
+    //public bool death = false;
     void Update()
     {
-        if (knuckBack == true)
+        //bool death = false;
+        if (states.die == true) 
+        {
+            anim.SetTrigger("Death");
+            //anim.ResetTrigger("Death");
+            //death = false;
+        }
+        if (knuckBack == true && states.die == false)
         {
             
             VoiceSoundManager.instatnce.OnDanteVoice("Dante-2");
@@ -123,13 +132,13 @@ public class Player : MonoBehaviour
             rb.AddForce(-transform.forward * 7f, ForceMode.Impulse);
         }
 
-        if (flyingBack == true) 
+        if (flyingBack == true && states.die == false) 
         {
             flyingBack = false;
             anim.SetTrigger("flyingBack");
 
         }
-        if ((GameManager.instance == null || GameManager.instance.isBattle) && flying == false)
+        if ((GameManager.instance == null || GameManager.instance.isBattle|| GameManager.instance.isPause) && flying == false && charging == false && states.die == false)
         {
             move();
             if (jumpPing == false) 
@@ -356,37 +365,53 @@ public class Player : MonoBehaviour
     {
         chargetime += Time.deltaTime;
         print(chargetime);
-        if (chargetime > 0.5f)
+        if (chargetime > 0.2f)
         {
             anim.SetBool("Charging", false);
             CancelInvoke("ChargeTime");
             chargetime = 0f;
             anim.SetTrigger("CharginAttack");
+            charging = false;
+        }
+        if (flying == true)
+        {
+            chargetime = 0f;
+            charging = false;
         }
     }
+    bool charging = false;
     void InputControl()
-    {      
-        anim.SetBool("MoveAttack", v!=0||h!=0);
-   
-        if (!flying) 
+    {
+        anim.SetBool("MoveAttack", v != 0 || h != 0);
+
+        if (!flying)
         {
-            if (Input.GetKeyDown(KeyCode.L)) 
+            if (sword == true) 
             {
-                anim.SetBool("Charging",true);
-                InvokeRepeating("ChargeTime", 0.1f,0.1f);
-                //anim.SetTrigger("CharginAttack");
-                //print(chargetime);  
+                if (Input.GetKeyDown(KeyCode.L))
+                {
+                    charging = true;
+                    //transform.LookAt(boss.transform.position);
+                    anim.SetBool("Charging", true);
+                    InvokeRepeating("ChargeTime", 0.1f, 0.1f);
+                    //anim.SetTrigger("CharginAttack");
+                    //print(chargetime);  
+                   
+                }
+                if (Input.GetKeyUp(KeyCode.L))
+                {
+                    charging = false;
+                    CancelInvoke("ChargeTime");
+                    anim.SetBool("Charging", false);
+                    chargetime = 0f;
+                }
             }
-            if (Input.GetKeyUp(KeyCode.L)) 
-            {
-                CancelInvoke("ChargeTime");
-                anim.SetBool("Charging", false);
-                chargetime = 0f;
-            }
+            
 
 
             if (Input.GetKeyDown(KeyCode.J))
             {
+                
                 //hook.SetActive(true);
                 //VoiceSoundManager.instatnce.OnDanteVoice("Dante-HoHou");
                 anim.SetTrigger("loop");
@@ -394,27 +419,27 @@ public class Player : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.K))
             {
-                
+
                 swordEffect.SetActive(true);
                 swordCollider.SetActive(true);
                 if (nextAttack)
                 {
-                 
+
                     switch (attackState)
                     {
                         case FighterAttackState.Attack1:
-                           
+
                             if (outPutSword == true)
                             {
                                 anim.SetTrigger("firstAttack");
                                 //VoiceSoundManager.instatnce.OnDanteVoice("Dante-0");
                                 //print(outPutSword);
                             }
-                            else if(outPutSword == false)
+                            else if (outPutSword == false)
                             {
                                 anim.SetTrigger("outPutSword");
                                 StartCoroutine(OutPutSword());
-                               
+
                             }
                             //Sound
                             //VoiceSoundManager.instatnce.OnDanteVoice("Dante-0");
@@ -424,9 +449,9 @@ public class Player : MonoBehaviour
                             //Attack Change
                             nextAttack = false;
                             attackState = FighterAttackState.Attack2;
-                            StartCoroutine("Delay");
+                            StartCoroutine(Delay());
                             Invoke(nameof(ResetAttackState), 1f);
-                         
+
                             break;
 
                         case FighterAttackState.Attack2:
@@ -437,10 +462,10 @@ public class Player : MonoBehaviour
                             nextAttack = false;
                             sword.damage = damage_Left;
                             attackState = FighterAttackState.Attack3;
-                            StartCoroutine("Delay");
+                            StartCoroutine(Delay());
 
                             Invoke(nameof(ResetAttackState), 1f);
-                           
+
                             break;
                         case FighterAttackState.Attack3:
                             //VoiceSoundManager.instatnce.OnDanteVoice("Dante-Chua");
@@ -450,9 +475,9 @@ public class Player : MonoBehaviour
                             nextAttack = false;
                             sword.damage = damage_Forward;
                             attackState = FighterAttackState.Attack4;
-                            StartCoroutine("Delay");
+                            StartCoroutine(Delay());
                             Invoke(nameof(ResetAttackState), 1f);
-                           
+
                             break;
 
                         case FighterAttackState.Attack4:
@@ -463,11 +488,11 @@ public class Player : MonoBehaviour
                             anim.SetTrigger("lastAttack");
                             StartCoroutine("JumpAttack");
                             nextAttack = false;
-                            sword.damage = damage_Up;                          
+                            sword.damage = damage_Up;
                             attackState = FighterAttackState.hiddenAttack;
-                            StartCoroutine("Delay");
+                            StartCoroutine(Delay());
                             Invoke(nameof(ResetAttackState), 1f);
-                            
+
                             break;
 
                         case FighterAttackState.hiddenAttack:
@@ -481,11 +506,12 @@ public class Player : MonoBehaviour
                             nextAttack = false;
                             attackState = FighterAttackState.Attack1;
                             sword.damage = damage_Down;
-                            StartCoroutine("Delay");
+                            //StartCoroutine("Delay");
+                            StartCoroutine(Delay(0.8f));
                             //StartCoroutine(InputSword());
                             outPutSword = false;
-                            Invoke(nameof(ResetAttackState), 1f);
-                            
+                            //Invoke(nameof(ResetAttackState), 1f);
+
                             break;
                     }
                 }
@@ -493,12 +519,12 @@ public class Player : MonoBehaviour
             //anim.SetBool("MoveAttack", h != 0 || v != 0);
         }
 
-       
+
     }
-    IEnumerator Delay()
+    IEnumerator Delay(float delaytime = 0.3f)
     {
         float check = 0;
-        float delaytime = 0.3f;
+        //float delaytime = 0.3f;
         while (check < delaytime)
         {
             yield return null;

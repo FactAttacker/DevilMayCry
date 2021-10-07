@@ -205,6 +205,7 @@ public class GameOption : MonoBehaviour
             {
                 OpenIndexModal(1);
                 Time.timeScale = 0;
+                VoiceSoundManager.instatnce.OnAllControlSound(VoiceSoundManager.AllSoundControlType.PAUSE);
                 GameManager.instance.isBattle = false;
                 //GameManager.instance.isPause = true; //추후 isPause로 플레이어 움직임 정지
             }

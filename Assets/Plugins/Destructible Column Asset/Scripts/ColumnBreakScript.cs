@@ -24,7 +24,12 @@ public class ColumnBreakScript : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name.Contains("BossHitCollider")) BreakColumn();
+		Debug.Log("1 : "+other.name);
+		if (other.gameObject.layer == LayerMask.NameToLayer("Boss"))
+		{
+			Debug.Log("2 : " + other.name);
+			BreakColumn();
+		}
     }
 
     void BreakColumn()
@@ -37,11 +42,13 @@ public class ColumnBreakScript : MonoBehaviour {
 
 	void Update()
 	{
-		//this is a placeholder activation for breaking the column when the space key is pressed
-		if (!isBroken) {
-			if (Input.GetKeyDown (KeyCode.Space)) {
-				BreakColumn ();
-			}
-		}
-	}
+        //this is a placeholder activation for breaking the column when the space key is pressed
+        if (!isBroken)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                BreakColumn();
+            }
+        }
+    }
 }

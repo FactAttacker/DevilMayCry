@@ -81,10 +81,21 @@ public class VoiceSoundManager : MonoBehaviour
 
     public Dictionary<string, AudioClip> bossVoiceDict = new Dictionary<string, AudioClip>();
     public Dictionary<string, AudioClip> danteVoiceDict = new Dictionary<string, AudioClip>();
+
+    public enum AllSoundControlType
+    {
+        NONE,
+        PLAY,
+        STOP,
+        PAUSE
+    }
+    public AllSoundControlType soundControlType;
+
     //Sound Delegate
     delegate void SoundDele();
     SoundDele effectSoundFunc;
     SoundDele bgmSoundFunc;
+    SoundDele allSoundFunc;
 
 
     void Start()
@@ -127,6 +138,43 @@ public class VoiceSoundManager : MonoBehaviour
         }
     }
 
+    public void AllPauseSound()
+    {
+        allSoundFunc();
+    }
+    public void AllStopSound()
+    {
+        allSoundFunc();
+    }
+    void SetAllControlSound(AudioSource _audio)
+    {
+        allSoundFunc += () =>
+        {
+            if (_audio != null)
+            {
+                switch (soundControlType)
+                {
+                    case AllSoundControlType.PLAY:
+                        _audio.UnPause();
+                        break;
+                    case AllSoundControlType.PAUSE:
+                        _audio.Pause();
+                        break;
+                    case AllSoundControlType.STOP:
+                        if(_audio.isPlaying) _audio.Stop();
+                        break;
+                }
+            }
+        };
+    }
+    public void OnAllControlSound(AllSoundControlType type)
+    {
+        soundControlType = type;
+        allSoundFunc();
+    }
+
+
+
     /// <summary>
     /// BGM Audio Clip Change
     /// </summary>
@@ -155,8 +203,8 @@ public class VoiceSoundManager : MonoBehaviour
     /// <param name="audio"></param>
     public void SetEffectSound(AudioSource audio)
     {
-
         if(audio!=null)audio.volume = effectVolum;
+        SetAllControlSound(audio);
         effectSoundFunc += () =>
         {
             if(audio != null) audio.volume = effectVolum;
@@ -168,7 +216,8 @@ public class VoiceSoundManager : MonoBehaviour
     /// <param name="audio"></param>
     public void SetBGMSound(AudioSource audio)
     {
-        //audio.volume = bgmVolum;
+        if (audio != null) audio.volume = bgmVolum;
+        SetAllControlSound(audio);
         bgmSoundFunc += () =>
         {
             if(audio != null) audio.volume = bgmVolum;

@@ -4,40 +4,74 @@ using UnityEngine;
 
 public class Scenemachine_Player : MonoBehaviour
 {
+    public static Scenemachine_Player instance;
+    private void Awake()
+    {
+        if (instance != null) return;
+        instance = this;
+    }
+
+    //걷는 타겟위치
     public Transform destination;
-    public float walkSpeed;
+    //걷는속도
+    public float walkSpeed = 1f;
     Animator anim;
     public GameObject swordCase;
     public GameObject katana;
+
+    //도는 속도
     public float rot_Speed = 1.5f;
+    //얼마큼 돌지
     public float wantedRot_value = 250f;
-    private void Start()
+
+    public float stopTime = 3f;
+
+    [Header("In Sword Use")]
+    public bool inputSword = false;
+    bool isTurn = false;
+
+    void Start()
     {
         anim = GetComponent<Animator>();
-        walkSpeed = 1f;
+        Invoke(nameof(OnInputSword), 1.3f * Time.deltaTime);
     }
-    bool fine = true;
+    
+ 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
+       
+        if (transform.position != destination.position)
         {
-            
-            anim.SetTrigger("walkWithinput");
-            StartCoroutine(InputSword());
+            transform.position = Vector3.MoveTowards(transform.position, destination.position, walkSpeed * Time.deltaTime);
         }
-        AloneLeg(fine);
-        transform.position = Vector3.MoveTowards(transform.position, destination.position, walkSpeed * Time.deltaTime);
-        if (Vector3.Distance(transform.position,destination.position)<0.1) 
+        if(Vector3.Distance(transform.position, destination.position) < 0.1)
         {
-            anim.SetTrigger("Stop");
-            StartCoroutine(StopTime());
+            transform.position = destination.position;
+            OnTurn();
         }
 
+        //if (Vector3.Distance(transform.position,destination.position)<0.2)
+        
     }
 
-    IEnumerator StopTime() 
+    void OnInputSword()
     {
-        yield return new WaitForSeconds(3f);
+        inputSword = false;
+        anim.SetTrigger("walkWithinput");
+        AloneLeg(true);
+        StartCoroutine(CoInputSword());
+    }
+    void OnTurn()
+    {
+        anim.SetTrigger("Stop");
+        StartCoroutine(CoStopTime());
+    }
+
+    IEnumerator CoStopTime() 
+    {
+        yield return new WaitForSeconds(stopTime);
+        CinematicManager.instance.StopSound();
+
         anim.SetTrigger("Turn");
         float lerpAngle = Mathf.LerpAngle(transform.eulerAngles.y, wantedRot_value, rot_Speed * Time.deltaTime);
         //transform.Rotate(0f, angle, 0.0f);
@@ -45,7 +79,7 @@ public class Scenemachine_Player : MonoBehaviour
         transform.eulerAngles = new Vector3(0, lerpAngle, 0);
     }
 
-    public IEnumerator InputSword() 
+    public IEnumerator CoInputSword() 
     {             
         yield return new WaitForSeconds(0.4f); 
         yield return null;
@@ -53,8 +87,8 @@ public class Scenemachine_Player : MonoBehaviour
         katana.transform.localPosition = new Vector3(0.01705508f, -0.4062368f, -0.143f);
         katana.transform.localEulerAngles = new Vector3(0f, -180f, 20f);
         //anim.SetBool("inputSword", true);
-        fine = false;
-        anim.SetBool("AloneLeg", fine);
+        
+        anim.SetBool("AloneLeg", false);
         
     }
     void AloneLeg(bool finish) 

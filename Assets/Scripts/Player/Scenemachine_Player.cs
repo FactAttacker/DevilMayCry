@@ -14,8 +14,8 @@ public class Scenemachine_Player : MonoBehaviour
     //걷는 타겟위치
     public Transform destination;
     //걷는속도
-    public float walkSpeed = 1f;
-    Animator anim;
+    public float walkSpeed = 1.5f;
+    public Animator anim;
     public GameObject swordCase;
     public GameObject katana;
 
@@ -33,44 +33,61 @@ public class Scenemachine_Player : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        Invoke(nameof(OnInputSword), 1.3f * Time.deltaTime);
+        //Invoke(nameof(OnInputSword), 1.3f * Time.deltaTime);
     }
-    
- 
-    void Update()
+
+    /// <summary>
+    /// Walking
+    /// </summary>
+    public void OnWalking()
     {
-       
-        if (transform.position != destination.position)
+        StartCoroutine(CoOnWalking());
+    }
+    IEnumerator CoOnWalking()
+    {
+        bool isWalk = true;
+        while (isWalk)
         {
-            transform.position = Vector3.MoveTowards(transform.position, destination.position, walkSpeed * Time.deltaTime);
+            if (transform.position != destination.position)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, destination.position, walkSpeed * Time.deltaTime);
+            }
+            if(Vector3.Distance(transform.position, destination.position) < 0.1)
+            {
+                transform.position = destination.position;
+                OnTurn();
+                isWalk = false;
+            }
+            yield return null;
         }
-        if(Vector3.Distance(transform.position, destination.position) < 0.1)
-        {
-            transform.position = destination.position;
-            OnTurn();
-        }
-
-        //if (Vector3.Distance(transform.position,destination.position)<0.2)
-        
     }
 
-    void OnInputSword()
+    public void OnInputSword()
     {
         inputSword = false;
         anim.SetTrigger("walkWithinput");
         AloneLeg(true);
         StartCoroutine(CoInputSword());
     }
-    void OnTurn()
+    IEnumerator CoInputSword()
+    {
+        yield return null;
+        katana.transform.SetParent(swordCase.transform, false);
+        katana.transform.localPosition = new Vector3(0.01705508f, -0.4062368f, -0.143f);
+        katana.transform.localEulerAngles = new Vector3(0f, -180f, 20f);
+        //anim.SetBool("inputSword", true);
+
+        anim.SetBool("AloneLeg", false);
+    }
+
+    public void OnTurn()
     {
         anim.SetTrigger("Stop");
         StartCoroutine(CoStopTime());
     }
-
     IEnumerator CoStopTime() 
     {
         yield return new WaitForSeconds(stopTime);
-        CinematicManager.instance.StopSound();
 
         anim.SetTrigger("Turn");
         float lerpAngle = Mathf.LerpAngle(transform.eulerAngles.y, wantedRot_value, rot_Speed * Time.deltaTime);
@@ -79,19 +96,7 @@ public class Scenemachine_Player : MonoBehaviour
         transform.eulerAngles = new Vector3(0, lerpAngle, 0);
     }
 
-    public IEnumerator CoInputSword() 
-    {             
-        yield return new WaitForSeconds(0.4f); 
-        yield return null;
-        katana.transform.SetParent(swordCase.transform, false);
-        katana.transform.localPosition = new Vector3(0.01705508f, -0.4062368f, -0.143f);
-        katana.transform.localEulerAngles = new Vector3(0f, -180f, 20f);
-        //anim.SetBool("inputSword", true);
-        
-        anim.SetBool("AloneLeg", false);
-        
-    }
-    void AloneLeg(bool finish) 
+    public void AloneLeg(bool finish)
     {
         anim.SetBool("AloneLeg", finish);
     }

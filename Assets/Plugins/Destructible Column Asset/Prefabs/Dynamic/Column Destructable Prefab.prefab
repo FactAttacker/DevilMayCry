@@ -1121,7 +1121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4120534650262808}
-  - component: {fileID: 114906697242487522}
+  - component: {fileID: 511021843606363945}
   m_Layer: 0
   m_Name: Column Destructable Prefab
   m_TagString: Untagged
@@ -1145,7 +1145,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114906697242487522
+--- !u!114 &511021843606363945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1154,7 +1154,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1737760488130228}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77c68ca601f73624084fa9941517f712, type: 3}
+  m_Script: {fileID: 11500000, guid: 605dd27d0776b4625a2bd3fbc58a7ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unbrokenColumn: {fileID: 1660022287205452}

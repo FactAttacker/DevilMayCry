@@ -4,28 +4,53 @@ using UnityEngine;
 
 public class BossCinematic : MonoBehaviour
 {
-    public static bool isNext = false;
+    [System.Serializable]
+    public class Story
+    {
+        public enum Type
+        {
+            NONE,
+            JUMP,
+            ROAR
+        }
+        public Type type;
+        public Transform tr;
+        public bool isNext;
+    }
+    public Story[] story;
 
     private void Start()
     {
         StartCoroutine(Co_BossCinematic());
     }
 
-    public IEnumerator Co_BossCinematic()
+    void OnJump(Transform tr)
     {
-        IdleState idleState = GetComponent<IdleState>();
+        TryGetComponent(out JumpAttackState jump);
+        if(tr != null ) jump.targetPos = tr;
+        BossSystem.Instance.BossStateMachine.SetState(jump);
+    }
 
-        yield return new WaitUntil(() => isNext);
-        isNext = false;
-        BossSystem.Instance.BossStateMachine.SetState(GetComponent<JumpAttackState>());
-
-        yield return new WaitUntil(() => isNext);
-        isNext = false;
+    void OnRoar()
+    {
         BossSystem.Instance.BossStateMachine.SetState(GetComponent<RoarState>());
     }
 
-    public void IsNext()
+    public IEnumerator Co_BossCinematic()
     {
-        isNext = true;
+        yield return new WaitUntil( () => story.Length != 0);
+        foreach(Story temp in story)
+        {
+            yield return new WaitUntil(() => temp.isNext);
+            switch (temp.type)
+            {
+                case Story.Type.JUMP:
+                    OnJump(temp.tr);
+                    break;
+                case Story.Type.ROAR:
+                    OnRoar();
+                    break;
+            }
+        }
     }
 }

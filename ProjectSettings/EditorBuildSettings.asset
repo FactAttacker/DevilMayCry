@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Battle.unity
     guid: 94683eb1f2c6f421b9e076dcafab3c84
   - enabled: 1
+    path: Assets/Scenes/Map.unity
+    guid: 029f78beec8594db08e6e5078e613fc8
+  - enabled: 1
     path: Assets/Scenes/Battle-CameraProcessing.unity
     guid: 5decf9127feb44dfeabca88de9e45e28
   m_configObjects: {}

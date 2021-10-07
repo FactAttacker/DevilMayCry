@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ColumnBreakScript : MonoBehaviour {
 
-	
 	public GameObject unbrokenColumn;
 	public GameObject brokenColumn;
 

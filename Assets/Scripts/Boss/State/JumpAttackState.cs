@@ -9,7 +9,7 @@ public class JumpAttackState : BossState
     public bool isJumpAtk = false;
     Vector3 vezierVector0, vezierVector1, vezierVector2, vezierVector3;
     [SerializeField] float jumpHeight;
-    [SerializeField] Transform targetPos;
+    public Transform targetPos;
     [SerializeField] Transform effectTr;
     public override void OnAwake()
     {
@@ -58,8 +58,8 @@ public class JumpAttackState : BossState
 
     IEnumerator Co_Jump()
     {
-        // 베지어 곡선을 이용한 점프 구현
-        // 베지어 곡선의 중간쯤 왔을 때, isJumpAtk을 true로 변경
+        // ?????? ?????? ?????? ???? ????
+        // ?????? ?????? ?????? ???? ??, isJumpAtk?? true?? ????
         float rate = 0;
         while(rate < 0.6f)
         {
@@ -127,6 +127,6 @@ public class JumpAttackState : BossState
 
     public void OnV()
     {
-        print("나 소리 나온당");
+        print("?? ???? ??????");
     }
 }

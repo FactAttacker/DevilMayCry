@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &235535980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 235535981}
+  m_Layer: 0
+  m_Name: HookAttachPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &235535981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235535980}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3287548428571538053}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &370139772
 GameObject:
   m_ObjectHideFlags: 0
@@ -4930,12 +4960,56 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829929946}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.49430165, y: -0.10633111, z: 1.4133348}
+  m_LocalPosition: {x: -0.49430165, y: 0, z: 1}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 2320858500541788251}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1721223059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1721223060}
+  - component: {fileID: 1721223061}
+  m_Layer: 0
+  m_Name: AttachPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1721223060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721223059}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.4943019, y: 1.29, z: 2.09}
+  m_LocalScale: {x: 0.6666667, y: 0.66666675, z: 0.6666666}
+  m_Children: []
+  m_Father: {fileID: 2320858500541788251}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1721223061
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721223059}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4569177877867500
 GameObject:
   m_ObjectHideFlags: 0
@@ -7434,6 +7508,65 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &211677618
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2951206889542931278}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 58e01ac0892ba7045aaea1b0eeab98b3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &211677619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2951206889542931278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3a75ebaaa03d94180c577cee7363ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterEffect: {fileID: 1197813074179366, guid: 046ce526861780046b41c1edc1917b71, type: 3}
+  CharacterAttachPoint: {fileID: 2575807934195042804}
+  CharacterEffect_DestroyTime: 10
+  CharacterEffect2: {fileID: 0}
+  CharacterAttachPoint2: {fileID: 1721223060}
+  CharacterEffect2_DestroyTime: 10
+  MainEffect: {fileID: 1111292484735420, guid: 38c27743f7933674db83dd1c6cd779fd, type: 3}
+  AttachPoint: {fileID: 1721223060}
+  OverrideAttachPointToTarget: {fileID: 0}
+  Effect_DestroyTime: 10
+  AdditionalEffect: {fileID: 0}
+  AdditionalEffectAttachPoint: {fileID: 0}
+  AdditionalEffect_DestroyTime: 10
+  IsMobile: 0
+--- !u!114 &211677622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2951206889542931278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e262fd48918a82f4f8fbe9a7eb03f931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attachPoint: {fileID: 1721223060}
+  boss: {fileID: 0}
 --- !u!114 &7497975427720280991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7765,6 +7898,7 @@ Transform:
   - {fileID: 1904175750202439131}
   - {fileID: 829929947}
   - {fileID: 3287548428571538053}
+  - {fileID: 1721223060}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8369,6 +8503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c6021479c2d01418dba64ba27d45c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chargingCollider: {fileID: 0}
   knuckBack: 0
   flyingBack: 0
   flying: 0
@@ -13306,13 +13441,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3134092122249849569}
     - target: {fileID: 8262053043077228795, guid: 08e2c88cd20c39349b9a2e41401abb5a, type: 3}
+      propertyPath: attachPoint
+      value: 
+      objectReference: {fileID: 235535981}
+    - target: {fileID: 8262053043077228795, guid: 08e2c88cd20c39349b9a2e41401abb5a, type: 3}
       propertyPath: returnPosition
       value: 
       objectReference: {fileID: 1904175750202439131}
     - target: {fileID: 8680484275046402574, guid: 08e2c88cd20c39349b9a2e41401abb5a, type: 3}
       propertyPath: MainEffect
       value: 
-      objectReference: {fileID: 1935630441017222, guid: a8654bb295e3b014294c1cb4e27d54a6, type: 3}
+      objectReference: {fileID: 1748139164946814, guid: 80460394d124443448e048694575217d, type: 3}
+    - target: {fileID: 8680484275046402574, guid: 08e2c88cd20c39349b9a2e41401abb5a, type: 3}
+      propertyPath: AttachPoint
+      value: 
+      objectReference: {fileID: 235535981}
     - target: {fileID: 8680484275046402574, guid: 08e2c88cd20c39349b9a2e41401abb5a, type: 3}
       propertyPath: CharacterEffect
       value: 

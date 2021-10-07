@@ -11,6 +11,8 @@ using UnityEngine.UI;
 public class PlayerState : MonoBehaviour
 
 {
+    public static PlayerState instatnce;
+    public bool die = false;
 
     #region 변수
 
@@ -40,7 +42,6 @@ public class PlayerState : MonoBehaviour
     #region 속성
 
 
-
     public float CurrHP
 
     {
@@ -50,13 +51,15 @@ public class PlayerState : MonoBehaviour
         private set
 
         {
-
+            
             currHP = value;
 
-           
-
+            if (currHP <= 0)
+            {
+                die = true;
+            }
             RefreshHPBar(value);
-
+            print(currHP +"Hp");
         }
 
     }

@@ -20,7 +20,6 @@ public class Sword : MonoBehaviour
         {
             
             collision.gameObject.GetComponent<BossHP>().TakeDamage = damage;
-            print("demage");
 
         }
     }

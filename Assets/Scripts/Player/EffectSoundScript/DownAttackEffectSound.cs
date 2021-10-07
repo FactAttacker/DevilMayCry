@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DownAttackEffectSound : MonoBehaviour
 {
-    public GameObject ActivatedGameObject;
     public float Delay = 1;
 
     private float currentTime = 0;
@@ -19,7 +18,6 @@ public class DownAttackEffectSound : MonoBehaviour
     // Use this for initialization
     void OnEnable()
     {
-        ActivatedGameObject.SetActive(false);
         isEnabled = false;
         // Invoke("ActivateGO", Delay);
         currentTime = 0;
@@ -31,7 +29,6 @@ public class DownAttackEffectSound : MonoBehaviour
         if (!isEnabled && currentTime >= Delay)
         {
             isEnabled = true;
-            ActivatedGameObject.SetActive(true);
 
         }
     }

@@ -16081,6 +16081,26 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7497975427720280991, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: swordSoundClip.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497975427720280991, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: swordSoundClip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 014fedc212a46a54994e1b69d29ca9cd, type: 3}
+    - target: {fileID: 7497975427720280991, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: swordSoundClip.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0a2f74acf0c04e945bec2970a017a134, type: 3}
+    - target: {fileID: 7497975427720280991, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: swordSoundClip.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 568e60f239691a340b6aae45355cbfa5, type: 3}
+    - target: {fileID: 7497975427720280991, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: swordSoundClip.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 568e60f239691a340b6aae45355cbfa5, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
 --- !u!4 &484771561 stripped

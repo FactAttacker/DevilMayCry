@@ -903,6 +903,7 @@ GameObject:
   - component: {fileID: 4919061993693336050}
   - component: {fileID: 6436913129656721114}
   - component: {fileID: 3027813238013320970}
+  - component: {fileID: 5498417679357533058}
   m_Layer: 8
   m_Name: Boss_Perderos
   m_TagString: Boss
@@ -1097,6 +1098,7 @@ MonoBehaviour:
   isJumpAtk: 0
   jumpHeight: 300
   targetPos: {fileID: 0}
+  effectTr: {fileID: 0}
 --- !u!114 &2795666703896730589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1161,6 +1163,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e27910eede8077142ba13a9a7549b1c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5498417679357533058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4919061993693336048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6920eb591903a148a6fd6530898f71f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4919061993737464676

@@ -30,6 +30,7 @@ public class UltimateAttackState : BossState
     {
         GetComponent<BossRotate>().Co_RotateToPlayer();
 
+        CameraManager.instance.currentTarget = CameraManager.TargetType.PLAYER;
         BossSystem.Instance.Animator.SetTrigger("UltimateAttack");
         yield return new WaitUntil(() => BossSystem.Instance.Animator.GetCurrentAnimatorStateInfo(0).IsName("Ultimate Attack State"));
         OnUltimateAttackEffect("EnergyExplosion");
@@ -37,9 +38,9 @@ public class UltimateAttackState : BossState
         float tempDist = Mathf.Clamp(boss_DetectPlayerAndCalcDistance.distance - 30, 1f, 30f);
         float damage = tempDist <= 50 ? (GlobalState.bossAttackList[4].Damage / tempDist) : 0; // 플레이어와의 거리에 비례해서 데미지를 주는 공식을 짠다.
         boss_DetectPlayerAndCalcDistance.playerTr.GetComponent<PlayerState>().TakeDamage = damage;
-
+        CameraManager.instance.currentTarget = CameraManager.TargetType.BOSS;
         BossSystem.Instance.Boss_DetectPlayerAndCalcDistance.playerScript.flyingBack = true;
-        print(tempDist);
+        BossSystem.Instance.BossStateMachine.SetState(BossSystem.Instance.IdleState);
         yield return null;
     }
 

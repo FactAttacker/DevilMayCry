@@ -32,6 +32,7 @@ public class BossHP : MonoBehaviour
         private set
         {
             currHP = value;
+
             for (int i = 0; i < damageRates.Length; i++)
             {
                 if (CurrHP / MaxHP <= damageRates[i] && damageAnimPosibleCounts[i] == 1)
@@ -47,8 +48,16 @@ public class BossHP : MonoBehaviour
                     break;
                 }
             }
+
             if (hpBar == null || damagedHPBar == null) return;
             RefreshHPBar(value);
+
+            if (GameManager.instance.isBattle && CurrHP <= 0)
+            {
+                print("µà±Ý");
+                BossSystem.Instance.BossStateMachine.SetState(GetComponent<DeathState>());
+                return;
+            }
         }
     }
     float currHP;

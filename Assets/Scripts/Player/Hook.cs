@@ -112,7 +112,7 @@ public class Hook : MonoBehaviour
     {
         if (collision.gameObject.tag == "Boss")
         {
-            //CameraManager.instance.currentCamera = CameraManager.CameraType.ZOOM_HOCK;
+            CameraManager.instance.currentCamera = CameraManager.CameraType.ZOOM_HOCK;
             //Instantiate(effect_Electronic_attach);
             //wall = collision.gameObject;
             enemyHooked = true;

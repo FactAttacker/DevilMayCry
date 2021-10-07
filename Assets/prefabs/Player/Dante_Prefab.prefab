@@ -7579,11 +7579,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d7456aae8fbfd4baa84e69387eb05e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  danteSay: 0
   swordAudio: {fileID: 0}
   swordSoundClip:
-  - {fileID: 8300000, guid: 65586d1d4af4a6749af19fab11d25eba, type: 3}
-  - {fileID: 8300000, guid: 94de69e1aba84a04da53af01aa945211, type: 3}
-  - {fileID: 8300000, guid: a7eddd4f970dc4a4d8b53d2b50e48b91, type: 3}
+  - {fileID: 8300000, guid: 014fedc212a46a54994e1b69d29ca9cd, type: 3}
+  - {fileID: 8300000, guid: 568e60f239691a340b6aae45355cbfa5, type: 3}
+  - {fileID: 8300000, guid: 0a2f74acf0c04e945bec2970a017a134, type: 3}
   - {fileID: 8300000, guid: 1671b0e6a42d183429e2c10c0efed317, type: 3}
   - {fileID: 8300000, guid: 708dd594a1d28564cbfdc856a5d05e25, type: 3}
   - {fileID: 8300000, guid: 1d22e4daf9a4b81419a8f7ef685cce1b, type: 3}
@@ -8545,11 +8546,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca5ef2b30a3e844580c1477e4fdf9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  die: 0
   hpBar: {fileID: 0}
   damagedHPBar: {fileID: 0}
   refreshSpeed: 1
   refreshWaitTime: 0.1
-  maxHP: 1000
+  maxHP: 10000
 --- !u!114 &994388775
 MonoBehaviour:
   m_ObjectHideFlags: 0

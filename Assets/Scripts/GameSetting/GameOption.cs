@@ -103,7 +103,7 @@ public class GameOption : MonoBehaviour
                 break;
             case 2://Creator
                 modal.boxes[i - 1].box.transform.Find("Text").TryGetComponent(out Text text);
-                text.text = $"PACK <b><color=#C12C20>D</color></b>O HYUN\n"
+                text.text = $"PARK <b><color=#C12C20>D</color></b>O HYUN\n"
                            + "LEE SEUNG <b><color=#C12C20>M</color></b>IN\n"
                            + "YOO HYUN <b><color=#C12C20>C</color></b>HANG";
                 break;

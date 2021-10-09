@@ -124,8 +124,7 @@ public class GameOption : MonoBehaviour
                 foreach (Modal.Box content in modal.boxes) content.box.SetActive(false);
                 modal.modalObj.SetActive(false);
                 if (SceneManager.GetActiveScene().buildIndex != 0){
-                    GameManager.instance.isBattle = true;
-                    GameManager.instance.isPause = true; //추후 isPause로 플레이어 움직임 정지
+                    GameManager.instance.isPause = false; //추후 isPause로 플레이어 움직임 정지
                     Time.timeScale = 1;
                 }
             }
@@ -206,8 +205,7 @@ public class GameOption : MonoBehaviour
                 OpenIndexModal(1);
                 Time.timeScale = 0;
                 VoiceSoundManager.instatnce.OnAllControlSound(VoiceSoundManager.AllSoundControlType.PAUSE);
-                GameManager.instance.isBattle = false;
-                GameManager.instance.isPause = false; //추후 isPause로 플레이어 움직임 정지
+                GameManager.instance.isPause = true; //추후 isPause로 플레이어 움직임 정지
             }
         }
     }

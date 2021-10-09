@@ -98,12 +98,12 @@ public class CameraManager : MonoBehaviour
     
     public void OnTargetLook(TargetType type)
     {
-        Transform target = type == TargetType.BOSS ? bossObj.transform : playerObj.transform;
-        Vector3 vec = target.position - transform.position;
-        vec.Normalize();
-
         if(type == TargetType.BOSS)
         {
+            Transform target = type == TargetType.BOSS ? bossObj.transform : playerObj.transform;
+            Vector3 vec = target.position - transform.position;
+            vec.Normalize();
+
             Quaternion q = Quaternion.LookRotation(vec);
             transform.rotation = q;
             _camera.rotation = q;
@@ -240,10 +240,10 @@ public class CameraManager : MonoBehaviour
 
     void Update()
     {
+        OnTargetLook(currentTarget);
         switch (currentCamera)
         {
             case CameraType.FOLLWER:
-                OnTargetLook(currentTarget);
                 //transform.position = Vector3.MoveTowards(transform.position, playerObj.transform.position, 0.7f);
                 break;
             case CameraType.ZOOM_IN:

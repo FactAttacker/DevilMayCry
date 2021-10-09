@@ -121,8 +121,8 @@ public class Effect16_1 : MonoBehaviour
                 }
             if (raycastHit.transform.gameObject.tag == "Boss")
             {
-                Destroy(raycastHit.transform.gameObject);
-                raycastHit.transform.gameObject.GetComponent<BossHP>().TakeDamage = 500;
+                //Destroy(raycastHit.transform.gameObject);
+                BossSystem.Instance.BossHP.TakeDamage = 500;
             }
         }
         if (RealTimeUpdateRaycast)

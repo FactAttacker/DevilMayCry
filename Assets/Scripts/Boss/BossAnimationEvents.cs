@@ -13,6 +13,7 @@ public class BossAnimationEvents : MonoBehaviour
     }
 
     public void OnBossVoice(string str) => VoiceSoundManager.instatnce.OnBossVoice(str);
+    public void OnDanteVoice(string str) => VoiceSoundManager.instatnce.OnDanteVoice(str);
 
     public void OnEffect(string _effectName)
     {

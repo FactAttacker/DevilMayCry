@@ -150,21 +150,21 @@ public class VoiceSoundManager : MonoBehaviour
     {
         allSoundFunc += () =>
         {
-            if (_audio != null)
-            {
-                switch (soundControlType)
-                {
-                    case AllSoundControlType.PLAY:
-                        _audio.UnPause();
-                        break;
-                    case AllSoundControlType.PAUSE:
-                        _audio.Pause();
-                        break;
-                    case AllSoundControlType.STOP:
-                        if(_audio.isPlaying) _audio.Stop();
-                        break;
-                }
-            }
+            //if (_audio != null)
+            //{
+            //    switch (soundControlType)
+            //    {
+            //        case AllSoundControlType.PLAY:
+            //            _audio.UnPause();
+            //            break;
+            //        case AllSoundControlType.PAUSE:
+            //            _audio.Pause();
+            //            break;
+            //        case AllSoundControlType.STOP:
+            //            if (_audio.isPlaying) _audio.Stop();
+            //            break;
+            //    }
+            //}
         };
     }
     public void OnAllControlSound(AllSoundControlType type)

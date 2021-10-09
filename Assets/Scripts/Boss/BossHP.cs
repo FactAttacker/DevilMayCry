@@ -54,8 +54,8 @@ public class BossHP : MonoBehaviour
 
             if (GameManager.instance.isBattle && CurrHP <= 0)
             {
-                print("µà±Ý");
-                BossSystem.Instance.BossStateMachine.SetState(GetComponent<DeathState>());
+                CameraManager.instance.currentTarget = CameraManager.TargetType.PLAYER;
+                CameraManager.instance.currentCamera = CameraManager.CameraType.ZOOM_IN;
                 return;
             }
         }

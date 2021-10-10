@@ -103,7 +103,7 @@ public class GameOption : MonoBehaviour
                 break;
             case 2://Creator
                 modal.boxes[i - 1].box.transform.Find("Text").TryGetComponent(out Text text);
-                text.text = $"PACK <b><color=#C12C20>D</color></b>O HYUN\n"
+                text.text = $"PARK <b><color=#C12C20>D</color></b>O HYUN\n"
                            + "LEE SEUNG <b><color=#C12C20>M</color></b>IN\n"
                            + "YOO HYUN <b><color=#C12C20>C</color></b>HANG";
                 break;
@@ -124,8 +124,7 @@ public class GameOption : MonoBehaviour
                 foreach (Modal.Box content in modal.boxes) content.box.SetActive(false);
                 modal.modalObj.SetActive(false);
                 if (SceneManager.GetActiveScene().buildIndex != 0){
-                    GameManager.instance.isBattle = true;
-                    //GameManager.instance.isPause = false; //추후 isPause로 플레이어 움직임 정지
+                    GameManager.instance.isPause = false; //추후 isPause로 플레이어 움직임 정지
                     Time.timeScale = 1;
                 }
             }
@@ -206,8 +205,7 @@ public class GameOption : MonoBehaviour
                 OpenIndexModal(1);
                 Time.timeScale = 0;
                 VoiceSoundManager.instatnce.OnAllControlSound(VoiceSoundManager.AllSoundControlType.PAUSE);
-                GameManager.instance.isBattle = false;
-                //GameManager.instance.isPause = true; //추후 isPause로 플레이어 움직임 정지
+                GameManager.instance.isPause = true; //추후 isPause로 플레이어 움직임 정지
             }
         }
     }

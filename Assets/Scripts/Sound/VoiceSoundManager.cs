@@ -19,7 +19,8 @@ public class VoiceSoundManager : MonoBehaviour
     {
         OPENING = 0,
         START = 1,
-        BATTLE =2
+        BATTLE =2,
+        ENDING = 3
     }
     [System.Serializable]
     class BGMItem
@@ -192,6 +193,8 @@ public class VoiceSoundManager : MonoBehaviour
                 break;
             case BGMType.BATTLE:
                 bgmSound.time = (item.clip.length / 10f);
+                break;
+            case BGMType.ENDING:
                 break;
         }
         return bgmSound;

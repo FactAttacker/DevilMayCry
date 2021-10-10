@@ -11,7 +11,7 @@ public class IdleState : BossState
     [SerializeField] float farDist = 10;
     [SerializeField] int roarWeight = 100, attackWeight = 100, rushWeight = 100, strikeWeight = 100, jumpWeight = 100;
 
-    public bool isBasicAttack = false, isRush = false, isStrike = false, isRoar = false, isJump = false;
+    public bool isBasicAttack = false, isRush = false, isStrike = false, isRoar = false, isJump = false, isDeath = false;
 
     public bool IsCinematic
     {
@@ -59,6 +59,12 @@ public class IdleState : BossState
             bossStateMachine.SetState(BossSystem.Instance.JumpAttackState);
             isJump = false;
         }
+        if (isDeath)
+        {
+            bossStateMachine.SetState(GetComponent<DeathState>());
+            isDeath = false;
+        }
+        
     }
 
     public override void OnFixedUpdate()

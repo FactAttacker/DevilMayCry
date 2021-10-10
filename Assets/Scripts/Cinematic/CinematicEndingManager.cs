@@ -70,6 +70,7 @@ public class CinematicEndingManager : MonoBehaviour
     IEnumerator CoScenario()
     {
         AudioSource audioSource = VoiceSoundManager.instatnce.SetBGMChange(VoiceSoundManager.BGMType.ENDING);
+        audioSource.time = audioSource.clip.length / 6.7f;
         if (FadeInOutController.instance != null)
         {
             yield return new WaitUntil(() => !FadeInOutController.instance.isFade);
@@ -209,6 +210,12 @@ public class CinematicEndingManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         Time.timeScale = 0f;
+
+        GameOption.instance.OpenOptionWindow();
+        GameOption.instance.OpenIndexModal(1);
+        Time.timeScale = 0;
+        VoiceSoundManager.instatnce.OnAllControlSound(VoiceSoundManager.AllSoundControlType.PAUSE);
+        GameManager.instance.isPause = true; //추후 isPause로 플레이어 움직임 정지
     }
 
 }

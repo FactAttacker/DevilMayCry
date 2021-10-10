@@ -69,8 +69,12 @@ public class CinematicEndingManager : MonoBehaviour
 
     IEnumerator CoScenario()
     {
+        AudioSource audioSource = VoiceSoundManager.instatnce.SetBGMChange(VoiceSoundManager.BGMType.ENDING);
         if (FadeInOutController.instance != null)
+        {
             yield return new WaitUntil(() => !FadeInOutController.instance.isFade);
+            yield return new WaitUntil(() => !FadeInOutController.instance.fadeImg.gameObject.activeSelf);
+        }
 
         //칼 꺼낸상태
         playerMg.katana.transform.localEulerAngles = new Vector3(66f, -230f, -60f);
@@ -83,12 +87,12 @@ public class CinematicEndingManager : MonoBehaviour
         playerAnim.SetTrigger("thirdAttack");
 
         //페이드 아웃
-        while (true)
-        {
-            FadeOutProfile.weight -= Time.deltaTime * 5;
-            if (FadeOutProfile.weight <= 0) break;
-            yield return null;
-        }
+        //while (true)
+        //{
+        //    FadeOutProfile.weight -= Time.deltaTime * 5;
+        //    if (FadeOutProfile.weight <= 0) break;
+        //    yield return null;
+        //}
         FadeOutProfile.gameObject.SetActive(false);
        
         //aniSpeed = playerAnim.speed;
@@ -161,6 +165,9 @@ public class CinematicEndingManager : MonoBehaviour
         playerCinematic.katana.transform.localPosition = new Vector3(0.01705508f, -0.4062368f, -0.143f);
         playerCinematic.katana.transform.localEulerAngles = new Vector3(0f, -180f, 20f);
         yield return new WaitForSeconds(2f);
+
+        //BGM
+        audioSource.Play();
 
         float timeTurn = 0f;
         while (timeTurn < 1.3f)

@@ -46436,10 +46436,12 @@ MonoBehaviour:
   bgmItems:
   - type: 0
     clip: {fileID: 8300000, guid: eecf91ebf512c4726a26acb927445951, type: 3}
-  - type: 0
+  - type: 1
     clip: {fileID: 8300000, guid: e66eabc45c5bf4f239a4c8ad74d281f2, type: 3}
-  - type: 0
+  - type: 2
     clip: {fileID: 8300000, guid: c8f78f4c8719e4fb2839a3afc4d9f2db, type: 3}
+  - type: 3
+    clip: {fileID: 8300000, guid: 90a1474f2175e45a78c1112dcfd3c3ca, type: 3}
   currentBGMType: 0
   voiceItems:
   - type: 0

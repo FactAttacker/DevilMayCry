@@ -80,7 +80,9 @@ public class CameraManager : MonoBehaviour
 
     bool isBossUlimate = false;
     Dictionary<EffectType, GameObject> effectDict;
-    
+
+    bool isBattleEnd = false;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -115,9 +117,27 @@ public class CameraManager : MonoBehaviour
         //CameraMultiTargeter.instance._camera.transform.rotation = Quaternion.Euler(new Vector3(q.x,0,0));
     }
 
+    public void EndGame()
+    {
+        OnPlayerZoomIn();
+    }
     public void OnPlayerZoomIn()
     {
-        _camera.transform.position = Vector3.Lerp(_camera.transform.position, zoomPos[0].position, 3f * Time.deltaTime);
+        isBattleEnd = true;
+        GameManager.instance.isBattle = false;
+        StartCoroutine(CoEndGame());
+    }
+    IEnumerator CoEndGame()
+    {
+        float time = 1f;
+        while(time > 0)
+        {
+            time -= Time.deltaTime;
+            _camera.transform.position = Vector3.Lerp(_camera.transform.position, zoomPos[0].position, 3f * Time.deltaTime);
+            yield return null;
+        }
+        yield return new WaitForSeconds(2f);
+        FadeInOutController.instance.OnFadeInOut(3);
     }
 
     public void OnPlayerZoomOut()
@@ -240,6 +260,7 @@ public class CameraManager : MonoBehaviour
 
     void Update()
     {
+        if (isBattleEnd) return;
         OnTargetLook(currentTarget);
         switch (currentCamera)
         {

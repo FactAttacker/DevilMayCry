@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18218824, g: 0.22464132, b: 0.28850228, a: 1}
+  m_IndirectSpecularColor: {r: 0.18218797, g: 0.22464105, b: 0.28850168, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -46444,10 +46444,12 @@ MonoBehaviour:
   bgmItems:
   - type: 0
     clip: {fileID: 8300000, guid: eecf91ebf512c4726a26acb927445951, type: 3}
-  - type: 0
+  - type: 1
     clip: {fileID: 8300000, guid: e66eabc45c5bf4f239a4c8ad74d281f2, type: 3}
-  - type: 0
+  - type: 2
     clip: {fileID: 8300000, guid: c8f78f4c8719e4fb2839a3afc4d9f2db, type: 3}
+  - type: 3
+    clip: {fileID: 8300000, guid: 90a1474f2175e45a78c1112dcfd3c3ca, type: 3}
   currentBGMType: 0
   voiceItems:
   - type: 0
@@ -46468,6 +46470,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 29d184d330b7d494bb7c3a5e6043ba4f, type: 3}
     - {fileID: 8300000, guid: 1a3d6daa994aadc449e4086d20b8e6b8, type: 3}
     - {fileID: 8300000, guid: 00337937c7f87414b91fa201e88e7f61, type: 3}
+    - {fileID: 8300000, guid: 4be680c614936c74cb2073dfce6824ee, type: 3}
   - type: 1
     audio: {fileID: 164628378}
     clip:

@@ -19,7 +19,7 @@ public class FadeInOutController : MonoBehaviour
 
     [SerializeField]
     [Header("▼ Fade Image")]
-    Image fadeImg;
+    public Image fadeImg;
 
     public bool isFade = false;
 
@@ -39,13 +39,14 @@ public class FadeInOutController : MonoBehaviour
             yield return null;
         }
         fadeImg.color = Color.black;
-
+        yield return new WaitForSeconds(1f);
         // Game Exit 
-        if(sceneIndex == -1) Application.Quit();
+        if (sceneIndex == -1) Application.Quit();
         // Game Move
         float progress = GameManager.instance.SceneMove(sceneIndex);
 
         yield return new WaitUntil(() => progress == 0);
+        yield return new WaitForSeconds(1f);
 
         time = 0f;
         while (time < 1)

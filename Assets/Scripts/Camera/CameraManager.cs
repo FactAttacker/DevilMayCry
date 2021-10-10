@@ -80,7 +80,9 @@ public class CameraManager : MonoBehaviour
 
     bool isBossUlimate = false;
     Dictionary<EffectType, GameObject> effectDict;
-    
+
+    bool isBattleEnd = false;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -98,12 +100,12 @@ public class CameraManager : MonoBehaviour
     
     public void OnTargetLook(TargetType type)
     {
-        Transform target = type == TargetType.BOSS ? bossObj.transform : playerObj.transform;
-        Vector3 vec = target.position - transform.position;
-        vec.Normalize();
-
         if(type == TargetType.BOSS)
         {
+            Transform target = type == TargetType.BOSS ? bossObj.transform : playerObj.transform;
+            Vector3 vec = target.position - transform.position;
+            vec.Normalize();
+
             Quaternion q = Quaternion.LookRotation(vec);
             transform.rotation = q;
             _camera.rotation = q;
@@ -115,9 +117,27 @@ public class CameraManager : MonoBehaviour
         //CameraMultiTargeter.instance._camera.transform.rotation = Quaternion.Euler(new Vector3(q.x,0,0));
     }
 
+    public void EndGame()
+    {
+        OnPlayerZoomIn();
+    }
     public void OnPlayerZoomIn()
     {
-        _camera.transform.position = Vector3.Lerp(_camera.transform.position, zoomPos[0].position, 3f * Time.deltaTime);
+        isBattleEnd = true;
+        GameManager.instance.isBattle = false;
+        StartCoroutine(CoEndGame());
+    }
+    IEnumerator CoEndGame()
+    {
+        float time = 1f;
+        while(time > 0)
+        {
+            time -= Time.deltaTime;
+            _camera.transform.position = Vector3.Lerp(_camera.transform.position, zoomPos[0].position, 3f * Time.deltaTime);
+            yield return null;
+        }
+        yield return new WaitForSeconds(2f);
+        FadeInOutController.instance.OnFadeInOut(3);
     }
 
     public void OnPlayerZoomOut()
@@ -240,10 +260,11 @@ public class CameraManager : MonoBehaviour
 
     void Update()
     {
+        if (isBattleEnd) return;
+        OnTargetLook(currentTarget);
         switch (currentCamera)
         {
             case CameraType.FOLLWER:
-                OnTargetLook(currentTarget);
                 //transform.position = Vector3.MoveTowards(transform.position, playerObj.transform.position, 0.7f);
                 break;
             case CameraType.ZOOM_IN:

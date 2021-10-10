@@ -30,13 +30,13 @@ public class SwordCharginAttack : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.H))
         {
             anim.SetBool("Charging", true);
             InvokeRepeating("ChargeTime", 0.1f, 0.1f);
             
         }
-        if (Input.GetKeyUp(KeyCode.L))
+        if (Input.GetKeyUp(KeyCode.H))
         {
             
             //attachPoint.gameObject.SetActive(true);

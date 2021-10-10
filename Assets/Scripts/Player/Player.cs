@@ -148,7 +148,7 @@ public class Player : MonoBehaviour
             anim.SetTrigger("flyingBack");
 
         }
-        if ((GameManager.instance == null || GameManager.instance.isBattle|| GameManager.instance.isPause) && flying == false && charging == false && states.die == false)
+        if ((GameManager.instance == null || GameManager.instance.isBattle) &&  !GameManager.instance.isPause && flying == false && charging == false && states.die == false)
         {
             move();
             if (jumpPing == false) 

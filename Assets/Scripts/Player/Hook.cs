@@ -69,8 +69,8 @@ public class Hook : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         RaycastHit raycastHit;
-        Debug.DrawRay(transform.position, transform.forward * hook_Speed, Color.black);
-        if (Physics.Raycast(transform.position, transform.forward, out raycastHit, 10f))
+        //Debug.DrawRay(transform.position, transform.forward * hook_Speed, Color.black);
+        if (Physics.Raycast(transform.position, transform.forward, out raycastHit, hookMaxDistance))
         {
             print("launch");
             if (raycastHit.transform.gameObject.tag == "Boss")
@@ -108,7 +108,7 @@ public class Hook : MonoBehaviour
             playerAnim = player.GetComponent<Animator>();
             playerAnim.SetTrigger("prepair");
             playerAnim.SetBool("isFlying", enemyHooked);
-            player.transform.position = Vector3.Lerp(player.transform.position, hitPosition, hookMaxDistance * Time.deltaTime);
+            player.transform.position = Vector3.Lerp(player.transform.position, hitPosition, (hookMaxDistance / 2) * Time.deltaTime);
             
             if (Vector3.Distance(player.transform.position, hitPosition) < 2f)
             {

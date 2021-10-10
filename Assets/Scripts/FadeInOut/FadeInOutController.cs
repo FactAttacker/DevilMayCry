@@ -19,7 +19,7 @@ public class FadeInOutController : MonoBehaviour
 
     [SerializeField]
     [Header("▼ Fade Image")]
-    Image fadeImg;
+    public Image fadeImg;
 
     public bool isFade = false;
 

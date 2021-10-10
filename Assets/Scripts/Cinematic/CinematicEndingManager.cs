@@ -69,22 +69,13 @@ public class CinematicEndingManager : MonoBehaviour
 
     IEnumerator CoScenario()
     {
+        AudioSource audioSource = VoiceSoundManager.instatnce.SetBGMChange(VoiceSoundManager.BGMType.ENDING);
+        audioSource.time = audioSource.clip.length / 6.7f;
         if (FadeInOutController.instance != null)
-            yield return new WaitUntil(() => !FadeInOutController.instance.isFade);
-
-        Time.timeScale = 0.1f;
-        playerAnim.SetTrigger("thirdAttack");
-        while (true)
         {
-            FadeOutProfile.weight -= Time.deltaTime * 5;
-            if (FadeOutProfile.weight <= 0) break;
-            yield return null;
+            yield return new WaitUntil(() => !FadeInOutController.instance.isFade);
+            yield return new WaitUntil(() => !FadeInOutController.instance.fadeImg.gameObject.activeSelf);
         }
-        FadeOutProfile.gameObject.SetActive(false);
-        //aniSpeed = playerAnim.speed;
-        //playerAnim.speed = 0f;
-
-        boss.TryGetComponent(out bossAnim);
 
         //칼 꺼낸상태
         playerMg.katana.transform.localEulerAngles = new Vector3(66f, -230f, -60f);
@@ -92,9 +83,30 @@ public class CinematicEndingManager : MonoBehaviour
         playerMg.katana.transform.localPosition = new Vector3(0.12f, -0.136f, 0.5f);
         playerMg.outPutSword = !playerMg.outPutSword;
 
+        //시간 느리게
+        Time.timeScale = 0.1f;
+        playerAnim.SetTrigger("thirdAttack");
+
+        //페이드 아웃
+        //while (true)
+        //{
+        //    FadeOutProfile.weight -= Time.deltaTime * 5;
+        //    if (FadeOutProfile.weight <= 0) break;
+        //    yield return null;
+        //}
+        FadeOutProfile.gameObject.SetActive(false);
+       
+        //aniSpeed = playerAnim.speed;
+        //playerAnim.speed = 0f;
+
+        boss.TryGetComponent(out bossAnim);
+
         // 칼 베기 애니메이션 
         if (postProVolume == null) cameras[0].TryGetComponent(out postProVolume);
 
+        //보이스
+        VoiceSoundManager.instatnce.OnDanteVoice("Dante-Haaaaaaaa");
+        
 
         float timeSpeed = 2f;
         postProVolume.weight = 0;
@@ -146,15 +158,20 @@ public class CinematicEndingManager : MonoBehaviour
         //playerCinematic.OnInputSword();
         playerAim.SetTrigger("walkWithinput");
         yield return new WaitForSeconds(0.8f);
+
         //칼 집어넣기
         yield return null;
+        VoiceSoundManager.instatnce.OnDanteVoice("Dante-SweetDreams");
         playerCinematic.katana.transform.SetParent(playerCinematic.swordCase.transform, false);
         playerCinematic.katana.transform.localPosition = new Vector3(0.01705508f, -0.4062368f, -0.143f);
         playerCinematic.katana.transform.localEulerAngles = new Vector3(0f, -180f, 20f);
         yield return new WaitForSeconds(2f);
 
+        //BGM
+        audioSource.Play();
+
         float timeTurn = 0f;
-        while (timeTurn < 2f)
+        while (timeTurn < 1.3f)
         {
             timeTurn += Time.deltaTime;
             if(!playerAim.GetBool("Turn")) playerAim.SetTrigger("Turn");
@@ -188,9 +205,17 @@ public class CinematicEndingManager : MonoBehaviour
         foreach (GameObject go in glass)
         {
             go.SetActive(true);
+            AudioSource audio = go.GetComponentInChildren<AudioSource>();
+            audio.time = audio.clip.length / 3f;
             yield return new WaitForSeconds(0.1f);
         }
         Time.timeScale = 0f;
+
+        GameOption.instance.OpenOptionWindow();
+        GameOption.instance.OpenIndexModal(1);
+        Time.timeScale = 0;
+        VoiceSoundManager.instatnce.OnAllControlSound(VoiceSoundManager.AllSoundControlType.PAUSE);
+        GameManager.instance.isPause = true; //추후 isPause로 플레이어 움직임 정지
     }
 
 }

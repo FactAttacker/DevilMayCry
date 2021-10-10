@@ -5,7 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public GameObject chargingCollider;
-    //att
+    public GameObject slashEffect;
+    public GameObject downAttackEffect;
+
+
     float damage_Right = 300f;
     float damage_Left = 300f;
     float damage_Forward = 300f;
@@ -40,6 +43,10 @@ public class Player : MonoBehaviour
     public enum FighterState { WithoutSowrd, SwordMode }
     public FighterState fighterState = FighterState.WithoutSowrd;
     public enum FighterAttackState { Attack1, Attack2, Attack3, Attack4, hiddenAttack }
+    public enum FighterComboState { none, comboAttack1, comboAttack2, comboAttack3 }
+    public FighterComboState comboState = FighterComboState.none;
+
+
     public FighterAttackState attackState = FighterAttackState.Attack1;
     public Animator anim;
 
@@ -88,9 +95,11 @@ public class Player : MonoBehaviour
 
     PlayerState states;
     public AudioClip[] dante_Audio;
+    RFX4_EffectEvent rFX4_EffectEvent;
 
     void Start()
     {
+        rFX4_EffectEvent = GetComponent<RFX4_EffectEvent>();
         speed = 10;
         jumpSpeed = 15.0f;
         gravity = 20.0f;
@@ -115,6 +124,7 @@ public class Player : MonoBehaviour
     //public bool death = false;
     void Update()
     {
+        
         //bool death = false;
         if (states.die == true) 
         {
@@ -352,7 +362,8 @@ public class Player : MonoBehaviour
     {
         //StartCoroutine(InputSword());
         attackState = FighterAttackState.Attack1;
-
+        comboState = FighterComboState.comboAttack1;
+        //comboState = FighterComboState.none;
         rb.AddForce(Vector3.down * 6f, ForceMode.Impulse);
         //if (outPutSword == true)
         //{
@@ -383,12 +394,11 @@ public class Player : MonoBehaviour
     void InputControl()
     {
         anim.SetBool("MoveAttack", v != 0 || h != 0);
-
         if (!flying)
         {
-            if (sword == true) 
+            if (sword == true)
             {
-                if (Input.GetKeyDown(KeyCode.L))
+                if (Input.GetKeyDown(KeyCode.H))
                 {
                     charging = true;
                     //transform.LookAt(boss.transform.position);
@@ -396,9 +406,9 @@ public class Player : MonoBehaviour
                     InvokeRepeating("ChargeTime", 0.1f, 0.1f);
                     //anim.SetTrigger("CharginAttack");
                     //print(chargetime);  
-                   
+
                 }
-                if (Input.GetKeyUp(KeyCode.L))
+                if (Input.GetKeyUp(KeyCode.H))
                 {
                     charging = false;
                     CancelInvoke("ChargeTime");
@@ -406,20 +416,22 @@ public class Player : MonoBehaviour
                     chargetime = 0f;
                 }
             }
-            
+
 
 
             if (Input.GetKeyDown(KeyCode.J))
             {
-                
+
                 //hook.SetActive(true);
                 //VoiceSoundManager.instatnce.OnDanteVoice("Dante-HoHou");
                 anim.SetTrigger("loop");
 
             }
-            if (Input.GetKeyDown(KeyCode.K))
-            {
 
+            bool kKey = Input.GetKeyDown(KeyCode.K);
+            bool lKey = Input.GetKeyDown(KeyCode.L);            
+            if (kKey || lKey)
+            {
                 swordEffect.SetActive(true);
                 swordCollider.SetActive(true);
                 if (nextAttack)
@@ -428,7 +440,7 @@ public class Player : MonoBehaviour
                     switch (attackState)
                     {
                         case FighterAttackState.Attack1:
-
+                            if (lKey) break;
                             if (outPutSword == true)
                             {
                                 anim.SetTrigger("firstAttack");
@@ -455,9 +467,10 @@ public class Player : MonoBehaviour
                             break;
 
                         case FighterAttackState.Attack2:
+                            CancelInvoke(nameof(ResetAttackState));
+                            if (lKey) { attackState = FighterAttackState.Attack1;  break; }
                             //VoiceSoundManager.instatnce.OnDanteVoice("Dante-0");
                             SwordSound.instatnce.OnSwordSound(0);
-                            CancelInvoke(nameof(ResetAttackState));
                             anim.SetTrigger("secoundAttack");
                             nextAttack = false;
                             sword.damage = damage_Left;
@@ -469,22 +482,63 @@ public class Player : MonoBehaviour
                             break;
                         case FighterAttackState.Attack3:
                             //VoiceSoundManager.instatnce.OnDanteVoice("Dante-Chua");
-                            SwordSound.instatnce.OnSwordSound(0);
                             CancelInvoke(nameof(ResetAttackState));
-                            anim.SetTrigger("thirdAttack");
-                            nextAttack = false;
-                            sword.damage = damage_Forward;
-                            attackState = FighterAttackState.Attack4;
-                            StartCoroutine(Delay());
-                            Invoke(nameof(ResetAttackState), 1f);
+                            if (kKey)
+                            {
+                                comboState = FighterComboState.comboAttack1;
+                                SwordSound.instatnce.OnSwordSound(0);
+                                anim.SetTrigger("thirdAttack");
+                                nextAttack = false;
+                                attackState = FighterAttackState.Attack4;
+                                sword.damage = damage_Forward;
+                                StartCoroutine(Delay());
+                                Invoke(nameof(ResetAttackState), 1f);
+                            }
+                            else if (lKey)
+                            {
+                                attackState = FighterAttackState.Attack3;
+                                //ÄÞº¸ 1~3
+                                switch (comboState)
+                                {
+                                    case FighterComboState.comboAttack1:
+                                        SwordSound.instatnce.OnSwordSound(1);
+                                        anim.SetTrigger("Combo1");
+                                        nextAttack = false;
+                                        StartCoroutine(Delay());
+                                        comboState = FighterComboState.comboAttack2;
+                                        sword.damage = damage_Forward;
+                                        Invoke(nameof(ResetAttackState), 1f);
+                                        break;
 
+                                    case FighterComboState.comboAttack2:
+                                        SwordSound.instatnce.OnSwordSound(2);
+                                        anim.SetTrigger("Combo2");
+                                        nextAttack = false;
+                                        StartCoroutine(Delay());
+                                        comboState = FighterComboState.comboAttack3;
+                                        sword.damage = damage_Forward;
+                                        Invoke(nameof(ResetAttackState), 1f);
+                                        break;
+                                    case FighterComboState.comboAttack3:
+                                        SwordSound.instatnce.OnSwordSound(0);
+                                        rFX4_EffectEvent.MainEffect = slashEffect;
+                                        anim.SetTrigger("Combo3");
+                                        nextAttack = false;
+                                        StartCoroutine(Delay());
+                                        attackState = FighterAttackState.Attack4;
+                                        sword.damage = damage_Forward;
+                                        Invoke(nameof(ResetAttackState), 1f);
+                                        break;
+                                }
+                            }
                             break;
 
                         case FighterAttackState.Attack4:
+                            CancelInvoke(nameof(ResetAttackState));
+                            if (lKey) { attackState = FighterAttackState.Attack1; break; }
                             anim.SetBool("MoveAttack", false);
                             //VoiceSoundManager.instatnce.OnDanteVoice("Dante-Haaaaaaaa");
                             SwordSound.instatnce.OnSwordSound(1);
-                            CancelInvoke(nameof(ResetAttackState));
                             anim.SetTrigger("lastAttack");
                             StartCoroutine("JumpAttack");
                             nextAttack = false;
@@ -496,11 +550,13 @@ public class Player : MonoBehaviour
                             break;
 
                         case FighterAttackState.hiddenAttack:
+                            CancelInvoke(nameof(ResetAttackState));
+                            if (lKey) { attackState = FighterAttackState.Attack1; break; }
                             if (CameraManager.instance != null) CameraManager.instance.currentCamera = CameraManager.CameraType.ZOOM_ATT_DOWN;
+                            rFX4_EffectEvent.MainEffect = downAttackEffect;
                             SwordSound.instatnce.OnSwordSound(2);
                             //VoiceSoundManager.instatnce.OnDanteVoice("Dante-Down");
                             anim.SetBool("MoveAttack", false);
-                            CancelInvoke(nameof(ResetAttackState));
                             anim.SetTrigger("hiddenAttack");
                             StartCoroutine("DownAttack");
                             nextAttack = false;
@@ -516,11 +572,24 @@ public class Player : MonoBehaviour
                     }
                 }
             }
-            //anim.SetBool("MoveAttack", h != 0 || v != 0);
+            anim.SetBool("MoveAttack", h != 0 || v != 0);
         }
 
 
     }
+
+    void ResetCombo()
+    {
+        //StartCoroutine(InputSword());
+        //attackState = FighterAttackState.Attack1;
+        comboState = FighterComboState.comboAttack1;
+        //rb.AddForce(Vector3.down * 6f, ForceMode.Impulse);
+        //if (outPutSword == true)
+        //{
+        //    anim.ResetTrigger("outPutSword");
+        //}
+    }
+
     IEnumerator Delay(float delaytime = 0.3f)
     {
         float check = 0;
@@ -533,7 +602,6 @@ public class Player : MonoBehaviour
         }
         check = 0;
         nextAttack = true;
-
 
     }
     IEnumerator JumpAttack()

@@ -37,10 +37,15 @@ public class Hook : MonoBehaviour
         //transform.position = hitPosition;
     }
 
+
     
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.O)) 
+        {
+            
+        }
         originalPosition = returnPosition.position;
         lr.SetPosition(0, originalPosition);
         lr.SetPosition(1, transform.position);
@@ -52,6 +57,7 @@ public class Hook : MonoBehaviour
             player.transform.LookAt(enemy.transform);
             anim.SetTrigger("hook");
             StartCoroutine("StartHooking");
+           
         }
         float time = Time.deltaTime;
         ReturnHook();
@@ -62,10 +68,17 @@ public class Hook : MonoBehaviour
     IEnumerator StartHooking()
     {
         yield return new WaitForSeconds(0.1f);
-        isHooking = true;
-        rb.isKinematic = false;
-        rb.AddForce(player.transform.forward * hook_Speed);
-        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 콜라이더에서 레이캐스트로 변경
+        RaycastHit raycastHit;
+        Debug.DrawRay(transform.position, transform.forward * hook_Speed, Color.black);
+        if (Physics.Raycast(transform.position, transform.forward, out raycastHit, 10f))
+        {
+            print("launch");
+            if (raycastHit.transform.gameObject.tag == "Boss")
+            {
+                enemyHooked = true;
+                hitPosition = raycastHit.point;
+            }
+        }
     }
 
     void ReturnHook()
@@ -86,8 +99,10 @@ public class Hook : MonoBehaviour
     }
 
     Animator playerAnim;
+       
     void BringTowardsPlayer()
     {
+        
         if (enemyHooked)
         {
             playerAnim = player.GetComponent<Animator>();
@@ -108,19 +123,19 @@ public class Hook : MonoBehaviour
 
 
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Boss")
-        {
-            CameraManager.instance.currentCamera = CameraManager.CameraType.ZOOM_HOCK;
-            //Instantiate(effect_Electronic_attach);
-            //wall = collision.gameObject;
-            enemyHooked = true;
-            hitPosition = collision.contacts[0].point;
-            //Transform hit = hitPosition;
-            //effect.OverrideAttachPointToTarget.position = hitPosition;
-        }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Boss")
+    //    {
+    //        //CameraManager.instance.currentCamera = CameraManager.CameraType.ZOOM_HOCK;
+    //        //Instantiate(effect_Electronic_attach);
+    //        //wall = collision.gameObject;
+    //        enemyHooked = true;
+    //        hitPosition = collision.contacts[0].point;
+    //        //Transform hit = hitPosition;
+    //        //effect.OverrideAttachPointToTarget.position = hitPosition;
+    //    }
 
 
-    }
+    //}
 }

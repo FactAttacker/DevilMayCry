@@ -320,10 +320,6 @@ PrefabInstance:
       propertyPath: nextEdgeMaterial_Pass8
       value: 
       objectReference: {fileID: 1411911464}
-    - target: {fileID: 3037868440955639129, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3134092122249849569, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
       propertyPath: m_Name
       value: Dante_Prefab

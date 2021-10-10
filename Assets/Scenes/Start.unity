@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18218783, g: 0.2246408, b: 0.28850114, a: 1}
+  m_IndirectSpecularColor: {r: 0.18218824, g: 0.22464132, b: 0.28850228, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16139,6 +16139,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 62202898}
     m_Modifications:
+    - target: {fileID: 211677618, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: bc305ed09f23bd5469dd7da619f64669, type: 2}
     - target: {fileID: 2320858500541788251, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -16191,9 +16195,13 @@ PrefabInstance:
       propertyPath: nextEdgeMaterial_Pass8
       value: 
       objectReference: {fileID: 123486263}
+    - target: {fileID: 2951206889542931278, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
+      propertyPath: m_Name
+      value: SwordMayCry_low_Start_Ver
+      objectReference: {fileID: 0}
     - target: {fileID: 3134092122249849569, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
       propertyPath: m_Name
-      value: Dante_Prefab
+      value: Dante_Prefab_Startver
       objectReference: {fileID: 0}
     - target: {fileID: 5763450983244391703, guid: bf1a3eb6c3d1d465093b7f43ec0769f3, type: 3}
       propertyPath: m_Enabled

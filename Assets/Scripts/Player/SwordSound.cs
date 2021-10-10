@@ -27,16 +27,11 @@ public class SwordSound : MonoBehaviour
     }
     public void OnSwordSound(int count) 
     {
-        if (danteSay)
-        {
-            swordAudio.Stop();
-            swordAudio.clip = swordSoundClip[count];
-            swordAudio.Play();
-        }
-        else 
-        {
-            swordAudio.Stop();
-        }
+        
+        swordAudio.Stop();
+        swordAudio.clip = swordSoundClip[count];
+        swordAudio.Play();
+
         
 
     }

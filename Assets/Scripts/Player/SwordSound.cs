@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SwordSound : MonoBehaviour
 {
@@ -21,7 +22,6 @@ public class SwordSound : MonoBehaviour
 
     private void Start()
     {
-
         swordAudio = GetComponent<AudioSource>();
         VoiceSoundManager.instatnce.SetEffectSound(swordAudio);
     }

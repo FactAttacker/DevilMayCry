@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class RFX4_AudioCurves : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class RFX4_AudioCurves : MonoBehaviour
 
     private void OnEnable()
     {
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            Destroy(gameObject);
+        }
         startTime = Time.time;
         canUpdate = true;
     }

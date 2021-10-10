@@ -207,6 +207,7 @@ public class CinematicEndingManager : MonoBehaviour
             go.SetActive(true);
             AudioSource audio = go.GetComponentInChildren<AudioSource>();
             audio.time = audio.clip.length / 3f;
+            VoiceSoundManager.instatnce.SetEffectSound(audio);
             yield return new WaitForSeconds(0.1f);
         }
         Time.timeScale = 0f;

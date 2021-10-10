@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4964842644058240}
   - component: {fileID: 82791536784147868}
+  - component: {fileID: 4810036426722291056}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -127,6 +128,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &4810036426722291056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1124086607462540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15396a6da24784cbd846bc2f39485ef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1125398526885914
 GameObject:
   m_ObjectHideFlags: 0
@@ -19386,7 +19399,7 @@ MeshRenderer:
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
